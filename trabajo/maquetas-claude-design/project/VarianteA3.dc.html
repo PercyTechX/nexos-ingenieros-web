@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>NEXOS Inicio · A3 Arco de marca</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1D4FA0}a:hover{color:#0E1A4F}
+html{scroll-behavior:smooth;scrollbar-color:#B9C8E3 #F4F7FB}
+::selection{background:#D6EDD2;color:#0E1A4F}
+.nx *{box-sizing:border-box}
+.nx a:focus-visible,.nx button:focus-visible{outline:3px solid #3FA535;outline-offset:3px}
+.nx-num{font-variant-numeric:tabular-nums lining-nums}
+
+/* Navegación */
+.nx-links{display:flex}
+.nx-menu{display:none}
+.nx-link{position:relative;color:#0E1A4F;text-decoration:none;padding:12px 2px;min-height:44px;display:inline-flex;align-items:center}
+.nx-link::after{content:"";position:absolute;left:0;right:0;bottom:8px;height:2px;border-radius:2px;background:#3FA535;transform:scaleX(0);transform-origin:left;transition:transform 220ms cubic-bezier(0.23,1,0.32,1)}
+
+/* Botones: respuesta al presionar (Emil) */
+.nx-btn{transition:transform 160ms cubic-bezier(0.23,1,0.32,1),filter 200ms ease,box-shadow 200ms ease,background-color 200ms ease,color 200ms ease,border-color 200ms ease;cursor:pointer}
+.nx-btn:active{transform:scale(0.97)}
+.nx-ghost{background:#ffffff;color:#0E1A4F;border:2px solid #0E1A4F}
+.nx-arrow{background:#ffffff;color:#0E1A4F;border:1.5px solid #CBD5E6}
+.nx-chip-on{background:#0E1A4F;color:#ffffff;border:2px solid #0E1A4F}
+.nx-chip-off{background:#ffffff;color:#0E1A4F;border:2px solid #D3DBE8}
+.nx-dot{transition:transform 160ms cubic-bezier(0.23,1,0.32,1)}
+.nx-dot:active{transform:scale(0.9)}
+.nx-card{transition:transform 260ms cubic-bezier(0.23,1,0.32,1),box-shadow 260ms ease,border-color 200ms ease;border:1px solid #E2E8F1}
+.nx-card-ph{transition:transform 320ms cubic-bezier(0.23,1,0.32,1)}
+.nx-client{transition:border-color 200ms ease,color 200ms ease,transform 160ms cubic-bezier(0.23,1,0.32,1);border:1px solid #DFE6F0;color:#45526B}
+.nx-circle-in{transition:transform 320ms cubic-bezier(0.23,1,0.32,1)}
+
+@media (hover:hover) and (pointer:fine){
+  .nx-link:hover::after{transform:scaleX(1)}
+  .nx-solid:hover{filter:brightness(0.9);box-shadow:0 12px 26px -12px rgba(36,120,42,0.6)}
+  .nx-ghost:hover{background:#0E1A4F;color:#ffffff;border-color:#0E1A4F}
+  .nx-arrow:hover{background:#0E1A4F;color:#ffffff;border-color:#0E1A4F}
+  .nx-chip-off:hover{border-color:#0E1A4F}
+  .nx-card:hover{transform:translateY(-4px);box-shadow:0 24px 44px -26px rgba(14,26,79,0.35);border-color:#C9D6EA}
+  .nx-card:hover .nx-card-ph{transform:scale(1.02)}
+  .nx-client:hover{border-color:#3FA535;color:#0E1A4F}
+  .nx-circle:hover .nx-circle-in{transform:scale(1.04)}
+}
+
+/* Dibujo del arco y del skyline (stroke-dashoffset). Por defecto visibles. */
+.nx-draw{stroke-dasharray:1;animation:nx-draw 1900ms cubic-bezier(0.77,0,0.175,1) both}
+@keyframes nx-draw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+.nx-rise{animation:nx-rise 800ms cubic-bezier(0.16,1,0.3,1) backwards}
+@keyframes nx-rise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.nx-fadein{animation:nx-fade 1200ms ease backwards}
+@keyframes nx-fade{from{opacity:0}to{opacity:1}}
+@keyframes nx-fadeout{from{opacity:1}to{opacity:0}}
+
+/* Carrusel: entra la nueva, sale la anterior */
+.nx-slide-in{animation:nx-slide-in 750ms cubic-bezier(0.23,1,0.32,1) both}
+@keyframes nx-slide-in{from{opacity:0;transform:scale(1.05);filter:blur(6px)}to{opacity:1;transform:none;filter:blur(0)}}
+.nx-slide-out{animation:nx-fadeout 600ms ease both}
+.nx-cap-in{animation:nx-rise 600ms cubic-bezier(0.23,1,0.32,1) 120ms backwards}
+.nx-progress{transform-origin:left center;animation:nx-progress 5000ms linear both}
+@keyframes nx-progress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Tarjetas al filtrar */
+.nx-card-in{animation:nx-card-in 420ms cubic-bezier(0.23,1,0.32,1) backwards}
+@keyframes nx-card-in{from{opacity:0;transform:translateY(14px) scale(0.98)}to{opacity:1;transform:none}}
+
+/* Revelado al hacer scroll (solo si el navegador lo soporta; si no, todo visible) */
+@keyframes nx-reveal{from{opacity:0;transform:translateY(34px);animation-timing-function:cubic-bezier(0.23,1,0.32,1)}to{opacity:1;transform:none}}
+@keyframes nx-pop{from{opacity:0;transform:translateY(26px) scale(0.92);animation-timing-function:cubic-bezier(0.23,1,0.32,1)}to{opacity:1;transform:none}}
+@keyframes nx-arch{from{opacity:0.4;clip-path:inset(18% 8% 0 8% round 999px 999px 0 0);animation-timing-function:cubic-bezier(0.23,1,0.32,1)}to{opacity:1;clip-path:inset(0 0 0 0 round 0)}}
+@supports (animation-timeline: view()){
+  .nx-rv{animation:nx-reveal linear both;animation-timeline:view();animation-range:entry 0% cover 26%}
+  .nx-pop{animation:nx-pop linear both;animation-timeline:view();animation-range:entry 5% cover 32%}
+  .nx-draw-sc{stroke-dasharray:1;animation:nx-draw linear both;animation-timeline:view();animation-range:entry 0% cover 40%}
+  .nx-arch-rv{animation:nx-arch linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
+}
+
+/* Layout responsive */
+.nx-hero-grid{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,0.88fr);gap:clamp(40px,6vw,96px);align-items:center}
+.nx-archcol{justify-self:end;width:100%;max-width:460px;padding:56px 36px 0}
+.nx-horizon{--c:clamp(96px,19vw,248px)}
+.nx-short{display:none}
+.nx-pdesc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px)}
+.nx-hitos{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:clamp(12px,2vw,24px)}
+.nx-about{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr);gap:clamp(28px,5vw,80px);align-items:end}
+@media (max-width: 1000px){
+  .nx-links{display:none}
+  .nx-menu{display:inline-flex}
+}
+@media (max-width: 900px){
+  .nx-hero-grid{grid-template-columns:1fr}
+  .nx-archcol{justify-self:center;max-width:420px;padding:44px 30px 0}
+  .nx-about{grid-template-columns:1fr}
+}
+@media (max-width: 860px){
+  .nx-hitos{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width: 760px){
+  .nx-pdesc-grid{grid-template-columns:1fr}
+  .nx-pill{display:none !important}
+  .nx-short{display:block}
+  .nx-ctext{display:none !important}
+}
+@media (max-width: 640px){
+  .nx-navcta{display:none !important}
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .nx-draw,.nx-draw-sc,.nx-rise,.nx-rv,.nx-pop,.nx-arch-rv,.nx-cap-in,.nx-progress{animation:none !important}
+  .nx-fadein{animation:nx-fade 300ms ease backwards !important}
+  .nx-slide-in{animation:nx-fade 260ms ease both !important}
+  .nx-slide-out{animation:nx-fadeout 200ms ease both !important}
+  .nx-card-in{animation:nx-fade 200ms ease backwards !important}
+  .nx-btn:active,.nx-dot:active{transform:none}
+  .nx-card:hover,.nx-card:hover .nx-card-ph,.nx-circle:hover .nx-circle-in{transform:none}
+}
+[data-motion="off"] *{animation:none !important;transition:none !important}
+</style>
+</helmet>
+<div class="nx" data-motion="{{motion}}" style="font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #1A2440; background: #ffffff; width: 100%; overflow-x: hidden; -webkit-font-smoothing: antialiased">
+
+  <!-- ===== Navegación ===== -->
+  <header style="position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.96); border-bottom: 1px solid #E8EDF4">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 10px 20px; display: flex; align-items: center; justify-content: space-between; gap: 20px">
+      <a href="#inicio" style="display: flex; align-items: center; min-height: 44px"><img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: 54px; width: auto; display: block"></a>
+      <nav class="nx-links" aria-label="Principal" style="gap: 30px; align-items: center; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 600; font-size: 16px">
+        <a class="nx-link" href="#inicio">Inicio</a>
+        <a class="nx-link" href="#nosotros">Nosotros</a>
+        <a class="nx-link" href="#servicios">Servicios</a>
+        <a class="nx-link" href="#proyectos">Proyectos</a>
+        <a class="nx-link" href="#clientes">Clientes</a>
+        <a class="nx-link" href="#contacto">Contacto</a>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px">
+        <a class="nx-btn nx-solid nx-navcta" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #ffffff; text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 999px; min-height: 46px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+          Cotiza por WhatsApp
+        </a>
+        <button class="nx-btn nx-arrow nx-menu" type="button" aria-label="Abrir menú" style="width: 46px; height: 46px; border-radius: 14px; align-items: center; justify-content: center">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M8 17h12"></path></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section id="inicio" style="position: relative; padding: clamp(36px, 5vw, 72px) 20px clamp(56px, 7vw, 96px); background: radial-gradient(55% 70% at 88% 28%, #E8F0FB 0%, rgba(232,240,251,0) 72%), radial-gradient(45% 55% at 0% 100%, #EDF7EA 0%, rgba(237,247,234,0) 70%), #ffffff">
+    <div class="nx-hero-grid" style="max-width: 1280px; margin: 0 auto">
+
+      <div style="min-width: 0">
+        <h1 class="nx-rise" style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(42px, 5.9vw, 92px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F; text-wrap: balance">Soluciones en construcción, ingeniería y mantenimiento <span style="position: relative; display: inline-block; white-space: nowrap; color: #24782A">integral.<svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: -2%; bottom: -0.2em; width: 104%; height: 0.32em; overflow: visible"><path class="nx-draw" pathLength="1" d="M4 34 C 50 4, 150 4, 196 34" fill="none" stroke="#3FA535" stroke-width="5" stroke-linecap="round" vector-effect="non-scaling-stroke" style="animation-delay: 650ms"></path></svg></span></h1>
+        <p class="nx-rise" style="margin: clamp(22px, 2.6vw, 34px) 0 0; font-size: clamp(17px, 1.45vw, 20px); line-height: 1.6; color: #44506A; max-width: 34em; animation-delay: 120ms">Un equipo multidisciplinario con excelente gestión y respuesta inmediata para tiendas, agencias bancarias y oficinas en Lima, Ica y regiones del Perú.</p>
+        <div class="nx-rise" style="display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; animation-delay: 220ms">
+          <a class="nx-btn nx-solid" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #ffffff; text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; padding: 16px 26px; border-radius: 999px; min-height: 54px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+            Escríbenos por WhatsApp
+          </a>
+          <a class="nx-btn nx-ghost" href="#proyectos" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; padding: 14px 24px; border-radius: 999px; min-height: 54px">
+            Ver proyectos
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+          </a>
+        </div>
+        <p class="nx-rise" style="margin: 34px 0 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; font-size: 15px; color: #44506A; animation-delay: 320ms">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#24782A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+          <span style="font-weight: 600; color: #0E1A4F">Lima · Callao · Ica · Lambayeque · Ucayali</span>
+        </p>
+      </div>
+
+      <!-- Carrusel dentro del arco -->
+      <div class="nx-archcol" style="position: relative; min-width: 0">
+        <div style="position: relative">
+          <svg viewBox="0 0 400 500" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; z-index: 0">
+            <path class="nx-draw" pathLength="1" d="M-30 520 V200 A230 230 0 0 1 200 -30" fill="none" stroke="#3FA535" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" style="animation-delay: 200ms"></path>
+            <path class="nx-draw" pathLength="1" d="M200 -30 A230 230 0 0 1 430 200 V520" fill="none" stroke="#0E1A4F" stroke-width="3" stroke-linecap="round" vector-effect="non-scaling-stroke" style="animation-delay: 200ms"></path>
+            <path class="nx-fadein" d="M-58 520 V200 A258 258 0 0 1 458 200 V520" fill="none" stroke="#9DB6DE" stroke-width="1.2" stroke-dasharray="2 9" stroke-linecap="round" vector-effect="non-scaling-stroke" style="animation-delay: 900ms"></path>
+          </svg>
+          <div role="region" aria-roledescription="carrusel" aria-label="Proyectos destacados" style="position: relative; z-index: 1; aspect-ratio: 4 / 5; border-radius: 999px 999px 28px 28px; overflow: hidden; background: #EAF0F8; isolation: isolate; box-shadow: 0 30px 60px -36px rgba(14,26,79,0.45)">
+            <sc-for list="{{slides}}" as="s" hint-placeholder-count="1">
+              <sc-if value="{{s.leaving}}" hint-placeholder-val="{{false}}">
+                <div class="nx-slide-out" aria-hidden="true" style="position: absolute; inset: 0; z-index: 1; background: linear-gradient(165deg, #EDF7EB 0%, #E7EFFB 68%, #DCE7F8 100%)"></div>
+              </sc-if>
+              <sc-if value="{{s.active}}" hint-placeholder-val="{{true}}">
+                <div style="position: absolute; inset: 0; z-index: 2">
+                  <div class="nx-slide-in" style="position: absolute; inset: 0; background: linear-gradient(165deg, #EDF7EB 0%, #E7EFFB 68%, #DCE7F8 100%)">
+                    <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%">
+                      <path d="M40 330 V200 A160 160 0 0 1 360 200 V330" fill="none" stroke="#C3D3EC" stroke-width="1.5"></path>
+                      <path d="M0 330 H30 V290 H62 V330 H80 V250 H96 V236 H112 V250 H128 V330 H146 V276 H182 V330 H200 V220 L214 206 L228 220 V330 H248 V268 H286 V330 H302 V244 H340 V330 H400" fill="none" stroke="#B7CAE6" stroke-width="1.5" stroke-linejoin="round"></path>
+                      <path d="M0 340 C 70 322, 130 358, 200 340 S 330 322, 400 340" fill="none" stroke="#9EB6DE" stroke-width="2"></path>
+                    </svg>
+                    <div style="position: absolute; left: 12%; right: 12%; top: 19%; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; color: #2C3A58">
+                      <span style="width: 58px; height: 58px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #1D4FA0; box-shadow: 0 8px 20px -10px rgba(14,26,79,0.35)">
+                        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.8l1.4-2h6.6l1.4 2h1.8A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.6"></circle></svg>
+                      </span>
+                      <span style="font-size: 14px; line-height: 1.5; max-width: 30ch">{{s.photo}}</span>
+                    </div>
+                  </div>
+                  <div class="nx-cap-in" style="position: absolute; left: 14px; right: 14px; bottom: 14px; background: #ffffff; border-radius: 18px; padding: 16px 18px 14px; box-shadow: 0 14px 30px -18px rgba(14,26,79,0.4)">
+                    <p style="margin: 0; font-size: 13px; font-weight: 700; color: #24782A">{{s.type}}</p>
+                    <p style="margin: 4px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(19px, 1.7vw, 23px); line-height: 1.15; letter-spacing: -0.01em; color: #0E1A4F">{{s.title}}</p>
+                    <p style="margin: 4px 0 0; font-size: 14px; color: #4A5672; display: flex; align-items: center; gap: 6px">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+                      {{s.place}}
+                    </p>
+                    <div style="margin-top: 12px; height: 3px; border-radius: 3px; background: #E4EAF4; overflow: hidden">
+                      <div class="nx-progress" style="height: 100%; background: {{accent}}"></div>
+                    </div>
+                  </div>
+                </div>
+              </sc-if>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 18px">
+          <button class="nx-btn nx-arrow" type="button" onClick="{{prev}}" aria-label="Proyecto anterior" style="width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+          </button>
+          <div style="display: flex; align-items: center; gap: 0">
+            <sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+              <button class="nx-dot" type="button" onClick="{{d.go}}" aria-label="{{d.label}}" style="width: 30px; height: 44px; border: none; background: transparent; padding: 0; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                <sc-if value="{{d.active}}" hint-placeholder-val="{{false}}"><span style="display: block; width: 22px; height: 8px; border-radius: 4px; background: #0E1A4F"></span></sc-if>
+                <sc-if value="{{d.idle}}" hint-placeholder-val="{{true}}"><span style="display: block; width: 8px; height: 8px; border-radius: 4px; background: #B8C5DB"></span></sc-if>
+              </button>
+            </sc-for>
+          </div>
+          <button class="nx-btn nx-arrow" type="button" onClick="{{next}}" aria-label="Proyecto siguiente" style="width: 48px; height: 48px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex: none">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 3 pilares sobre la onda (horizonte) ===== -->
+  <section id="servicios" style="position: relative; padding-top: clamp(40px, 6vw, 88px)">
+    <div class="nx-rv" style="max-width: 1280px; margin: 0 auto; padding: 0 20px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 16px 40px">
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 76px); line-height: 1; letter-spacing: -0.035em; color: #0E1A4F; max-width: 12ch">Tres pilares, un solo equipo.</h2>
+      <p style="margin: 0; font-size: 18px; line-height: 1.6; color: #44506A; max-width: 30em">Mantenimiento, construcción e ingeniería con el mismo equipo y la misma forma de trabajar: excelente gestión y respuesta inmediata.</p>
+    </div>
+
+    <div class="nx-horizon" style="position: relative; margin-top: clamp(56px, 9vw, 150px)">
+      <!-- franja clara bajo la onda -->
+      <div aria-hidden="true" style="position: absolute; left: 0; right: 0; top: calc(var(--c) / 2 + 59px); bottom: 0; background: #EFF4F8"></div>
+
+      <div style="position: relative; max-width: 1440px; margin: 0 auto; padding: 0 20px">
+        <div style="position: relative; height: var(--c)">
+          <!-- skyline: su base se apoya en el horizonte -->
+          <svg viewBox="0 0 1478 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true" style="position: absolute; left: 50%; bottom: 50%; width: 100vw; height: auto; aspect-ratio: 1478 / 200; transform: translateX(-50%); overflow: visible; z-index: 0">
+            <path class="nx-draw-sc" pathLength="1" d="M0 190 V138 H46 V190 H76 V102 H114 V190 V126 H168 V190 H194 V62 H211 V36 M211 62 H228 V190 V94 H286 V190 H308 V120 H352 V190 V78 H422 V190 H452 V40 L472 18 L492 40 V190 V106 H544 V190 H568 V130 H604 V190 V72 H624 V54 H645 V72 H666 V190 H694 V116 H742 V190 V50 H762 V24 M762 50 H782 V190 H812 V98 H868 V190 V132 H912 V190 H932 V66 H953 V48 H974 V66 H996 V190 V110 H1034 V190 H1060 V86 H1110 V190 V124 H1152 V190 H1182 V54 L1205 32 L1228 54 V190 V104 H1286 V190 H1310 V128 H1350 V190 V92 H1402 V190 H1432 V118 H1478 V190" fill="none" stroke="#B9CBE6" stroke-width="1.5" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+            <path class="nx-draw-sc" pathLength="1" d="M1252 190 V22 M1206 34 H1352 M1252 22 L1206 34 M1252 22 L1352 34 M1334 34 V70 M1326 70 H1342" fill="none" stroke="#9FC79A" stroke-width="1.5" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+          </svg>
+
+          <!-- la onda del logo: cruza el centro de los 3 círculos -->
+          <svg viewBox="0 0 1200 120" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; left: 20px; right: 20px; width: calc(100% - 40px); top: calc(var(--c) / 2 - 60px); height: 120px; overflow: visible; z-index: 1">
+            <path d="M-1400 60 H0 Q100 20 200 60 T400 60 T600 60 T800 60 T1000 60 T1200 60 H2600 V121 H-1400 Z" fill="#EFF4F8"></path>
+            <path class="nx-draw-sc" pathLength="1" d="M-1400 68 H0 Q100 28 200 68 T400 68 T600 68 T800 68 T1000 68 T1200 68 H2600" fill="none" stroke="#3FA535" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+            <path class="nx-draw-sc" pathLength="1" d="M-1400 60 H0 Q100 20 200 60 T400 60 T600 60 T800 60 T1000 60 T1200 60 H2600" fill="none" stroke="#1D4FA0" stroke-width="3.5" stroke-linecap="round" vector-effect="non-scaling-stroke"></path>
+          </svg>
+
+          <!-- 3 círculos -->
+          <div style="position: relative; z-index: 2; display: flex; justify-content: space-around; height: 100%">
+            <sc-for list="{{pillars}}" as="pl" hint-placeholder-count="3">
+              <div class="nx-pop" style="width: var(--c); display: flex; flex-direction: column; align-items: center">
+                <a class="nx-circle" href="#proyectos" aria-label="{{pl.name}}" style="display: block; width: var(--c); height: var(--c); flex: none; border-radius: 50%; padding: clamp(4px, 0.5vw, 7px); background: conic-gradient(from 180deg, #3FA535 0 50%, #0E1A4F 50% 100%); box-shadow: 0 20px 40px -22px rgba(14,26,79,0.5)">
+                  <span style="display: block; width: 100%; height: 100%; border-radius: 50%; border: clamp(3px, 0.45vw, 6px) solid #ffffff; overflow: hidden; background: #ffffff">
+                    <span class="nx-circle-in" style="display: flex; width: 100%; height: 100%; flex-direction: column; align-items: center; justify-content: center; gap: 8px; text-align: center; padding: 0 16%; background: {{pl.bg}}; color: #2C3A58">
+                      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#1D4FA0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.8l1.4-2h6.6l1.4 2h1.8A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.6"></circle></svg>
+                      <span class="nx-ctext" style="font-size: 12px; line-height: 1.4">{{pl.photo}}</span>
+                    </span>
+                  </span>
+                </a>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- etiquetas sobre la franja -->
+        <div style="position: relative; z-index: 2; display: flex; justify-content: space-around; margin-top: -24px">
+          <sc-for list="{{pillars}}" as="pl" hint-placeholder-count="3">
+            <div style="width: var(--c); display: flex; justify-content: center">
+              <span class="nx-pill" style="display: inline-flex; align-items: center; justify-content: center; text-align: center; background: #0E1A4F; color: #ffffff; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(14px, 1.2vw, 17px); padding: 12px 20px; border-radius: 999px; min-height: 46px; max-width: min(320px, 30vw); line-height: 1.15; box-shadow: 0 10px 22px -14px rgba(14,26,79,0.6)">{{pl.name}}</span>
+              <span class="nx-short" style="margin-top: 30px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 14px; color: #0E1A4F; text-align: center">{{pl.short}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+
+      <!-- descripciones -->
+      <div style="position: relative; max-width: 1280px; margin: 0 auto; padding: clamp(36px, 4vw, 56px) 20px clamp(64px, 8vw, 112px)">
+        <div class="nx-pdesc-grid nx-rv">
+          <sc-for list="{{pillars}}" as="pl" hint-placeholder-count="3">
+            <div style="background: #ffffff; border-radius: 24px; padding: clamp(22px, 2.4vw, 32px); border: 1px solid #E1E8F1">
+              <h3 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: clamp(22px, 2vw, 28px); line-height: 1.1; letter-spacing: -0.02em; color: #0E1A4F">{{pl.name}}</h3>
+              <ul style="list-style: none; margin: 18px 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px">
+                <sc-for list="{{pl.items}}" as="it" hint-placeholder-count="6">
+                  <li style="font-size: 14.5px; font-weight: 500; color: #24324F; background: #F3F7FB; border: 1px solid #E1E9F3; padding: 7px 12px; border-radius: 999px">{{it}}</li>
+                </sc-for>
+              </ul>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Quiénes somos + hitos ===== -->
+  <section id="nosotros" style="position: relative; padding: clamp(72px, 9vw, 140px) 20px clamp(64px, 8vw, 120px); background: #ffffff">
+    <div style="max-width: 1280px; margin: 0 auto">
+      <div class="nx-about nx-rv">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5.6vw, 88px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F; text-wrap: balance">Excelente gestión y <span style="color: #1D4FA0">respuesta inmediata.</span></h2>
+        <p style="margin: 0; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.68; color: #3E4A64; max-width: 36em">Somos una empresa peruana de construcción, ingeniería y mantenimiento integral, conformada por un equipo multidisciplinario con amplia experiencia, comprometidos con soluciones efectivas e integrales, mejora continua y altos estándares de seguridad. Nuestra estrategia: excelente gestión y respuesta inmediata.</p>
+      </div>
+
+      <div id="nx-hitos" class="nx-hitos" style="margin-top: clamp(48px, 6vw, 88px)">
+        <sc-for list="{{hitos}}" as="h" hint-placeholder-count="4">
+          <div class="nx-pop" style="position: relative; min-height: clamp(250px, 26vw, 380px); border-radius: 999px 999px 22px 22px; background: {{h.bg}}; padding: 0 clamp(14px, 1.8vw, 26px) clamp(20px, 2vw, 28px); display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden">
+            <span aria-hidden="true" style="position: absolute; inset: 10px; border-radius: 999px 999px 14px 14px; border: 1.5px solid {{h.line}}; pointer-events: none"></span>
+            <p class="nx-num" style="position: relative; margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(52px, 6vw, 96px); line-height: 0.9; letter-spacing: -0.04em; color: #0E1A4F">{{h.num}}</p>
+            <p style="position: relative; margin: 12px 0 0; font-size: clamp(14px, 1.15vw, 16px); line-height: 1.45; color: #2F3C58">{{h.label}}</p>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Proyectos ===== -->
+  <section id="proyectos" style="position: relative; background: #F4F7FB; padding: 0 20px clamp(72px, 8vw, 120px)">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" style="display: block; width: calc(100% + 40px); height: clamp(24px, 3vw, 44px); margin: 0 -20px; transform: translateY(-1px)">
+      <path d="M0 0 H1200 V18 C 1050 40, 900 2, 750 18 S 450 40, 300 18 S 100 2, 0 18 Z" fill="#ffffff"></path>
+      <path d="M0 18 C 100 2, 200 34, 300 18 S 450 40, 750 18 S 1050 40, 1200 18" fill="none" stroke="#1D4FA0" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+    </svg>
+    <div style="max-width: 1280px; margin: clamp(48px, 6vw, 88px) auto 0">
+      <div class="nx-rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: clamp(28px, 3vw, 44px)">
+        <h2 style="margin: 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(38px, 5.6vw, 88px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F">Proyectos <br>ejecutados</h2>
+        <div role="group" aria-label="Filtrar proyectos por pilar" style="display: flex; flex-wrap: wrap; gap: 8px">
+          <sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+            <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}">
+              <button class="nx-btn nx-chip-on" type="button" onClick="{{c.pick}}" aria-pressed="true" style="min-height: 46px; padding: 10px 20px; border-radius: 999px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px">{{c.label}}</button>
+            </sc-if>
+            <sc-if value="{{c.idle}}" hint-placeholder-val="{{true}}">
+              <button class="nx-btn nx-chip-off" type="button" onClick="{{c.pick}}" aria-pressed="false" style="min-height: 46px; padding: 10px 20px; border-radius: 999px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 15px">{{c.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+      </div>
+
+      <sc-for list="{{grids}}" as="g" hint-placeholder-count="1">
+        <sc-if value="{{g.show}}" hint-placeholder-val="{{true}}">
+          <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: clamp(16px, 1.6vw, 24px)">
+            <sc-for list="{{g.items}}" as="p" hint-placeholder-count="8">
+              <article class="nx-card nx-card-in" style="border-radius: 24px; background: #ffffff; padding: 12px; display: flex; flex-direction: column; animation-delay: {{p.delay}}">
+                <div style="border-radius: 999px 999px 14px 14px; overflow: hidden">
+                  <div class="nx-card-ph" style="position: relative; height: 236px; background: {{p.ph}}; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 10px; padding: 0 18px 22px; text-align: center; color: #2C3A58">
+                    <svg viewBox="0 0 300 236" preserveAspectRatio="xMidYMax slice" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%">
+                      <path d="M0 236 V200 H26 V176 H52 V200 H70 V150 H84 V140 H98 V150 H112 V236 M196 236 V164 L210 150 L224 164 V236 M236 236 V186 H270 V170 H300" fill="none" stroke="{{p.line}}" stroke-width="1.4" stroke-linejoin="round"></path>
+                    </svg>
+                    <span style="position: relative; width: 44px; height: 44px; border-radius: 50%; background: #ffffff; display: flex; align-items: center; justify-content: center; color: #1D4FA0">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.8l1.4-2h6.6l1.4 2h1.8A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.6"></circle></svg>
+                    </span>
+                    <span style="position: relative; font-size: 12.5px; line-height: 1.45; max-width: 28ch">{{p.photo}}</span>
+                  </div>
+                </div>
+                <div style="padding: 16px 8px 10px; display: flex; flex-direction: column; gap: 6px; flex: 1">
+                  <span style="align-self: flex-start; font-size: 12.5px; font-weight: 700; color: {{p.tagFg}}; background: {{p.tagBg}}; padding: 5px 11px; border-radius: 999px">{{p.pillarLabel}}</span>
+                  <h3 style="margin: 6px 0 0; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 21px; line-height: 1.15; letter-spacing: -0.015em; color: #0E1A4F">{{p.title}}</h3>
+                  <p style="margin: 0; font-size: 15px; line-height: 1.45; color: #3E4A64">{{p.type}}</p>
+                  <p style="margin: auto 0 0; padding-top: 6px; font-size: 14px; color: #4A5672; display: flex; align-items: center; gap: 6px">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+                    {{p.place}}
+                  </p>
+                </div>
+              </article>
+            </sc-for>
+          </div>
+        </sc-if>
+      </sc-for>
+    </div>
+  </section>
+
+  <!-- ===== Clientes ===== -->
+  <section id="clientes" style="position: relative; padding: clamp(72px, 9vw, 140px) 20px clamp(56px, 7vw, 100px); background: #ffffff; overflow: hidden">
+    <div class="nx-arch-rv" aria-hidden="true" style="position: absolute; left: 50%; top: clamp(40px, 6vw, 96px); transform: translateX(-50%); width: min(1180px, 150vw); aspect-ratio: 2 / 1; border-radius: 9999px 9999px 0 0; background: linear-gradient(90deg, #EEF7EB 0%, #EEF7EB 50%, #EAF0FA 50%, #EAF0FA 100%)"></div>
+    <div style="position: relative; max-width: 1080px; margin: 0 auto; text-align: center">
+      <h2 class="nx-rv" style="margin: 0 auto; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(36px, 5vw, 76px); line-height: 1; letter-spacing: -0.035em; color: #0E1A4F; max-width: 14ch; padding-top: clamp(40px, 6vw, 90px)">Marcas que confían en NEXOS</h2>
+      <div class="nx-rv" style="margin-top: clamp(32px, 4vw, 56px); display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px">
+        <sc-for list="{{clients}}" as="cl" hint-placeholder-count="12">
+          <div class="nx-client" style="height: 88px; border-radius: 18px; background: #ffffff; display: flex; align-items: center; justify-content: center; padding: 10px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; letter-spacing: -0.01em">{{cl}}</div>
+        </sc-for>
+      </div>
+      <p style="margin: 18px 0 0; font-size: 14px; color: #5A6680">[Logos oficiales pendientes]</p>
+    </div>
+  </section>
+
+  <!-- ===== CTA en arco ===== -->
+  <section id="contacto" style="padding: clamp(24px, 4vw, 48px) 20px clamp(72px, 8vw, 120px); background: #ffffff">
+    <div class="nx-rv" style="position: relative; max-width: 1180px; margin: 0 auto; border-radius: 50% 50% 32px 32px / clamp(140px, 22vw, 320px) clamp(140px, 22vw, 320px) 32px 32px; background: linear-gradient(120deg, #EAF6E7 0%, #EEF3F8 50%, #E3ECFA 100%); padding: clamp(110px, 14vw, 200px) clamp(22px, 5vw, 72px) clamp(120px, 13vw, 190px); text-align: center; overflow: hidden">
+      <svg viewBox="0 0 1180 400" preserveAspectRatio="none" aria-hidden="true" style="position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none">
+        <path class="nx-draw-sc" pathLength="1" d="M60 400 V330 A530 300 0 0 1 590 30" fill="none" stroke="#3FA535" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+        <path class="nx-draw-sc" pathLength="1" d="M590 30 A530 300 0 0 1 1120 330 V400" fill="none" stroke="#0E1A4F" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+      </svg>
+      <svg viewBox="0 0 1478 200" preserveAspectRatio="xMidYMax meet" aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: clamp(18px, 2.4vw, 34px); width: 100%; height: auto; aspect-ratio: 1478 / 200; opacity: 0.9">
+        <path class="nx-draw-sc" pathLength="1" d="M0 190 V138 H46 V190 H76 V102 H114 V190 V126 H168 V190 H194 V62 H211 V36 M211 62 H228 V190 V94 H286 V190 H308 V120 H352 V190 V78 H422 V190 H452 V40 L472 18 L492 40 V190 V106 H544 V190 H568 V130 H604 V190 V72 H624 V54 H645 V72 H666 V190 H694 V116 H742 V190 V50 H762 V24 M762 50 H782 V190 H812 V98 H868 V190 V132 H912 V190 H932 V66 H953 V48 H974 V66 H996 V190 V110 H1034 V190 H1060 V86 H1110 V190 V124 H1152 V190 H1182 V54 L1205 32 L1228 54 V190 V104 H1286 V190 H1310 V128 H1350 V190 V92 H1402 V190 H1432 V118 H1478 V190" fill="none" stroke="#B4C7E4" stroke-width="1.4" stroke-linejoin="round" vector-effect="non-scaling-stroke"></path>
+        <path d="M0 196 C 160 176, 300 214, 480 196 S 820 176, 1000 196 S 1320 214, 1478 196" fill="none" stroke="#1D4FA0" stroke-width="2.5" vector-effect="non-scaling-stroke"></path>
+      </svg>
+      <div style="position: relative">
+        <h2 style="margin: 0 auto; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: clamp(34px, 5.2vw, 80px); line-height: 1; letter-spacing: -0.035em; color: #0E1A4F; max-width: 15ch; text-wrap: balance">¿Tienes un proyecto o un local que mantener?</h2>
+        <p style="margin: 22px auto 0; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; color: #3E4A64; max-width: 32em">Cuéntanos qué necesitas y te respondemos con una propuesta a medida.</p>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px">
+          <a class="nx-btn nx-solid" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #ffffff; text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; padding: 16px 26px; border-radius: 999px; min-height: 54px">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+            WhatsApp +51 984 387 498
+          </a>
+          <a class="nx-btn nx-ghost" href="mailto:operaciones@nexos-ing.com" style="display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; padding: 14px 24px; border-radius: 999px; min-height: 54px; max-width: 100%">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+            <span style="overflow-wrap: anywhere">operaciones@nexos-ing.com</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer (claro) ===== -->
+  <footer style="position: relative; background: #F4F7FB; padding: 0 20px 28px; color: #3E4A64">
+    <svg viewBox="0 0 1200 40" preserveAspectRatio="none" aria-hidden="true" style="display: block; width: calc(100% + 40px); height: clamp(24px, 3vw, 44px); margin: 0 -20px; transform: translateY(-1px)">
+      <path d="M0 0 H1200 V18 C 1050 40, 900 2, 750 18 S 450 40, 300 18 S 100 2, 0 18 Z" fill="#ffffff"></path>
+      <path d="M0 18 C 100 2, 200 34, 300 18 S 450 40, 750 18 S 1050 40, 1200 18" fill="none" stroke="#3FA535" stroke-width="2" vector-effect="non-scaling-stroke"></path>
+    </svg>
+    <div style="max-width: 1280px; margin: clamp(40px, 5vw, 64px) auto 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px">
+      <div>
+        <div style="background: #ffffff; border-radius: 16px; padding: 10px 14px; display: inline-block; border: 1px solid #E3E9F2"><img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: 54px; width: auto; display: block"></div>
+        <p style="margin: 16px 0 0; font-size: 15px; line-height: 1.6; max-width: 28em">Soluciones en construcción, ingeniería y mantenimiento integral.</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: #0E1A4F">Contacto</h3>
+        <p style="margin: 0 0 8px; font-size: 15px"><a href="tel:+51984387498" style="color: #1D4FA0; text-underline-offset: 3px">+51 984 387 498</a></p>
+        <p style="margin: 0 0 8px; font-size: 15px"><a href="mailto:operaciones@nexos-ing.com" style="color: #1D4FA0; text-underline-offset: 3px">operaciones@nexos-ing.com</a></p>
+        <p style="margin: 0; font-size: 15px">Horario: [POR DEFINIR]</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: #0E1A4F">Sedes</h3>
+        <p style="margin: 0 0 8px; font-size: 15px">San Martín de Porres, Lima – Perú</p>
+        <p style="margin: 0; font-size: 15px">Ica, Ica – Perú</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 17px; color: #0E1A4F">Síguenos</h3>
+        <p style="margin: 0; font-size: 15px">[Redes sociales: POR DEFINIR]</p>
+      </div>
+    </div>
+    <div style="max-width: 1280px; margin: 40px auto 0; padding-top: 20px; border-top: 1px solid #DFE6F0; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; font-size: 14px; color: #55617A">
+      <span>© 2026 NEXOS Ingenieros. Todos los derechos reservados.</span>
+      <svg width="44" height="24" viewBox="0 0 44 24" fill="none" aria-hidden="true"><path d="M2 22 A20 20 0 0 1 22 2" stroke="#3FA535" stroke-width="2.5" stroke-linecap="round"></path><path d="M22 2 A20 20 0 0 1 42 22" stroke="#0E1A4F" stroke-width="2.5" stroke-linecap="round"></path></svg>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#24782A","options":["#24782A","#1D4FA0","#0E1A4F"]},"motion":{"editor":"enum","default":"on","options":["on","off"]},"$preview":{"width":1440,"height":5900}}'>
+var NX_SLIDES = [
+  { title: 'Tienda MINISO La Rambla', type: 'Implementación de tienda', place: 'San Borja, Lima', photo: '[FOTO: tienda MINISO La Rambla recién implementada — plano general frontal, iluminación de tienda encendida, sin personas]' },
+  { title: 'Tienda MASS Calle 4', type: 'Implementación de tienda', place: 'Pisco, Ica', photo: '[FOTO: fachada de Tienda MASS Calle 4 con letrero encendido — plano general desde la vereda, luz de atardecer]' },
+  { title: 'Tienda La Tinka Leoncio Prado', type: 'Implementación de tienda', place: 'Chiclayo, Lambayeque', photo: '[FOTO: interior de La Tinka Leoncio Prado con mobiliario instalado — plano abierto, luz cálida interior]' },
+  { title: 'Botica Inkafarma Cañete', type: 'Levantamiento de observaciones INDECI', place: 'Cañete, Lima', photo: '[FOTO: técnico NEXOS con casco y chaleco revisando el tablero eléctrico de la botica — plano medio, luz natural]' },
+  { title: 'Oficinas administrativas POMICA', type: 'Obra civil · 90 m²', place: 'Santiago, Ica', photo: '[FOTO: oficinas POMICA terminadas — plano general interior, luz natural lateral, acabados en primer plano]' },
+  { title: 'Tienda ÉL Chincha', type: 'Remodelación de tienda', place: 'Chincha, Ica', photo: '[FOTO: tienda ÉL Chincha remodelada, vitrina y fachada — plano frontal, luz de día, colores fieles]' }
+];
+var NX_PILLARS = [
+  { id: 'mant', name: 'Mantenimiento integral', short: 'Mantenimiento', bg: 'radial-gradient(circle at 30% 25%, #F4FAF2 0%, #E3F2DF 100%)', photo: '[FOTO: técnico NEXOS con casco y chaleco revisando un tablero eléctrico — plano medio, luz natural]', items: ['Instalaciones eléctricas', 'Levantamiento de observaciones ITSE / INDECI', 'Sistemas contra incendio y alarma', 'CCTV', 'Redes', 'Climatización'] },
+  { id: 'cons', name: 'Construcción e implementación', short: 'Construcción', bg: 'radial-gradient(circle at 30% 25%, #F5F8FD 0%, #E1EAF8 100%)', photo: '[FOTO: cuadrilla instalando drywall en una tienda en obra — plano medio, luz de obra cálida]', items: ['Obras civiles', 'Remodelaciones', 'Implementación de tiendas y oficinas', 'Drywall', 'Acabados', 'Estructuras metálicas'] },
+  { id: 'ing', name: 'Ingeniería y gestión de proyectos', short: 'Ingeniería', bg: 'radial-gradient(circle at 30% 25%, #F6F8FB 0%, #E4E9F3 100%)', photo: '[FOTO: ingeniero con estación total en levantamiento topográfico — plano americano, cielo despejado]', items: ['Supervisión', 'Expedientes técnicos', 'Costos y presupuestos', 'Control de obra', 'Consultoría', 'Topografía', 'Invierte.pe', 'Contrataciones del Estado'] }
+];
+var NX_HITOS = [
+  { target: 50, pre: '+', label: 'establecimientos comerciales con nuestro mantenimiento integral', bg: 'linear-gradient(180deg, #EAF6E7 0%, #F6FAF5 100%)', line: 'rgba(63,165,53,0.28)' },
+  { target: 50, pre: '+', label: 'clientes satisfechos', bg: 'linear-gradient(180deg, #E6EEFA 0%, #F5F8FD 100%)', line: 'rgba(29,79,160,0.22)' },
+  { target: 45, pre: '+', label: 'proyectos ejecutados', bg: 'linear-gradient(180deg, #EAF6E7 0%, #F6FAF5 100%)', line: 'rgba(63,165,53,0.28)' },
+  { target: 5, pre: '', label: 'regiones: Lima, Callao, Ica, Lambayeque y Ucayali', bg: 'linear-gradient(180deg, #E6EEFA 0%, #F5F8FD 100%)', line: 'rgba(29,79,160,0.22)' }
+];
+var NX_PL = {
+  mant: { label: 'Mantenimiento integral', tagBg: '#E5F3E2', tagFg: '#1F6B25', ph: 'linear-gradient(170deg, #EAF6E7 0%, #F5F9F4 100%)', line: '#B9DCB3' },
+  cons: { label: 'Construcción e implementación', tagBg: '#E4ECFA', tagFg: '#1D4FA0', ph: 'linear-gradient(170deg, #E5EDFA 0%, #F4F7FC 100%)', line: '#BBCDEA' },
+  ing: { label: 'Ingeniería y gestión', tagBg: '#E7EAF3', tagFg: '#0E1A4F', ph: 'linear-gradient(170deg, #E9ECF5 0%, #F5F6FA 100%)', line: '#C3CADD' }
+};
+var NX_PROJECTS = [
+  { title: 'Tienda MINISO La Rambla', type: 'Implementación de tienda', place: 'San Borja, Lima', pillar: 'cons', photo: '[FOTO: tienda MINISO La Rambla terminada — plano general frontal, iluminación encendida]' },
+  { title: 'Tienda MASS Calle 4', type: 'Implementación de tienda', place: 'Pisco, Ica', pillar: 'cons', photo: '[FOTO: fachada de Tienda MASS Calle 4 con letrero — plano general, luz de día]' },
+  { title: 'Tienda La Tinka Leoncio Prado', type: 'Implementación de tienda', place: 'Chiclayo, Lambayeque', pillar: 'cons', photo: '[FOTO: interior de La Tinka con mobiliario instalado — plano abierto, luz cálida]' },
+  { title: 'Botica Inkafarma Cañete', type: 'Levantamiento de observaciones INDECI', place: 'Cañete, Lima', pillar: 'mant', photo: '[FOTO: señalización y tablero corregidos tras el levantamiento INDECI — detalle, luz natural]' },
+  { title: 'Agencias Scotiabank (6 sedes)', type: 'Mantenimiento de tableros eléctricos y letreros luminosos', place: 'Lima', pillar: 'mant', photo: '[FOTO: técnico revisando tablero eléctrico de una agencia — plano medio, luz fría interior]' },
+  { title: 'Oficinas administrativas POMICA', type: 'Obra civil · 90 m²', place: 'Santiago, Ica', pillar: 'cons', photo: '[FOTO: oficinas POMICA terminadas — plano general interior, luz natural lateral]' },
+  { title: 'Tienda ÉL Chincha', type: 'Remodelación de tienda', place: 'Chincha, Ica', pillar: 'cons', photo: '[FOTO: tienda ÉL Chincha remodelada — plano frontal de vitrina, luz de día]' },
+  { title: '[Proyecto de ingeniería por definir]', type: '[Expediente técnico / supervisión]', place: '[Ubicación]', pillar: 'ing', photo: '[FOTO: expediente técnico y planos sobre mesa de obra — vista cenital, luz suave]' }
+];
+var NX_CHIPS = [
+  { id: 'todos', label: 'Todos' },
+  { id: 'mant', label: 'Mantenimiento' },
+  { id: 'cons', label: 'Construcción' },
+  { id: 'ing', label: 'Ingeniería' }
+];
+var NX_CLIENTS = ['La Tinka', 'MINISO', 'Tiendas MASS', 'BBVA', 'Interbank', 'Scotiabank', 'Grupo EFE', 'Inkafarma', 'Mifarma', 'Vivanda', 'OXXO', 'POMICA'];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0, prev: -1, f: 'todos', k: 0 };
+    this.started = false;
+  }
+  componentDidMount() {
+    this.startTimer();
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    if (reduce || this.props.motion === 'off') { this.setState({ k: 1 }); this.started = true; return; }
+    var el = null;
+    try { el = document.getElementById('nx-hitos'); } catch (e) {}
+    if (el && typeof IntersectionObserver !== 'undefined') {
+      this.io = new IntersectionObserver((entries) => {
+        if (entries.some((en) => en.isIntersecting)) { this.countUp(); }
+      }, { threshold: 0.25 });
+      this.io.observe(el);
+      this.fallback = setTimeout(() => this.countUp(), 7000);
+    } else {
+      this.countUp();
+    }
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    clearTimeout(this.fallback);
+    if (this.io) this.io.disconnect();
+    if (this.raf) cancelAnimationFrame(this.raf);
+  }
+  startTimer() {
+    clearInterval(this.timer);
+    this.timer = setInterval(() => {
+      this.setState((s) => ({ prev: s.i, i: (s.i + 1) % NX_SLIDES.length }));
+    }, 5000);
+  }
+  countUp() {
+    if (this.started) return;
+    this.started = true;
+    if (this.io) this.io.disconnect();
+    clearTimeout(this.fallback);
+    var t0 = 0;
+    var dur = 1500;
+    var step = (t) => {
+      if (!t0) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 4);
+      this.setState({ k: e });
+      if (p < 1) this.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+  renderVals() {
+    var i = this.state.i;
+    var prev = this.state.prev;
+    var f = this.state.f;
+    var k = this.state.k;
+    var n = NX_SLIDES.length;
+    var go = (j) => {
+      var t = (j + n) % n;
+      if (t === this.state.i) return;
+      this.setState({ prev: this.state.i, i: t });
+      this.startTimer();
+    };
+    var build = (id) => NX_PROJECTS
+      .filter((p) => id === 'todos' || p.pillar === id)
+      .map((p, idx) => {
+        var m = NX_PL[p.pillar];
+        return { title: p.title, type: p.type, place: p.place, photo: p.photo, pillarLabel: m.label, tagBg: m.tagBg, tagFg: m.tagFg, ph: m.ph, line: m.line, delay: Math.min(idx * 50, 300) + 'ms' };
+      });
+    return {
+      accent: this.props.accent ?? '#24782A',
+      motion: this.props.motion ?? 'on',
+      slides: NX_SLIDES.map((s, j) => ({ title: s.title, type: s.type, place: s.place, photo: s.photo, active: j === i, leaving: j === prev && j !== i })),
+      prev: () => go(i - 1),
+      next: () => go(i + 1),
+      dots: NX_SLIDES.map((s, j) => ({ active: j === i, idle: j !== i, go: () => go(j), label: 'Ver ' + s.title })),
+      pillars: NX_PILLARS,
+      hitos: NX_HITOS.map((h) => ({ num: h.pre + Math.round(h.target * k), label: h.label, bg: h.bg, line: h.line })),
+      chips: NX_CHIPS.map((c) => ({ label: c.label, active: c.id === f, idle: c.id !== f, pick: () => this.setState({ f: c.id }) })),
+      grids: NX_CHIPS.map((c) => ({ show: c.id === f, items: build(c.id) })),
+      clients: NX_CLIENTS
+    };
+  }
+}
+</script>
+</body>
+</html>

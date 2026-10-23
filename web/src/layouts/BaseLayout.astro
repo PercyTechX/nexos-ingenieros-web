@@ -1,0 +1,53 @@
+---
+/**
+ * Layout base de todas las páginas: <head> con SEO, fuente propia, estilos de marca,
+ * datos estructurados de la organización y animaciones de scroll.
+ * Header y Footer reales llegan en la F2; por ahora se reciben por slots.
+ */
+import '../styles/global.css';
+import Seo from '../components/Seo.astro';
+import { organizationLd } from '../lib/schema';
+import { SITE } from '../config/site';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { jsonLd, ...seo } = Astro.props;
+const ld = [organizationLd(), ...(jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [])];
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a1440" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <Seo {...seo} jsonLd={ld} />
+  </head>
+  <body>
+    <a
+      href="#contenido"
+      class="sr-only-seo focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-50 focus:rounded-full focus:bg-green focus:px-5 focus:py-3 focus:font-bold focus:text-ink"
+      >Saltar al contenido</a
+    >
+    <slot name="header" />
+    <main id="contenido">
+      <slot />
+    </main>
+    <slot name="footer" />
+
+    <script>
+      import { initReveal } from '../scripts/reveal';
+      initReveal();
+    </script>
+  </body>
+</html>

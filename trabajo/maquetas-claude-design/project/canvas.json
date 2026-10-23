@@ -1,0 +1,296 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Artboard-9g37.dc.html": {
+      "h": 600,
+      "title": "Artboard 1",
+      "w": 800,
+      "x": 1653,
+      "y": 16281
+    },
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 3700,
+      "is_interactive": true,
+      "title": "A · Corporativo — Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "MovilA.dc.html": {
+      "h": 6200,
+      "is_interactive": true,
+      "title": "A · Corporativo — Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 0
+    },
+    "MovilA1.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "title": "A1 · Monumental — Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 13240
+    },
+    "MovilA2.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "title": "A2 · Bento — Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 23260
+    },
+    "MovilA3.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "title": "A3 · Arco de marca — Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 34180
+    },
+    "MovilA4.dc.html": {
+      "h": 6000,
+      "is_interactive": true,
+      "title": "A4 · Ticket — Móvil",
+      "w": 390,
+      "x": 3630,
+      "y": 0
+    },
+    "MovilA5.dc.html": {
+      "h": 7400,
+      "is_interactive": true,
+      "title": "A5 · Pilares — Móvil",
+      "w": 390,
+      "x": 5740,
+      "y": 0
+    },
+    "MovilA6.dc.html": {
+      "h": 8000,
+      "is_interactive": true,
+      "title": "A6 · Impacto — Móvil",
+      "w": 390,
+      "x": 7850,
+      "y": 0
+    },
+    "MovilB.dc.html": {
+      "h": 6200,
+      "is_interactive": true,
+      "title": "B · Industrial — Móvil",
+      "w": 390,
+      "x": 1520,
+      "y": 6620
+    },
+    "VarianteA1.dc.html": {
+      "expand": "fill",
+      "h": 6400,
+      "is_interactive": true,
+      "title": "A1 · Monumental — Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 13240
+    },
+    "VarianteA2.dc.html": {
+      "expand": "fill",
+      "h": 5800,
+      "is_interactive": true,
+      "title": "A2 · Bento — Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 23260
+    },
+    "VarianteA3.dc.html": {
+      "expand": "fill",
+      "h": 5900,
+      "is_interactive": true,
+      "title": "A3 · Arco de marca — Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 34180
+    },
+    "VarianteA4.dc.html": {
+      "expand": "fill",
+      "h": 3300,
+      "is_interactive": true,
+      "title": "A4 · Ticket — Escritorio",
+      "w": 1440,
+      "x": 2110,
+      "y": 0
+    },
+    "VarianteA5.dc.html": {
+      "expand": "fill",
+      "h": 4600,
+      "is_interactive": true,
+      "title": "A5 · Pilares (ref. Antixor) — Escritorio",
+      "w": 1440,
+      "x": 4220,
+      "y": 0
+    },
+    "VarianteA6.dc.html": {
+      "expand": "fill",
+      "h": 6200,
+      "is_interactive": true,
+      "title": "A6 · Impacto (mixta + cotizador) — Escritorio",
+      "w": 1440,
+      "x": 6330,
+      "y": 0
+    },
+    "VarianteB.dc.html": {
+      "expand": "fill",
+      "h": 3700,
+      "is_interactive": true,
+      "title": "B · Industrial — Escritorio",
+      "w": 1440,
+      "x": 0,
+      "y": 6620
+    },
+    "VarianteA7.dc.html": {
+      "x": 8440,
+      "y": 0,
+      "w": 1440,
+      "h": 9400,
+      "title": "A7 · Impacto + intro — Escritorio",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "MovilA7.dc.html": {
+      "x": 9960,
+      "y": 0,
+      "w": 390,
+      "h": 16000,
+      "title": "A7 · Impacto + intro — Móvil",
+      "is_interactive": true
+    },
+    "ProyectoFicha.dc.html": {
+      "x": 10430,
+      "y": 0,
+      "w": 1440,
+      "h": 2600,
+      "title": "Ficha de proyecto (página propia) — Escritorio",
+      "expand": "fill",
+      "is_interactive": true
+    },
+    "MovilFicha.dc.html": {
+      "x": 11950,
+      "y": 0,
+      "w": 390,
+      "h": 4600,
+      "title": "Ficha de proyecto — Móvil",
+      "is_interactive": true
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-04T21:30:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "tA": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A — Corporativo (fiel al boceto)",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "tA1": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A1 — Monumental (tipografía gigante)",
+      "w": 240,
+      "x": 0,
+      "y": 12940
+    },
+    "tA2": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A2 — Bento grid",
+      "w": 240,
+      "x": 0,
+      "y": 22960
+    },
+    "tA3": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A3 — Arco de marca",
+      "w": 240,
+      "x": 0,
+      "y": 33880
+    },
+    "tA4": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A4 — Hero ticket (sobre la A)",
+      "w": 240,
+      "x": 2110,
+      "y": -300
+    },
+    "tA5": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A5 — 4 pilares con técnicos (ref. Antixor)",
+      "w": 240,
+      "x": 4220,
+      "y": -300
+    },
+    "tA6": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A6 — Impacto: claro/oscuro intercalado + cotizador",
+      "w": 240,
+      "x": 6330,
+      "y": -300
+    },
+    "tB": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante B — Industrial / técnico",
+      "w": 240,
+      "x": 0,
+      "y": 6320
+    },
+    "tA7": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Variante A7 — A6 + pantalla de entrada (logo + eslogan)",
+      "x": 8440,
+      "y": -300
+    },
+    "tFicha": {
+      "kind": "title1",
+      "maxW": 1910,
+      "text": "Ficha de proyecto (desde A7 › Proyectos)",
+      "x": 10430,
+      "y": -300
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "MovilA.dc.html",
+    "VarianteB.dc.html",
+    "MovilB.dc.html",
+    "VarianteA1.dc.html",
+    "MovilA1.dc.html",
+    "VarianteA2.dc.html",
+    "MovilA2.dc.html",
+    "VarianteA3.dc.html",
+    "MovilA3.dc.html",
+    "VarianteA4.dc.html",
+    "MovilA4.dc.html",
+    "VarianteA5.dc.html",
+    "MovilA5.dc.html",
+    "Artboard-9g37.dc.html",
+    "VarianteA6.dc.html",
+    "MovilA6.dc.html",
+    "VarianteA7.dc.html",
+    "MovilA7.dc.html",
+    "ProyectoFicha.dc.html",
+    "MovilFicha.dc.html"
+  ],
+  "pages": [],
+  "title": "NEXOS Inicio — Propuestas"
+}

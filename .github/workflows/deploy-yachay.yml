@@ -1,0 +1,67 @@
+# Despliegue a Yachay (hosting compartido cPanel) por SFTP o FTPS.
+# main    -> producción  (YACHAY_REMOTE_DIR,          p. ej. /public_html)
+# develop -> vista previa (YACHAY_REMOTE_DIR_PREVIEW, p. ej. /preview.nexos-ing.com)
+# Secrets necesarios (Settings → Secrets and variables → Actions):
+#   YACHAY_HOST, YACHAY_USER, YACHAY_PASSWORD, YACHAY_PROTOCOL (sftp | ftps),
+#   YACHAY_REMOTE_DIR, YACHAY_REMOTE_DIR_PREVIEW
+name: Deploy Yachay
+
+on:
+  push:
+    branches: [main, develop]
+    paths: ['web/**', '.github/workflows/deploy-yachay.yml']
+  workflow_dispatch:
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: web
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+
+      - name: Instalar dependencias
+        run: npm ci
+
+      - name: Compilar (astro check + build + pagefind)
+        run: npm run build
+
+      - name: Verificar que existan los accesos
+        id: guard
+        env:
+          HOST: ${{ secrets.YACHAY_HOST }}
+        run: |
+          if [ -z "$HOST" ]; then
+            echo "Sin secrets de Yachay: se compila pero no se despliega."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Subir a Yachay
+        if: steps.guard.outputs.deploy == 'true'
+        env:
+          HOST: ${{ secrets.YACHAY_HOST }}
+          USER: ${{ secrets.YACHAY_USER }}
+          PASS: ${{ secrets.YACHAY_PASSWORD }}
+          PROTO: ${{ secrets.YACHAY_PROTOCOL }}
+          DIR: ${{ github.ref_name == 'main' && secrets.YACHAY_REMOTE_DIR || secrets.YACHAY_REMOTE_DIR_PREVIEW }}
+        run: |
+          sudo apt-get update -qq && sudo apt-get install -y -qq lftp
+          lftp -u "$USER","$PASS" "$PROTO://$HOST" -e "
+            set sftp:auto-confirm yes;
+            set ftp:ssl-force true;
+            set ssl:verify-certificate no;
+            mirror --reverse --delete --parallel=4 --verbose=1 --exclude-glob .git* dist/ $DIR/;
+            bye"

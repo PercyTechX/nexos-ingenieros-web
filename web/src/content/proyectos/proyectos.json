@@ -1,0 +1,600 @@
+[
+  {
+    "id": "agencias-scotiabank",
+    "pillar": "mant",
+    "title": "Agencias Scotiabank",
+    "client": "Scotiabank",
+    "clientInternal": "Scotiabank - TGESTIONA",
+    "place": "Lima (varias agencias)",
+    "city": "lima",
+    "type": "Mantenimiento de tableros eléctricos y letreros luminosos",
+    "description": "Mantenimiento de tableros eléctricos y letreros luminosos en agencias Scotiabank. Se observan trabajos en fachada de día y de noche, mediciones eléctricas y revisión de interruptores.",
+    "cover": "../../assets/proyectos/agencias-scotiabank/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/agencias-scotiabank/galeria-1.webp",
+      "../../assets/proyectos/agencias-scotiabank/galeria-2.webp",
+      "../../assets/proyectos/agencias-scotiabank/galeria-3.webp",
+      "../../assets/proyectos/agencias-scotiabank/galeria-4.webp",
+      "../../assets/proyectos/agencias-scotiabank/galeria-5.webp"
+    ],
+    "pending": true,
+    "order": 1
+  },
+  {
+    "id": "clinica-centenario-peruano-japonesa",
+    "pillar": "mant",
+    "title": "Clínica Centenario Peruano Japonesa",
+    "client": "Clínica Centenario Peruano Japonesa",
+    "clientInternal": "Clínica Centenario Peruano Japonesa",
+    "place": "Av. Paso de los Andes 675, Pueblo Libre, Lima",
+    "city": "lima",
+    "type": "Mobiliario, resane, empastado y pintura de áreas administrativas",
+    "description": "Suministro e instalación de mobiliario, resane de fisuras, empastado y pintado de muros en áreas administrativas, además de suministro e instalación de pizarras vinílicas blancas.",
+    "cover": "../../assets/proyectos/clinica-centenario-peruano-japonesa/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/clinica-centenario-peruano-japonesa/galeria-1.webp",
+      "../../assets/proyectos/clinica-centenario-peruano-japonesa/galeria-2.webp",
+      "../../assets/proyectos/clinica-centenario-peruano-japonesa/galeria-3.webp",
+      "../../assets/proyectos/clinica-centenario-peruano-japonesa/galeria-4.webp",
+      "../../assets/proyectos/clinica-centenario-peruano-japonesa/galeria-5.webp"
+    ],
+    "pending": false,
+    "order": 2
+  },
+  {
+    "id": "vivanda-pezet",
+    "pillar": "mant",
+    "title": "Tienda Vivanda Pezet",
+    "client": "Vivanda",
+    "clientInternal": "Vivanda - TGESTIONA",
+    "place": "Av. Juan Antonio Pezet 1340-1360, San Isidro, Lima",
+    "city": "lima",
+    "type": "Implementación de sistema de extracción de aire",
+    "description": "Implementación de sistema de extracción de aire. Se observan ductos flexibles, rejillas, extractor en azotea y tablero eléctrico de alimentación.",
+    "cover": "../../assets/proyectos/vivanda-pezet/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/vivanda-pezet/galeria-1.webp",
+      "../../assets/proyectos/vivanda-pezet/galeria-2.webp",
+      "../../assets/proyectos/vivanda-pezet/galeria-3.webp",
+      "../../assets/proyectos/vivanda-pezet/galeria-4.webp",
+      "../../assets/proyectos/vivanda-pezet/galeria-5.webp"
+    ],
+    "pending": false,
+    "order": 3
+  },
+  {
+    "id": "adams-plaza-lima-sur",
+    "pillar": "mant",
+    "title": "Tienda Adams Plaza Lima Sur",
+    "client": "Adams",
+    "clientInternal": "Adams - Panorama BPO",
+    "place": "Centro comercial Plaza Lima Sur",
+    "city": "lima",
+    "type": "Cambio de luminarias",
+    "description": "Desmontaje, suministro e instalación de luminarias en tienda Adams. Se observan cambio de downlights, tubos y luminarias de riel.",
+    "cover": "../../assets/proyectos/adams-plaza-lima-sur/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/adams-plaza-lima-sur/galeria-1.webp",
+      "../../assets/proyectos/adams-plaza-lima-sur/galeria-2.webp",
+      "../../assets/proyectos/adams-plaza-lima-sur/galeria-3.webp",
+      "../../assets/proyectos/adams-plaza-lima-sur/galeria-4.webp",
+      "../../assets/proyectos/adams-plaza-lima-sur/galeria-5.webp"
+    ],
+    "pending": false,
+    "order": 4
+  },
+  {
+    "id": "lukers-alfonso-ugarte",
+    "pillar": "mant",
+    "title": "Tienda Lukers Alfonso Ugarte",
+    "client": "Lukers",
+    "clientInternal": "Lukers - Panorama BPO",
+    "place": "Av. Alfonso Ugarte 1230, Breña, Lima",
+    "city": "lima",
+    "type": "Mantenimiento de puertas enrollables",
+    "description": "Mantenimiento de estructuras metálicas y puerta enrollable. Se observan limpieza de grafiti y pintado de la cortina metálica.",
+    "cover": "../../assets/proyectos/lukers-alfonso-ugarte/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/lukers-alfonso-ugarte/galeria-1.webp",
+      "../../assets/proyectos/lukers-alfonso-ugarte/galeria-2.webp",
+      "../../assets/proyectos/lukers-alfonso-ugarte/galeria-3.webp"
+    ],
+    "pending": false,
+    "order": 5
+  },
+  {
+    "id": "oficinas-expeditors",
+    "pillar": "mant",
+    "title": "Oficinas Expeditors",
+    "client": "Expeditors",
+    "clientInternal": "Expeditors - Panorama BPO",
+    "place": "Av. Javier Prado Este 444, San Isidro, Lima",
+    "city": "lima",
+    "type": "Mantenimiento de pintura en oficina central",
+    "description": "Mantenimiento de pintura en la oficina central. Se observan protección de mobiliario, resane, lijado y pintado de muros.",
+    "cover": "../../assets/proyectos/oficinas-expeditors/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/oficinas-expeditors/galeria-1.webp",
+      "../../assets/proyectos/oficinas-expeditors/galeria-2.webp",
+      "../../assets/proyectos/oficinas-expeditors/galeria-3.webp",
+      "../../assets/proyectos/oficinas-expeditors/galeria-4.webp",
+      "../../assets/proyectos/oficinas-expeditors/galeria-5.webp"
+    ],
+    "pending": false,
+    "order": 6
+  },
+  {
+    "id": "inkafarma-belaunde-6",
+    "pillar": "mant",
+    "title": "Botica Inkafarma Belaúnde 6",
+    "client": "Inkafarma",
+    "clientInternal": "Inkafarma - GDS Infraestructura",
+    "place": "Av. Víctor Andrés Belaúnde 882, Comas, Lima",
+    "city": "lima",
+    "type": "Mantenimiento de pozo a tierra y aterramiento de estructuras metálicas",
+    "description": "Mantenimiento de pozo a tierra, aterramiento de aire acondicionado, mandil de tablero y cajas metálicas, limpieza y reordenamiento de tablero eléctrico y cambio de luminarias.",
+    "cover": "../../assets/proyectos/inkafarma-belaunde-6/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/inkafarma-belaunde-6/galeria-1.webp",
+      "../../assets/proyectos/inkafarma-belaunde-6/galeria-2.webp",
+      "../../assets/proyectos/inkafarma-belaunde-6/galeria-3.webp"
+    ],
+    "pending": false,
+    "order": 7
+  },
+  {
+    "id": "adams-megaplaza",
+    "pillar": "mant",
+    "title": "Tienda Adams Megaplaza",
+    "client": "Adams",
+    "clientInternal": "Adams [POR CONFIRMAR intermediario]",
+    "place": "C.C. Megaplaza",
+    "city": "lima",
+    "type": "Proyecto de mejora de iluminación",
+    "description": "Se observan trabajos de cambio de luminarias (downlights y riel) en tienda Adams y medición de nivel de iluminación con luxómetro.",
+    "cover": "../../assets/proyectos/adams-megaplaza/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/adams-megaplaza/galeria-1.webp",
+      "../../assets/proyectos/adams-megaplaza/galeria-2.webp",
+      "../../assets/proyectos/adams-megaplaza/galeria-3.webp",
+      "../../assets/proyectos/adams-megaplaza/galeria-4.webp",
+      "../../assets/proyectos/adams-megaplaza/galeria-5.webp"
+    ],
+    "pending": true,
+    "order": 8
+  },
+  {
+    "id": "tinka-leoncio-prado",
+    "pillar": "retail",
+    "title": "Tienda La Tinka Leoncio Prado",
+    "client": "La Tinka",
+    "clientInternal": "La Tinka S.A. - GDS Infraestructura",
+    "place": "Calle Leoncio Prado 1109, Chiclayo",
+    "city": "chiclayo",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes y cableado eléctrico y de comunicaciones.",
+    "cover": "../../assets/proyectos/tinka-leoncio-prado/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/tinka-leoncio-prado/galeria-1.webp",
+      "../../assets/proyectos/tinka-leoncio-prado/galeria-2.webp",
+      "../../assets/proyectos/tinka-leoncio-prado/galeria-3.webp"
+    ],
+    "pending": false,
+    "order": 9
+  },
+  {
+    "id": "tinka-carmen-de-la-legua",
+    "pillar": "retail",
+    "title": "Tienda La Tinka Carmen de la Legua",
+    "client": "La Tinka",
+    "clientInternal": "La Tinka S.A. - GDS Infraestructura",
+    "place": "Carmen de la Legua, Callao",
+    "city": "lima",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes y cableado eléctrico y de comunicaciones.",
+    "cover": "../../assets/proyectos/tinka-carmen-de-la-legua/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/tinka-carmen-de-la-legua/galeria-1.webp",
+      "../../assets/proyectos/tinka-carmen-de-la-legua/galeria-2.webp"
+    ],
+    "pending": false,
+    "order": 10
+  },
+  {
+    "id": "miniso-plaza-norte",
+    "pillar": "retail",
+    "title": "Tienda Miniso Plaza Norte",
+    "client": "MINISO",
+    "clientInternal": "Miniso Perú - GDS Infraestructura",
+    "place": "Centro comercial Plaza Norte, Lima",
+    "city": "lima",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: tableros eléctricos, luminarias, tomacorrientes, cableado eléctrico y de comunicaciones, y canalización (bandejas portacables, tuberías EMT y PVC) para electricidad, detección y alarma SCI, audio, video, CCTV, voz y datos.",
+    "cover": "../../assets/proyectos/miniso-plaza-norte/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/miniso-plaza-norte/galeria-1.webp",
+      "../../assets/proyectos/miniso-plaza-norte/galeria-2.webp",
+      "../../assets/proyectos/miniso-plaza-norte/galeria-3.webp"
+    ],
+    "pending": false,
+    "order": 11
+  },
+  {
+    "id": "miniso-real-plaza-pucallpa",
+    "pillar": "retail",
+    "title": "Tienda Miniso Real Plaza Pucallpa",
+    "client": "MINISO",
+    "clientInternal": "Miniso Perú - GDS Infraestructura",
+    "place": "Centro comercial Real Plaza, Pucallpa",
+    "city": "pucallpa",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: tableros eléctricos, luminarias, tomacorrientes, cableado eléctrico y de comunicaciones, y canalización (bandejas portacables, tuberías EMT y PVC) para electricidad, detección y alarma SCI, audio, video, CCTV, voz y datos.",
+    "cover": "../../assets/proyectos/miniso-real-plaza-pucallpa/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/miniso-real-plaza-pucallpa/galeria-1.webp",
+      "../../assets/proyectos/miniso-real-plaza-pucallpa/galeria-2.webp",
+      "../../assets/proyectos/miniso-real-plaza-pucallpa/galeria-3.webp",
+      "../../assets/proyectos/miniso-real-plaza-pucallpa/galeria-4.webp",
+      "../../assets/proyectos/miniso-real-plaza-pucallpa/galeria-5.webp",
+      "../../assets/proyectos/miniso-real-plaza-pucallpa/galeria-6.webp"
+    ],
+    "pending": false,
+    "order": 12
+  },
+  {
+    "id": "mass-calle-4-pisco",
+    "pillar": "retail",
+    "title": "Tienda Mass Calle 4 de Julio, Pisco",
+    "client": "Tiendas MASS",
+    "clientInternal": "Tiendas Mass - GDS Infraestructura",
+    "place": "Calle 4 de Julio 175, Pisco",
+    "city": "ica",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+    "cover": "../../assets/proyectos/mass-calle-4-pisco/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/mass-calle-4-pisco/galeria-1.webp",
+      "../../assets/proyectos/mass-calle-4-pisco/galeria-2.webp",
+      "../../assets/proyectos/mass-calle-4-pisco/galeria-3.webp",
+      "../../assets/proyectos/mass-calle-4-pisco/galeria-4.webp",
+      "../../assets/proyectos/mass-calle-4-pisco/galeria-5.webp"
+    ],
+    "pending": false,
+    "order": 13
+  },
+  {
+    "id": "mass-paraiso-pachacamac",
+    "pillar": "retail",
+    "title": "Tienda Mass Paraíso, Pachacámac",
+    "client": "Tiendas MASS",
+    "clientInternal": "Tiendas Mass - GDS Infraestructura",
+    "place": "Mza. D5 lote 7, Cercado Pachacámac, Lima",
+    "city": "lima",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+    "cover": "../../assets/proyectos/mass-paraiso-pachacamac/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/mass-paraiso-pachacamac/galeria-1.webp",
+      "../../assets/proyectos/mass-paraiso-pachacamac/galeria-2.webp",
+      "../../assets/proyectos/mass-paraiso-pachacamac/galeria-3.webp"
+    ],
+    "pending": false,
+    "order": 14
+  },
+  {
+    "id": "mass-llanos-ate",
+    "pillar": "retail",
+    "title": "Tienda Mass Llanos, Ate",
+    "client": "Tiendas MASS",
+    "clientInternal": "Tiendas Mass - GDS Infraestructura",
+    "place": "Av. Marco Puente Llanos mz A lt 3, Ate Vitarte, Lima",
+    "city": "lima",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+    "cover": "../../assets/proyectos/mass-llanos-ate/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/mass-llanos-ate/galeria-1.webp",
+      "../../assets/proyectos/mass-llanos-ate/galeria-2.webp",
+      "../../assets/proyectos/mass-llanos-ate/galeria-3.webp"
+    ],
+    "pending": false,
+    "order": 15
+  },
+  {
+    "id": "mass-libertad-san-miguel",
+    "pillar": "retail",
+    "title": "Tienda Mass Libertad, San Miguel",
+    "client": "Tiendas MASS",
+    "clientInternal": "Tiendas Mass - GDS Infraestructura",
+    "place": "Av. Libertad 2068 lt 35 mz JV, San Miguel, Lima",
+    "city": "lima",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+    "cover": "../../assets/proyectos/mass-libertad-san-miguel/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/mass-libertad-san-miguel/galeria-1.webp",
+      "../../assets/proyectos/mass-libertad-san-miguel/galeria-2.webp"
+    ],
+    "pending": false,
+    "order": 16
+  },
+  {
+    "id": "mass-ruisenores-santa-anita",
+    "pillar": "retail",
+    "title": "Tienda Mass Ruiseñores, Santa Anita",
+    "client": "Tiendas MASS",
+    "clientInternal": "Tiendas Mass - GDS Infraestructura",
+    "place": "Av. Los Ruiseñores 383 mz A lote 25, Coop. Los Chancas, Santa Anita, Lima",
+    "city": "lima",
+    "type": "Implementación de instalaciones eléctricas y comunicaciones",
+    "description": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+    "cover": "../../assets/proyectos/mass-ruisenores-santa-anita/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/mass-ruisenores-santa-anita/galeria-1.webp",
+      "../../assets/proyectos/mass-ruisenores-santa-anita/galeria-2.webp",
+      "../../assets/proyectos/mass-ruisenores-santa-anita/galeria-3.webp",
+      "../../assets/proyectos/mass-ruisenores-santa-anita/galeria-4.webp"
+    ],
+    "pending": false,
+    "order": 17
+  },
+  {
+    "id": "el-chincha",
+    "pillar": "retail",
+    "title": "Tienda ÉL Chincha",
+    "client": "Tiendas ÉL",
+    "clientInternal": "Tiendas ÉL - Panorama BPO",
+    "place": "Av. Óscar R. Benavides 263, Chincha, Ica",
+    "city": "ica",
+    "type": "Remodelación de tienda",
+    "description": "Remodelación de tienda: mobiliario, espejos laminados, luminarias, extractores, tomacorrientes, puntos de red y gabinete de comunicaciones, cambio de enchape, tabiquería drywall, empaste y pintura, reubicación de cámaras, mantenimiento de aire acondicionado y nueva lona del letrero luminoso.",
+    "cover": "../../assets/proyectos/el-chincha/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/el-chincha/galeria-1.webp",
+      "../../assets/proyectos/el-chincha/galeria-2.webp",
+      "../../assets/proyectos/el-chincha/galeria-3.webp",
+      "../../assets/proyectos/el-chincha/galeria-4.webp",
+      "../../assets/proyectos/el-chincha/galeria-5.webp"
+    ],
+    "pending": false,
+    "order": 18
+  },
+  {
+    "id": "john-holden-chorrillos",
+    "pillar": "retail",
+    "title": "Tienda John Holden Chorrillos",
+    "client": "John Holden",
+    "clientInternal": "John Holden - Panorama BPO",
+    "place": "Av. El Sol 1175, Chorrillos, Lima",
+    "city": "lima",
+    "type": "Remodelación de tienda",
+    "description": "Remodelación de tienda: resane, empastado y pintura de muros y techos de todos los ambientes, e instalación de tabiquería con sistema drywall.",
+    "cover": "../../assets/proyectos/john-holden-chorrillos/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/john-holden-chorrillos/galeria-1.webp",
+      "../../assets/proyectos/john-holden-chorrillos/galeria-2.webp"
+    ],
+    "pending": false,
+    "order": 19
+  },
+  {
+    "id": "pomica-oficinas-administrativas",
+    "pillar": "obras",
+    "title": "Oficinas administrativas POMICA",
+    "client": "POMICA",
+    "clientInternal": "POMICA PERU S.A.C.",
+    "place": "Santiago, Ica, Ica",
+    "city": "ica",
+    "type": "Construcción de oficinas administrativas en almacén central",
+    "description": "Construcción de ambientes administrativos en un área techada de 90 m², con albañilería confinada acabada en ladrillo caravista y techo ligero, más instalaciones eléctricas, sanitarias y señalización.",
+    "cover": "../../assets/proyectos/pomica-oficinas-administrativas/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/pomica-oficinas-administrativas/galeria-1.webp"
+    ],
+    "pending": false,
+    "order": 20
+  },
+  {
+    "id": "pomica-almacen-productos-quimicos",
+    "pillar": "obras",
+    "title": "Almacén de productos químicos POMICA",
+    "client": "POMICA",
+    "clientInternal": "POMICA PERU S.A.C.",
+    "place": "Santiago, Ica, Ica",
+    "city": "ica",
+    "type": "Techado de almacén de productos químicos",
+    "description": "Techado de un área de 70 m² con losa aligerada, construcción de vigas chatas y peraltadas con ladrillo de techo de 15 cm, e instalaciones eléctricas y sanitarias.",
+    "cover": "../../assets/proyectos/pomica-almacen-productos-quimicos/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/pomica-almacen-productos-quimicos/galeria-1.webp",
+      "../../assets/proyectos/pomica-almacen-productos-quimicos/galeria-2.webp"
+    ],
+    "pending": false,
+    "order": 21
+  },
+  {
+    "id": "pomica-torreon-vigilancia",
+    "pillar": "obras",
+    "title": "Torreón de vigilancia POMICA",
+    "client": "POMICA",
+    "clientInternal": "POMICA PERU S.A.C.",
+    "place": "Santiago, Ica, Ica",
+    "city": "ica",
+    "type": "Construcción de torreón de vigilancia",
+    "description": "Construcción de un torreón de vigilancia de 4 m² techados, en albañilería confinada con acabado en ladrillo caravista, techo ligero e instalaciones eléctricas.",
+    "cover": "../../assets/proyectos/pomica-torreon-vigilancia/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/pomica-torreon-vigilancia/galeria-1.webp",
+      "../../assets/proyectos/pomica-torreon-vigilancia/galeria-2.webp"
+    ],
+    "pending": false,
+    "order": 22
+  },
+  {
+    "id": "agrifresh-agua-potable-alcantarillado",
+    "pillar": "obras",
+    "title": "Agua potable y alcantarillado, almacén central Agrifresh",
+    "client": "AGRIFRESH",
+    "clientInternal": "AGRIFRESH - POMICA PERU S.A.C.",
+    "place": "Santiago, Ica, Ica",
+    "city": "ica",
+    "type": "Adecuación del sistema de agua potable y alcantarillado en almacén central",
+    "description": "Adecuación del sistema de agua potable y cambio del sistema de evacuación de aguas residuales y de lavado contaminadas, con red matriz hacia la nueva planta de tratamiento.",
+    "cover": "../../assets/proyectos/agrifresh-agua-potable-alcantarillado/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/agrifresh-agua-potable-alcantarillado/galeria-1.webp"
+    ],
+    "pending": false,
+    "order": 23
+  },
+  {
+    "id": "bbva-oficina-premium-el-polo",
+    "pillar": "obras",
+    "title": "Oficina Premium BBVA El Polo",
+    "client": "BBVA",
+    "clientInternal": "BBVA - GDS Infraestructura S.A.C.",
+    "place": "Centro Comercial El Polo, piso 7",
+    "city": "lima",
+    "type": "Remodelación de oficina",
+    "description": "Desmontaje e instalación de tomacorrientes, faceplates y luminarias LED (downlights, paneles, paneles con kit de emergencia y cintas LED), además de adecuación de salidas de data y tomacorrientes.",
+    "cover": "../../assets/proyectos/bbva-oficina-premium-el-polo/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/bbva-oficina-premium-el-polo/galeria-1.webp",
+      "../../assets/proyectos/bbva-oficina-premium-el-polo/galeria-2.webp",
+      "../../assets/proyectos/bbva-oficina-premium-el-polo/galeria-3.webp",
+      "../../assets/proyectos/bbva-oficina-premium-el-polo/galeria-4.webp",
+      "../../assets/proyectos/bbva-oficina-premium-el-polo/galeria-5.webp",
+      "../../assets/proyectos/bbva-oficina-premium-el-polo/galeria-6.webp"
+    ],
+    "pending": true,
+    "order": 24
+  },
+  {
+    "id": "unalm-servicios-higienicos",
+    "pillar": "obras",
+    "title": "Servicios higiénicos Universidad Nacional Agraria La Molina",
+    "client": "UNALM",
+    "clientInternal": "Universidad Nacional Agraria La Molina [POR CONFIRMAR]",
+    "place": "La Molina, Lima",
+    "city": "lima",
+    "type": "Remodelación de SS.HH. de laboratorio de enseñanza",
+    "description": "Se observan trabajos de remodelación de servicios higiénicos: picado de piso y muros, tendido de nuevas tuberías de desagüe y agua, y el resultado con enchapes, aparatos sanitarios y puertas de cubículos.",
+    "cover": "../../assets/proyectos/unalm-servicios-higienicos/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/unalm-servicios-higienicos/galeria-1.webp",
+      "../../assets/proyectos/unalm-servicios-higienicos/galeria-2.webp",
+      "../../assets/proyectos/unalm-servicios-higienicos/galeria-3.webp",
+      "../../assets/proyectos/unalm-servicios-higienicos/galeria-4.webp",
+      "../../assets/proyectos/unalm-servicios-higienicos/galeria-5.webp"
+    ],
+    "pending": true,
+    "order": 25
+  },
+  {
+    "id": "laboratorio-forense",
+    "pillar": "obras",
+    "title": "Laboratorio Forense Digital DIREJCRI – PNP",
+    "client": "Consorcio Ejecutor Forense Digital",
+    "clientInternal": "[POR CONFIRMAR]",
+    "place": "Jesús María, Lima",
+    "city": "lima",
+    "type": "Implementación de laboratorio forense digital",
+    "description": "Se observan trabajos de canalización con tubería metálica y cajas de paso sobre soportes en azotea, armado de tableros eléctricos con pruebas de aislamiento (megado), gabinete de comunicaciones y ambientes terminados con paneles LED y luces de emergencia.",
+    "cover": "../../assets/proyectos/laboratorio-forense/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/laboratorio-forense/galeria-1.webp",
+      "../../assets/proyectos/laboratorio-forense/galeria-2.webp",
+      "../../assets/proyectos/laboratorio-forense/galeria-3.webp",
+      "../../assets/proyectos/laboratorio-forense/galeria-4.webp",
+      "../../assets/proyectos/laboratorio-forense/galeria-5.webp",
+      "../../assets/proyectos/laboratorio-forense/galeria-6.webp"
+    ],
+    "pending": false,
+    "order": 26
+  },
+  {
+    "id": "canvia-estacionamiento",
+    "pillar": "obras",
+    "title": "Mitigación contra inundaciones internas CANVIA",
+    "client": "CANVIA",
+    "clientInternal": "CANVIA [POR CONFIRMAR razón social]",
+    "place": "Por confirmar",
+    "city": "lima",
+    "type": "Proyecto de mitigación contra inundaciones internas",
+    "description": "Se observan trabajos de demolición de piso de concreto e instalación de canaletas de drenaje con rejillas metálicas en un estacionamiento, con zona de trabajo señalizada y delimitada.",
+    "cover": "../../assets/proyectos/canvia-estacionamiento/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/canvia-estacionamiento/galeria-1.webp",
+      "../../assets/proyectos/canvia-estacionamiento/galeria-2.webp",
+      "../../assets/proyectos/canvia-estacionamiento/galeria-3.webp",
+      "../../assets/proyectos/canvia-estacionamiento/galeria-4.webp",
+      "../../assets/proyectos/canvia-estacionamiento/galeria-5.webp"
+    ],
+    "pending": true,
+    "order": 27
+  },
+  {
+    "id": "ct-chimbote",
+    "pillar": "indeci",
+    "title": "CT Chimbote - Integratel",
+    "client": "Integratel Perú",
+    "clientInternal": "Integratel Perú",
+    "place": "Chimbote, Áncash",
+    "city": "chimbote",
+    "type": "Levantamiento de observaciones ITSE",
+    "description": "Se observan trabajos de verificación y medición en tableros eléctricos, intervenciones en cubierta metálica y escaleras de gato con jaula de protección en azotea, como parte de la adecuación del local. [POR CONFIRMAR alcance]",
+    "cover": "../../assets/proyectos/ct-chimbote/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/ct-chimbote/galeria-1.webp",
+      "../../assets/proyectos/ct-chimbote/galeria-2.webp",
+      "../../assets/proyectos/ct-chimbote/galeria-3.webp",
+      "../../assets/proyectos/ct-chimbote/galeria-4.webp",
+      "../../assets/proyectos/ct-chimbote/galeria-5.webp"
+    ],
+    "pending": true,
+    "order": 28
+  },
+  {
+    "id": "ct-cusco",
+    "pillar": "indeci",
+    "title": "CT Cusco - Integratel",
+    "client": "Integratel Perú",
+    "clientInternal": "Integratel Perú",
+    "place": "Cusco",
+    "city": "cusco",
+    "type": "Levantamiento de observaciones ITSE",
+    "description": "Se observan tableros eléctricos de distribución con directorio de circuitos rotulado, pruebas de resistencia de aislamiento, canalizaciones en tubería conduit, señalización de riesgo eléctrico y luces de emergencia. [POR CONFIRMAR alcance]",
+    "cover": "../../assets/proyectos/ct-cusco/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/ct-cusco/galeria-1.webp",
+      "../../assets/proyectos/ct-cusco/galeria-2.webp",
+      "../../assets/proyectos/ct-cusco/galeria-3.webp",
+      "../../assets/proyectos/ct-cusco/galeria-4.webp",
+      "../../assets/proyectos/ct-cusco/galeria-5.webp"
+    ],
+    "pending": true,
+    "order": 29
+  },
+  {
+    "id": "siemens-energy",
+    "pillar": "indeci",
+    "title": "Siemens Energy - Lurín",
+    "client": "Siemens Energy",
+    "clientInternal": "Siemens Energy",
+    "place": "Lurín, Lima",
+    "city": "lima",
+    "type": "Levantamiento de observaciones ITSE",
+    "description": "Se observan trabajos en tableros eléctricos de una nave industrial, puesta a tierra de botoneras, mobiliario y estructuras, y la instalación de luces de emergencia con su señalización. [POR CONFIRMAR alcance]",
+    "cover": "../../assets/proyectos/siemens-energy/portada.webp",
+    "gallery": [
+      "../../assets/proyectos/siemens-energy/galeria-1.webp",
+      "../../assets/proyectos/siemens-energy/galeria-2.webp",
+      "../../assets/proyectos/siemens-energy/galeria-3.webp",
+      "../../assets/proyectos/siemens-energy/galeria-4.webp",
+      "../../assets/proyectos/siemens-energy/galeria-5.webp",
+      "../../assets/proyectos/siemens-energy/galeria-6.webp"
+    ],
+    "pending": true,
+    "order": 30
+  }
+]

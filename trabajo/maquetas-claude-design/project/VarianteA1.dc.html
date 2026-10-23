@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>NEXOS Inicio · A1 Monumental</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&amp;family=Figtree:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1D4FA0}a:hover{color:#0E1A4F}
+
+.nx{--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-io:cubic-bezier(0.77,0,0.175,1);--line:#DDE3EE;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+.nx *{box-sizing:border-box}
+.nx ::selection{background:#D6EBD3;color:#0E1A4F}
+.nx a:focus-visible,.nx button:focus-visible{outline:2px solid #1D4FA0;outline-offset:3px;border-radius:6px}
+.nx .tab{font-variant-numeric:tabular-nums lining-nums}
+
+/* Navegación */
+.nx-links{display:flex}
+.nx-menu{display:none}
+.nx-link{position:relative;text-decoration:none;color:#0E1A4F;padding:12px 0}
+.nx-link::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:1px;background:#0E1A4F;transform:scaleX(0);transform-origin:right;transition:transform 220ms var(--ease-out)}
+@media (hover:hover){.nx-link:hover::after{transform:scaleX(1);transform-origin:left}}
+
+/* Botones: respuesta al presionar */
+.nx-btn{transition:transform 160ms var(--ease-out),background-color 200ms ease,color 200ms ease,border-color 200ms ease}
+.nx-btn:active{transform:scale(0.97)}
+@media (hover:hover){
+  .nx-btn-solid:hover{filter:brightness(0.92)}
+  .nx-btn-line:hover{background:#0E1A4F;color:#ffffff;border-color:#0E1A4F}
+  .nx-arrow:hover{background:#0E1A4F;color:#ffffff;border-color:#0E1A4F}
+  .nx-chip-idle:hover{border-color:#0E1A4F}
+  .nx-client:hover .nx-client-name{color:#0E1A4F}
+  .nx-prow:hover .nx-ptitle{transform:translateX(8px)}
+  .nx-pillar:hover .nx-circle{transform:scale(1.02)}
+}
+.nx-ptitle{transition:transform 260ms var(--ease-out)}
+.nx-circle{transition:transform 320ms var(--ease-out)}
+.nx-client-name{transition:color 200ms ease}
+
+/* Carrusel: transición suave e interrumpible (transiciones, no keyframes) */
+.nx-slide{transition:opacity 600ms var(--ease-out),transform 900ms var(--ease-out),filter 600ms var(--ease-out)}
+.nx-progress{transform-origin:left;animation:nxProgress 5s linear both}
+.nx-paused .nx-progress{animation-play-state:paused}
+
+/* Entrada del titular: palabras que suben desde una máscara */
+.nx-w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:0.08em;margin-bottom:-0.08em}
+.nx-wi{display:inline-block;animation:nxWord 900ms var(--ease-out) both}
+.nx-fade{animation:nxFade 700ms var(--ease-out) both}
+
+/* Guías de plano que se dibujan */
+.nx-guide{transform-origin:top;animation:nxGuide 1400ms var(--ease-out) both}
+.nx-arc{stroke-dasharray:1;stroke-dashoffset:0;animation:nxDraw 2200ms var(--ease-out) both}
+
+/* Revelado al hacer scroll (contenido visible por defecto) */
+@supports (animation-timeline: view()){
+  .nx-rv{animation:nxRise linear both;animation-timeline:view();animation-range:entry 0% entry 45%}
+  .nx-wipe{animation:nxWipe linear both;animation-timeline:view();animation-range:entry 5% entry 55%}
+  .nx-draw-x{transform-origin:left;animation:nxDrawX linear both;animation-timeline:view();animation-range:entry 10% cover 35%}
+}
+.nx-prow{animation:nxFade 360ms var(--ease-out) both}
+
+@keyframes nxWord{from{transform:translateY(105%)}to{transform:translateY(0)}}
+@keyframes nxFade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes nxGuide{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes nxDraw{from{stroke-dashoffset:1}to{stroke-dashoffset:0}}
+@keyframes nxRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+@keyframes nxWipe{from{clip-path:inset(0 0 100% 0);transform:translateY(0.25em)}to{clip-path:inset(0 0 0 0);transform:none}}
+@keyframes nxDrawX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes nxProgress{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Retículas responsivas */
+.nx-hero-row{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,8fr);gap:clamp(28px,4vw,64px);align-items:end}
+.nx-pillars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px}
+.nx-datum{display:block}
+.nx-about{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,5vw,80px)}
+.nx-bento{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:minmax(180px,auto);gap:1px;background:#DDE3EE;border:1px solid #DDE3EE}
+.nx-b-a{grid-column:span 2;grid-row:span 2}
+.nx-b-d{grid-column:span 2}
+.nx-prow{display:grid;grid-template-columns:200px minmax(0,1fr) 220px 210px;gap:28px;align-items:center}
+.nx-clients{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.nx-foot{display:grid;grid-template-columns:minmax(0,1.4fr) repeat(3,minmax(0,1fr));gap:40px}
+.nx-g-hide{display:block}
+
+@media (max-width: 1080px){
+  .nx-prow{grid-template-columns:160px minmax(0,1fr) 180px;}
+  .nx-pcol-pillar{display:none}
+}
+@media (max-width: 960px){
+  .nx-links{display:none}
+  .nx-navcta{display:none}
+  .nx-menu{display:inline-flex}
+  .nx-hero-row{grid-template-columns:minmax(0,1fr)}
+  .nx-about{grid-template-columns:minmax(0,1fr)}
+  .nx-bento{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nx-clients{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .nx-foot{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nx-g-hide{display:none}
+}
+@media (max-width: 760px){
+  .nx-pillars{grid-template-columns:minmax(0,1fr);gap:56px}
+  .nx-datum{display:none}
+  .nx-prow{grid-template-columns:minmax(0,1fr);gap:14px}
+  .nx-pcol-pillar{display:block}
+}
+@media (max-width: 560px){
+  .nx-bento{grid-template-columns:minmax(0,1fr)}
+  .nx-b-a,.nx-b-d{grid-column:span 1;grid-row:span 1}
+  .nx-clients{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .nx-foot{grid-template-columns:minmax(0,1fr)}
+}
+
+/* Interruptor de animaciones (tweak) */
+.nx-still .nx-wi,.nx-still .nx-fade,.nx-still .nx-guide,.nx-still .nx-arc,.nx-still .nx-rv,.nx-still .nx-wipe,.nx-still .nx-draw-x,.nx-still .nx-prow,.nx-still .nx-progress{animation:none}
+.nx-still .nx-slide{transition:opacity 200ms ease;transform:none !important;filter:none !important}
+
+/* Movimiento reducido: sin desplazamientos, solo fundidos que conservan el significado */
+@media (prefers-reduced-motion: reduce){
+  .nx-wi,.nx-guide,.nx-arc,.nx-draw-x,.nx-wipe{animation:none}
+  .nx-fade,.nx-rv,.nx-prow{animation:nxOpacity 300ms ease both}
+  .nx-slide{transition:opacity 250ms ease;transform:none !important;filter:none !important}
+  .nx-progress{animation:none;transform:scaleX(1)}
+  .nx-btn:active{transform:none}
+  .nx-pillar:hover .nx-circle,.nx-prow:hover .nx-ptitle{transform:none}
+}
+@keyframes nxOpacity{from{opacity:0}to{opacity:1}}
+</style>
+</helmet>
+<div class="nx {{motionClass}}" style="font-family: Figtree, 'Segoe UI', system-ui, sans-serif; color: #1A2233; background: #ffffff; width: 100%; overflow-x: hidden; font-size: 17px; line-height: 1.6">
+
+  <!-- ============ NAVEGACIÓN ============ -->
+  <header style="background: #ffffff; border-bottom: 1px solid #DDE3EE; position: relative; z-index: 3">
+    <div style="max-width: 1320px; margin: 0 auto; padding: 14px clamp(16px, 4vw, 56px); display: flex; align-items: center; justify-content: space-between; gap: 24px">
+      <a href="#inicio" style="display: flex; align-items: center; min-height: 44px"><img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: 54px; width: auto; display: block"></a>
+      <nav class="nx-links" aria-label="Principal" style="gap: clamp(18px, 2.4vw, 36px); align-items: center; font-family: Archivo, sans-serif; font-weight: 600; font-size: 15px; letter-spacing: 0.01em">
+        <a class="nx-link" href="#inicio">Inicio</a>
+        <a class="nx-link" href="#nosotros">Nosotros</a>
+        <a class="nx-link" href="#servicios">Servicios</a>
+        <a class="nx-link" href="#proyectos">Proyectos</a>
+        <a class="nx-link" href="#clientes">Clientes</a>
+        <a class="nx-link" href="#contacto">Contacto</a>
+      </nav>
+      <a class="nx-navcta nx-btn nx-btn-solid" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #ffffff; text-decoration: none; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 999px; min-height: 46px">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+        Cotiza por WhatsApp
+      </a>
+      <button class="nx-menu nx-btn" type="button" aria-label="Abrir menú" style="width: 48px; height: 48px; border: 1px solid #C9D1DF; border-radius: 999px; background: #ffffff; align-items: center; justify-content: center; color: #0E1A4F; cursor: pointer">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ============ HERO ============ -->
+  <section id="inicio" style="position: relative; padding: clamp(40px, 6vw, 88px) clamp(16px, 4vw, 56px) clamp(64px, 8vw, 120px); overflow: hidden">
+    <!-- Arco del logo como contorno monumental de fondo -->
+    <svg aria-hidden="true" viewBox="0 0 1000 520" preserveAspectRatio="xMidYMax meet" style="position: absolute; right: -14vw; top: clamp(60px, 9vw, 140px); width: min(1100px, 92vw); height: auto; pointer-events: none">
+      <path class="nx-arc" pathLength="1" d="M20 510 A480 480 0 0 1 980 510" fill="none" stroke="#3FA535" stroke-opacity="0.45" stroke-width="1.2" vector-effect="non-scaling-stroke"></path>
+      <path class="nx-arc" pathLength="1" d="M110 510 A390 390 0 0 1 890 510" fill="none" stroke="#1D4FA0" stroke-opacity="0.16" stroke-width="1" vector-effect="non-scaling-stroke" style="animation-delay: 200ms"></path>
+      <path d="M0 510 H1000" fill="none" stroke="#0E1A4F" stroke-opacity="0.10" stroke-width="1" vector-effect="non-scaling-stroke"></path>
+    </svg>
+
+    <div style="position: relative; max-width: 1320px; margin: 0 auto">
+      <!-- Guías verticales de la retícula -->
+      <div aria-hidden="true" style="position: absolute; inset: calc(-1 * clamp(40px, 6vw, 88px)) 0 calc(-1 * clamp(64px, 8vw, 120px)) 0; display: flex; justify-content: space-between; pointer-events: none">
+        <span class="nx-guide" style="display: block; width: 1px; background: #E7EBF2"></span>
+        <span class="nx-guide nx-g-hide" style="display: block; width: 1px; background: #EEF1F6; animation-delay: 80ms"></span>
+        <span class="nx-guide" style="display: block; width: 1px; background: #EEF1F6; animation-delay: 160ms"></span>
+        <span class="nx-guide nx-g-hide" style="display: block; width: 1px; background: #EEF1F6; animation-delay: 240ms"></span>
+        <span class="nx-guide nx-g-hide" style="display: block; width: 1px; background: #EEF1F6; animation-delay: 320ms"></span>
+        <span class="nx-guide" style="display: block; width: 1px; background: #E7EBF2; animation-delay: 400ms"></span>
+      </div>
+
+      <h1 style="position: relative; margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 100%; font-size: clamp(40px, 7.6vw, 122px); line-height: 0.94; letter-spacing: -0.035em; color: #0E1A4F; max-width: 100%; text-wrap: balance">
+        <span class="nx-w"><span class="nx-wi" style="animation-delay: 120ms">Soluciones</span></span>
+        <span class="nx-w"><span class="nx-wi" style="animation-delay: 180ms">en</span></span>
+        <span class="nx-w"><span class="nx-wi" style="animation-delay: 240ms">construcción,</span></span>
+        <span class="nx-w"><span class="nx-wi" style="animation-delay: 300ms">ingeniería</span></span>
+        <span class="nx-w"><span class="nx-wi" style="animation-delay: 360ms">y</span></span>
+        <span class="nx-w"><span class="nx-wi" style="animation-delay: 420ms">mantenimiento</span></span>
+        <span class="nx-w"><span class="nx-wi" style="animation-delay: 480ms; color: #24782A">integral.</span></span>
+      </h1>
+
+      <!-- Cota de plano con las regiones atendidas -->
+      <div class="nx-fade" aria-label="Regiones con obras: Lima, Callao, Ica, Lambayeque y Ucayali" style="position: relative; margin: clamp(28px, 4vw, 48px) 0 clamp(36px, 5vw, 64px); display: flex; align-items: center; gap: 14px; animation-delay: 640ms; max-width: 860px">
+        <span aria-hidden="true" style="width: 1px; height: 14px; background: #0E1A4F"></span>
+        <span aria-hidden="true" style="flex: 1 1 24px; height: 1px; background: #0E1A4F; opacity: 0.35"></span>
+        <span style="font-family: Archivo, sans-serif; font-weight: 600; font-size: clamp(12px, 1.1vw, 14px); letter-spacing: 0.06em; color: #3D4A66; white-space: normal; text-align: center">Lima · Callao · Ica · Lambayeque · Ucayali</span>
+        <span aria-hidden="true" style="flex: 1 1 24px; height: 1px; background: #0E1A4F; opacity: 0.35"></span>
+        <span aria-hidden="true" style="width: 1px; height: 14px; background: #0E1A4F"></span>
+      </div>
+
+      <div class="nx-hero-row" style="position: relative">
+        <div class="nx-fade" style="animation-delay: 720ms; min-width: 0">
+          <p style="margin: 0 0 28px; font-size: clamp(17px, 1.4vw, 20px); line-height: 1.6; color: #3D4A66; max-width: 38ch">Un solo equipo multidisciplinario para tiendas, agencias bancarias y oficinas: excelente gestión y respuesta inmediata en Lima, Ica y provincias.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a class="nx-btn nx-btn-solid" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #ffffff; text-decoration: none; font-family: Archivo, sans-serif; font-weight: 700; font-size: 16px; padding: 15px 24px; border-radius: 999px; min-height: 52px">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+              Cotiza por WhatsApp
+            </a>
+            <a class="nx-btn nx-btn-line" href="#proyectos" style="display: inline-flex; align-items: center; gap: 10px; color: #0E1A4F; text-decoration: none; font-family: Archivo, sans-serif; font-weight: 700; font-size: 16px; padding: 15px 24px; border-radius: 999px; border: 1px solid #0E1A4F; min-height: 52px">
+              Ver proyectos
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Carrusel de proyectos destacados -->
+        <div class="nx-fade {{pausedClass}}" style="animation-delay: 820ms; min-width: 0" role="region" aria-roledescription="carrusel" aria-label="Proyectos destacados">
+          <div style="position: relative; aspect-ratio: 16 / 10; border-radius: 4px; overflow: hidden; background: #EEF3FA">
+            <sc-for list="{{slides}}" as="s" hint-placeholder-count="6">
+              <div class="nx-slide" aria-hidden="{{s.hidden}}" style="position: absolute; inset: 0; opacity: {{s.op}}; transform: scale({{s.sc}}); filter: blur({{s.blur}}); background: linear-gradient(135deg, #EDF2FA 0%, #F4F8F1 55%, #E7F1E4 100%); display: flex; flex-direction: column; justify-content: center; align-items: center; padding: clamp(20px, 4vw, 56px); text-align: center">
+                <span aria-hidden="true" style="position: absolute; inset: 14px; border: 1px dashed rgba(14,26,79,0.18); border-radius: 2px"></span>
+                <svg aria-hidden="true" viewBox="0 0 400 200" preserveAspectRatio="xMidYMax meet" style="position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 80%; height: auto">
+                  <path d="M10 200 A190 190 0 0 1 390 200" fill="none" stroke="#3FA535" stroke-opacity="0.28" stroke-width="1"></path>
+                </svg>
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#1D4FA0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: relative"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.8l1.4-2h6.6l1.4 2h1.8A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.6"></circle></svg>
+                <p style="position: relative; margin: 14px 0 0; font-size: clamp(13px, 1.1vw, 15px); line-height: 1.55; color: #3D4A66; max-width: 46ch">{{s.photo}}</p>
+              </div>
+            </sc-for>
+          </div>
+          <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 20px; padding-top: 18px; border-top: 1px solid #0E1A4F; margin-top: 16px; flex-wrap: wrap">
+            <div style="display: flex; gap: clamp(14px, 2vw, 28px); align-items: baseline; min-width: 0; flex: 1 1 280px" aria-live="polite">
+              <span class="tab" style="font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(30px, 3.4vw, 48px); line-height: 1; letter-spacing: -0.03em; color: #0E1A4F">{{slideNum}}<span style="font-weight: 500; color: #8A94A8; font-size: 0.5em; letter-spacing: 0">/{{slideTotal}}</span></span>
+              <div style="min-width: 0">
+                <p style="margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(17px, 1.5vw, 21px); line-height: 1.25; color: #0E1A4F">{{slide.title}}</p>
+                <p style="margin: 4px 0 0; font-size: 15px; color: #4A5468">{{slide.type}} · {{slide.place}}</p>
+              </div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px">
+              <button class="nx-btn nx-arrow" type="button" onClick="{{togglePlay}}" aria-label="{{playLabel}}" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid #C9D1DF; background: #ffffff; color: #0E1A4F; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                <sc-if value="{{playing}}" hint-placeholder-val="{{true}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M9 5v14M15 5v14"></path></svg></sc-if>
+                <sc-if value="{{paused}}" hint-placeholder-val="{{false}}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M7 5l12 7-12 7z"></path></svg></sc-if>
+              </button>
+              <button class="nx-btn nx-arrow" type="button" onClick="{{prev}}" aria-label="Proyecto anterior" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid #C9D1DF; background: #ffffff; color: #0E1A4F; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"></path></svg>
+              </button>
+              <button class="nx-btn nx-arrow" type="button" onClick="{{next}}" aria-label="Proyecto siguiente" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid #C9D1DF; background: #ffffff; color: #0E1A4F; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+              </button>
+            </div>
+          </div>
+          <div style="display: flex; gap: 6px; margin-top: 14px" role="group" aria-label="Elegir proyecto destacado">
+            <sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+              <button type="button" onClick="{{d.go}}" aria-label="{{d.label}}" aria-current="{{d.current}}" style="flex: 1 1 0; height: 44px; border: none; background: transparent; padding: 0; display: flex; align-items: center; cursor: pointer">
+                <span style="position: relative; display: block; width: 100%; height: 2px; background: #DDE3EE; overflow: hidden">
+                  <sc-if value="{{d.active}}" hint-placeholder-val="{{false}}"><span class="nx-progress" style="position: absolute; inset: 0; background: #0E1A4F"></span></sc-if>
+                </span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3 PILARES: CÍRCULOS SOBRE LA LÍNEA ============ -->
+  <section id="servicios" style="padding: clamp(72px, 10vw, 150px) clamp(16px, 4vw, 56px); background: #F6F8FB; border-top: 1px solid #DDE3EE; border-bottom: 1px solid #DDE3EE">
+    <div style="max-width: 1320px; margin: 0 auto">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px; margin-bottom: clamp(48px, 7vw, 104px)">
+        <h2 class="nx-wipe" style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(36px, 6vw, 96px); line-height: 0.96; letter-spacing: -0.035em; color: #0E1A4F; max-width: 11ch">Tres pilares, una sola respuesta.</h2>
+        <p class="nx-rv" style="margin: 0; font-size: 18px; line-height: 1.6; color: #3D4A66; max-width: 40ch">Mantenemos, construimos y gestionamos con el mismo equipo, para que tu operación no se detenga.</p>
+      </div>
+
+      <div class="nx-pillars" style="position: relative">
+        <!-- Línea de división continua en escritorio -->
+        <span class="nx-datum nx-draw-x" aria-hidden="true" style="position: absolute; left: calc(-1 * clamp(16px, 4vw, 56px)); right: calc(-1 * clamp(16px, 4vw, 56px)); top: calc(clamp(220px, 24vw, 340px) / 2); height: 1px; background: #0E1A4F; opacity: 0.55"></span>
+
+        <article class="nx-pillar" style="position: relative; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center">
+          <div style="position: relative; width: 100%; display: flex; justify-content: center">
+            <span aria-hidden="true" style="position: absolute; left: -16px; right: -16px; top: 50%; height: 1px; background: #0E1A4F; opacity: 0.55"></span>
+            <div class="nx-circle" style="position: relative; width: clamp(220px, 24vw, 340px); aspect-ratio: 1; border-radius: 50%; border: 1px solid #0E1A4F; background: linear-gradient(180deg, #ffffff 50%, #E6F2E4 50%); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 54%">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#24782A" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 12px"><path d="M13 2L5 13h6l-1 9 8-11h-6z"></path></svg>
+              <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(19px, 1.9vw, 27px); line-height: 1.08; letter-spacing: -0.02em; color: #0E1A4F; max-width: 72%">Mantenimiento integral</h3>
+            </div>
+          </div>
+          <p style="margin: 28px 0 0; font-size: 16px; line-height: 1.65; color: #3D4A66; max-width: 34ch">Instalaciones eléctricas, levantamiento de observaciones ITSE/INDECI, sistemas contra incendio y alarma, CCTV, redes y climatización.</p>
+        </article>
+
+        <article class="nx-pillar" style="position: relative; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center">
+          <div style="position: relative; width: 100%; display: flex; justify-content: center">
+            <span aria-hidden="true" style="position: absolute; left: -16px; right: -16px; top: 50%; height: 1px; background: #0E1A4F; opacity: 0.55"></span>
+            <div class="nx-circle" style="position: relative; width: clamp(220px, 24vw, 340px); aspect-ratio: 1; border-radius: 50%; border: 1px solid #0E1A4F; background: linear-gradient(180deg, #ffffff 50%, #E3ECF8 50%); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 54%">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1D4FA0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 12px"><path d="M3 21h18M5 21V9l7-5 7 5v12M9 21v-6h6v6"></path></svg>
+              <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(19px, 1.9vw, 27px); line-height: 1.08; letter-spacing: -0.02em; color: #0E1A4F; max-width: 72%">Construcción e implementación</h3>
+            </div>
+          </div>
+          <p style="margin: 28px 0 0; font-size: 16px; line-height: 1.65; color: #3D4A66; max-width: 34ch">Obras civiles, remodelaciones, implementación de tiendas y oficinas, drywall, acabados y estructuras metálicas.</p>
+        </article>
+
+        <article class="nx-pillar" style="position: relative; min-width: 0; display: flex; flex-direction: column; align-items: center; text-align: center">
+          <div style="position: relative; width: 100%; display: flex; justify-content: center">
+            <span aria-hidden="true" style="position: absolute; left: -16px; right: -16px; top: 50%; height: 1px; background: #0E1A4F; opacity: 0.55"></span>
+            <div class="nx-circle" style="position: relative; width: clamp(220px, 24vw, 340px); aspect-ratio: 1; border-radius: 50%; border: 1px solid #0E1A4F; background: linear-gradient(180deg, #ffffff 50%, #E4E7F1 50%); display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 54%">
+              <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#0E1A4F" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom: 12px"><path d="M3 20L20 3M7 20l-4-4M3 20h5M10.5 12.5l2 2M14 9l2 2M17.5 5.5l2 2"></path></svg>
+              <h3 style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(19px, 1.9vw, 27px); line-height: 1.08; letter-spacing: -0.02em; color: #0E1A4F; max-width: 72%">Ingeniería y gestión de proyectos</h3>
+            </div>
+          </div>
+          <p style="margin: 28px 0 0; font-size: 16px; line-height: 1.65; color: #3D4A66; max-width: 34ch">Supervisión, expedientes técnicos, costos y presupuestos, control de obra, consultoría, topografía, Invierte.pe y contrataciones del Estado.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ QUIÉNES SOMOS + HITOS ============ -->
+  <section id="nosotros" style="padding: clamp(80px, 11vw, 168px) clamp(16px, 4vw, 56px)">
+    <div style="max-width: 1320px; margin: 0 auto">
+      <h2 class="nx-wipe" style="margin: 0 0 clamp(40px, 6vw, 88px); font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(38px, 7vw, 112px); line-height: 0.94; letter-spacing: -0.035em; color: #0E1A4F; max-width: 14ch">Excelente gestión. Respuesta <span style="color: #24782A">inmediata.</span></h2>
+
+      <div class="nx-about">
+        <div class="nx-rv" style="min-width: 0">
+          <p style="margin: 0 0 22px; font-family: Archivo, sans-serif; font-weight: 500; font-size: clamp(21px, 2vw, 28px); line-height: 1.35; letter-spacing: -0.01em; color: #0E1A4F; max-width: 30ch">Somos una empresa peruana de construcción, ingeniería y mantenimiento integral.</p>
+          <p style="margin: 0 0 32px; font-size: 17px; line-height: 1.7; color: #3D4A66; max-width: 46ch">Conformada por un equipo multidisciplinario con amplia experiencia, comprometidos con soluciones efectivas e integrales, mejora continua y altos estándares de seguridad. Nuestra estrategia: excelente gestión y respuesta inmediata.</p>
+          <div style="position: relative; aspect-ratio: 4 / 3; border-radius: 4px; background: linear-gradient(135deg, #EDF2FA 0%, #F4F8F1 60%, #E7F1E4 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 32px; max-width: 520px">
+            <span aria-hidden="true" style="position: absolute; inset: 12px; border: 1px dashed rgba(14,26,79,0.18); border-radius: 2px"></span>
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#1D4FA0" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: relative"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.8l1.4-2h6.6l1.4 2h1.8A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.6"></circle></svg>
+            <p style="position: relative; margin: 12px 0 0; font-size: 14px; line-height: 1.55; color: #3D4A66; max-width: 40ch">[FOTO: equipo NEXOS completo con cascos y chalecos frente a una obra terminada — plano general horizontal, luz natural de mañana, todos mirando a cámara]</p>
+          </div>
+        </div>
+
+        <!-- Hitos en retícula bento, con contadores que suben -->
+        <div id="nx-hitos" class="nx-bento nx-rv" style="min-width: 0; align-self: start">
+          <div class="nx-b-a" style="background: #ffffff; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; justify-content: space-between; gap: 24px; position: relative; overflow: hidden">
+            <svg aria-hidden="true" viewBox="0 0 200 100" style="position: absolute; right: -20%; bottom: -2px; width: 90%; height: auto"><path d="M2 100 A98 98 0 0 1 198 100" fill="none" stroke="#3FA535" stroke-opacity="0.35" stroke-width="0.6"></path></svg>
+            <p class="tab" style="position: relative; margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(88px, 12vw, 176px); line-height: 0.85; letter-spacing: -0.05em; color: #0E1A4F">{{h1}}</p>
+            <p style="position: relative; margin: 0; font-size: 18px; line-height: 1.45; color: #3D4A66; max-width: 22ch">establecimientos comerciales con nuestro mantenimiento integral</p>
+          </div>
+          <div style="background: #ffffff; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; justify-content: space-between; gap: 16px">
+            <p class="tab" style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(56px, 6vw, 88px); line-height: 0.9; letter-spacing: -0.045em; color: #0E1A4F">{{h2}}</p>
+            <p style="margin: 0; font-size: 16px; line-height: 1.45; color: #3D4A66">clientes satisfechos</p>
+          </div>
+          <div style="background: #ffffff; padding: clamp(22px, 2.4vw, 32px); display: flex; flex-direction: column; justify-content: space-between; gap: 16px">
+            <p class="tab" style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(56px, 6vw, 88px); line-height: 0.9; letter-spacing: -0.045em; color: #0E1A4F">{{h3}}</p>
+            <p style="margin: 0; font-size: 16px; line-height: 1.45; color: #3D4A66">proyectos ejecutados</p>
+          </div>
+          <div class="nx-b-d" style="background: #F2F7F0; padding: clamp(22px, 2.4vw, 32px); display: flex; align-items: flex-end; justify-content: space-between; gap: 20px; flex-wrap: wrap">
+            <p class="tab" style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(56px, 6vw, 88px); line-height: 0.9; letter-spacing: -0.045em; color: #24782A">{{h4}}</p>
+            <div style="flex: 1 1 160px; min-width: 0">
+              <p style="margin: 0 0 6px; font-size: 16px; font-weight: 600; color: #0E1A4F">regiones del Perú</p>
+              <p style="margin: 0; font-size: 15px; line-height: 1.5; color: #3D4A66">Lima, Callao, Ica, Lambayeque y Ucayali</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROYECTOS ============ -->
+  <section id="proyectos" style="padding: 0 clamp(16px, 4vw, 56px) clamp(80px, 11vw, 168px)">
+    <div style="max-width: 1320px; margin: 0 auto">
+      <span class="nx-draw-x" aria-hidden="true" style="display: block; height: 1px; background: #0E1A4F; margin-bottom: clamp(56px, 8vw, 112px)"></span>
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 28px 48px; margin-bottom: clamp(32px, 4vw, 56px)">
+        <h2 class="nx-wipe" style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(38px, 7vw, 112px); line-height: 0.94; letter-spacing: -0.035em; color: #0E1A4F; max-width: 10ch">Obras que ya están en pie.</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Filtrar proyectos por pilar">
+          <sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+            <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}">
+              <button class="nx-btn" type="button" onClick="{{c.pick}}" aria-pressed="true" style="min-height: 46px; padding: 10px 18px; border-radius: 999px; border: 1px solid #0E1A4F; background: #0E1A4F; color: #ffffff; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px">{{c.label}} <span class="tab" style="font-weight: 500; font-size: 13px; color: #C9D2E6">{{c.count}}</span></button>
+            </sc-if>
+            <sc-if value="{{c.idle}}" hint-placeholder-val="{{true}}">
+              <button class="nx-btn nx-chip-idle" type="button" onClick="{{c.pick}}" aria-pressed="false" style="min-height: 46px; padding: 10px 18px; border-radius: 999px; border: 1px solid #C9D1DF; background: #ffffff; color: #0E1A4F; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px">{{c.label}} <span class="tab" style="font-weight: 500; font-size: 13px; color: #5B667A">{{c.count}}</span></button>
+            </sc-if>
+          </sc-for>
+        </div>
+      </div>
+
+      <div style="border-top: 1px solid #DDE3EE" aria-live="polite">
+        <sc-for list="{{projects}}" as="p" hint-placeholder-count="8">
+          <article class="nx-prow" style="padding: clamp(18px, 2vw, 26px) 0; border-bottom: 1px solid #DDE3EE; animation-delay: {{p.delay}}">
+            <div style="position: relative; aspect-ratio: 4 / 3; border-radius: 3px; background: linear-gradient(135deg, #EDF2FA 0%, #F4F8F1 60%, #E7F1E4 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 14px; min-width: 0">
+              <span aria-hidden="true" style="position: absolute; inset: 7px; border: 1px dashed rgba(14,26,79,0.18); border-radius: 2px"></span>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D4FA0" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="position: relative"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6h1.8l1.4-2h6.6l1.4 2h1.8A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.6"></circle></svg>
+              <p style="position: relative; margin: 6px 0 0; font-size: 12px; line-height: 1.4; color: #3D4A66">{{p.photo}}</p>
+            </div>
+            <div style="min-width: 0">
+              <h3 class="nx-ptitle" style="margin: 0; font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(24px, 2.6vw, 40px); line-height: 1.05; letter-spacing: -0.025em; color: #0E1A4F">{{p.title}}</h3>
+              <p style="margin: 8px 0 0; font-size: 16px; color: #3D4A66">{{p.type}}</p>
+            </div>
+            <p style="margin: 0; font-size: 15px; color: #3D4A66; display: flex; align-items: center; gap: 8px">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+              {{p.place}}
+            </p>
+            <p class="nx-pcol-pillar" style="margin: 0"><span style="display: inline-block; font-family: Archivo, sans-serif; font-weight: 600; font-size: 13px; color: #24782A; border: 1px solid #A9D3A3; padding: 5px 12px; border-radius: 999px">{{p.pillarLabel}}</span></p>
+          </article>
+        </sc-for>
+      </div>
+      <p style="margin: 24px 0 0; font-size: 14px; color: #5B667A">Fotografías de obra pendientes: cada recuadro indica la imagen que corresponde.</p>
+    </div>
+  </section>
+
+  <!-- ============ CLIENTES ============ -->
+  <section id="clientes" style="padding: clamp(80px, 11vw, 160px) clamp(16px, 4vw, 56px); background: #F6F8FB; border-top: 1px solid #DDE3EE; border-bottom: 1px solid #DDE3EE">
+    <div style="max-width: 1320px; margin: 0 auto">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 24px 48px; margin-bottom: clamp(40px, 5vw, 72px)">
+        <h2 class="nx-wipe" style="margin: 0; font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(38px, 6vw, 96px); line-height: 0.96; letter-spacing: -0.035em; color: #0E1A4F; max-width: 12ch">Marcas que confían en NEXOS.</h2>
+        <p style="margin: 0; font-size: 14px; color: #5B667A">[Logos oficiales pendientes]</p>
+      </div>
+      <div class="nx-clients nx-rv" style="border-top: 1px solid #C9D1DF; border-left: 1px solid #C9D1DF">
+        <sc-for list="{{clients}}" as="cl" hint-placeholder-count="12">
+          <div class="nx-client" style="min-height: clamp(96px, 10vw, 148px); border-right: 1px solid #C9D1DF; border-bottom: 1px solid #C9D1DF; display: flex; align-items: center; justify-content: center; padding: 16px; text-align: center; background: #ffffff">
+            <span class="nx-client-name" style="font-family: Archivo, sans-serif; font-weight: 800; font-stretch: 112%; font-size: clamp(17px, 1.9vw, 27px); letter-spacing: -0.02em; line-height: 1.1; color: #5B667A">{{cl}}</span>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CTA ============ -->
+  <section id="contacto" style="position: relative; padding: clamp(88px, 12vw, 180px) clamp(16px, 4vw, 56px); overflow: hidden; background: linear-gradient(160deg, #ffffff 0%, #ffffff 45%, #EEF4FB 75%, #EAF4E7 100%)">
+    <!-- Edificios del logo como contorno -->
+    <svg aria-hidden="true" viewBox="0 0 600 300" preserveAspectRatio="xMaxYMax meet" style="position: absolute; right: 0; bottom: 0; width: min(720px, 80vw); height: auto; pointer-events: none">
+      <path d="M40 300 A260 260 0 0 1 560 300" fill="none" stroke="#3FA535" stroke-opacity="0.45" stroke-width="1" vector-effect="non-scaling-stroke"></path>
+      <path d="M200 300V150h56v150M270 300V90h66v210M350 300V170h52v130" fill="none" stroke="#1D4FA0" stroke-opacity="0.28" stroke-width="1" vector-effect="non-scaling-stroke"></path>
+      <path d="M282 110h42M282 130h42M282 150h42M282 170h42M282 190h42M212 170h32M212 190h32M362 190h28M362 210h28" fill="none" stroke="#1D4FA0" stroke-opacity="0.16" stroke-width="1" vector-effect="non-scaling-stroke"></path>
+    </svg>
+    <div style="position: relative; max-width: 1320px; margin: 0 auto">
+      <h2 class="nx-wipe" style="margin: 0 0 clamp(28px, 3vw, 44px); font-family: Archivo, sans-serif; font-weight: 800; font-size: clamp(44px, 9vw, 150px); line-height: 0.9; letter-spacing: -0.04em; color: #0E1A4F; max-width: 9ch">Hablemos de tu obra.</h2>
+      <p class="nx-rv" style="margin: 0 0 clamp(32px, 4vw, 52px); font-size: clamp(17px, 1.5vw, 21px); line-height: 1.6; color: #3D4A66; max-width: 44ch">¿Tienes un proyecto o un local que mantener? Cuéntanos qué necesitas y te respondemos con una propuesta a medida.</p>
+      <div class="nx-rv" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: clamp(32px, 4vw, 48px)">
+        <a href="https://wa.me/51984387498" class="tab" style="font-family: Archivo, sans-serif; font-weight: 700; font-size: clamp(30px, 5vw, 72px); line-height: 1.05; letter-spacing: -0.03em; color: #0E1A4F; text-decoration: none; align-self: flex-start">+51 984 387 498</a>
+        <a href="mailto:operaciones@nexos-ing.com" style="font-family: Archivo, sans-serif; font-weight: 500; font-size: clamp(18px, 2.4vw, 34px); line-height: 1.2; letter-spacing: -0.01em; color: #1D4FA0; text-underline-offset: 6px; text-decoration-thickness: 1px; align-self: flex-start; overflow-wrap: anywhere">operaciones@nexos-ing.com</a>
+      </div>
+      <div class="nx-rv" style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a class="nx-btn nx-btn-solid" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #ffffff; text-decoration: none; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px; padding: 17px 28px; border-radius: 999px; min-height: 56px">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+          Cotiza por WhatsApp
+        </a>
+        <a class="nx-btn nx-btn-line" href="mailto:operaciones@nexos-ing.com" style="display: inline-flex; align-items: center; gap: 10px; color: #0E1A4F; text-decoration: none; font-family: Archivo, sans-serif; font-weight: 700; font-size: 17px; padding: 17px 28px; border-radius: 999px; border: 1px solid #0E1A4F; min-height: 56px; background: #ffffff">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+          Escríbenos un correo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="background: #F6F8FB; border-top: 1px solid #DDE3EE; padding: clamp(56px, 6vw, 88px) clamp(16px, 4vw, 56px) 28px">
+    <div class="nx-foot" style="max-width: 1320px; margin: 0 auto">
+      <div style="min-width: 0">
+        <img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: 64px; width: auto; display: block; mix-blend-mode: multiply">
+        <p style="margin: 18px 0 0; font-family: Archivo, sans-serif; font-weight: 600; font-size: 19px; line-height: 1.35; letter-spacing: -0.01em; color: #0E1A4F; max-width: 26ch">Soluciones en construcción, ingeniería y mantenimiento integral.</p>
+      </div>
+      <div style="min-width: 0">
+        <h3 style="margin: 0 0 14px; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: #0E1A4F">Contacto</h3>
+        <p style="margin: 0 0 8px; font-size: 15px"><a href="tel:+51984387498" class="tab">+51 984 387 498</a></p>
+        <p style="margin: 0 0 8px; font-size: 15px; overflow-wrap: anywhere"><a href="mailto:operaciones@nexos-ing.com">operaciones@nexos-ing.com</a></p>
+        <p style="margin: 0; font-size: 15px; color: #3D4A66">Horario: [POR DEFINIR]</p>
+      </div>
+      <div style="min-width: 0">
+        <h3 style="margin: 0 0 14px; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: #0E1A4F">Sedes</h3>
+        <p style="margin: 0 0 8px; font-size: 15px; color: #3D4A66">San Martín de Porres, Lima – Perú</p>
+        <p style="margin: 0; font-size: 15px; color: #3D4A66">Ica, Ica – Perú</p>
+      </div>
+      <div style="min-width: 0">
+        <h3 style="margin: 0 0 14px; font-family: Archivo, sans-serif; font-weight: 700; font-size: 15px; color: #0E1A4F">Síguenos</h3>
+        <p style="margin: 0; font-size: 15px; color: #3D4A66">[Redes sociales POR DEFINIR]</p>
+      </div>
+    </div>
+    <div style="max-width: 1320px; margin: clamp(40px, 5vw, 64px) auto 0; padding-top: 20px; border-top: 1px solid #DDE3EE; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 14px; color: #5B667A">
+      <span>© 2026 NEXOS Ingenieros. Todos los derechos reservados.</span>
+      <a href="#inicio" style="color: #1D4FA0">Volver arriba</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#24782A","options":["#24782A","#1D4FA0","#0E1A4F"]},"motion":{"editor":"boolean","default":true},"$preview":{"width":1440,"height":6400}}'>
+var NX_SLIDES = [
+  { title: 'Tienda MINISO La Rambla', type: 'Implementación de tienda', place: 'San Borja, Lima', photo: '[FOTO: fachada e interior de la tienda MINISO La Rambla recién implementada — plano general frontal, iluminación de tienda encendida, sin público, estilo arquitectónico limpio]' },
+  { title: 'Tienda MASS Calle 4', type: 'Implementación de tienda', place: 'Pisco, Ica', photo: '[FOTO: frontis de Tienda MASS Calle 4 con letrero encendido — plano general a nivel de vereda, luz cálida de tarde, encuadre simétrico]' },
+  { title: 'Tienda La Tinka Leoncio Prado', type: 'Implementación de tienda', place: 'Chiclayo, Lambayeque', photo: '[FOTO: interior terminado de la tienda La Tinka Leoncio Prado — plano abierto desde el ingreso, luz interior encendida, mobiliario completo]' },
+  { title: 'Botica Inkafarma Cañete', type: 'Levantamiento de observaciones INDECI', place: 'Cañete, Lima', photo: '[FOTO: técnico NEXOS con casco y chaleco revisando el tablero eléctrico de la botica — plano medio, luz natural, enfoque en las manos y el tablero]' },
+  { title: 'Oficinas administrativas POMICA', type: 'Obra civil · 90 m²', place: 'Santiago, Ica', photo: '[FOTO: oficinas administrativas POMICA concluidas — plano general interior en diagonal, luz natural lateral, acabados visibles]' },
+  { title: 'Tienda ÉL Chincha', type: 'Remodelación de tienda', place: 'Chincha, Ica', photo: '[FOTO: tienda ÉL Chincha remodelada — plano frontal de vitrina e ingreso, luz de día, encuadre simétrico]' }
+];
+var NX_PILLARS = { mant: 'Mantenimiento', cons: 'Construcción', ing: 'Ingeniería' };
+var NX_PROJECTS = [
+  { title: 'Tienda MINISO La Rambla', type: 'Implementación de tienda', place: 'San Borja, Lima', pillar: 'cons', photo: '[FOTO: tienda MINISO terminada, plano frontal]' },
+  { title: 'Tienda MASS Calle 4', type: 'Implementación de tienda', place: 'Pisco, Ica', pillar: 'cons', photo: '[FOTO: frontis con letrero, luz de tarde]' },
+  { title: 'Tienda La Tinka Leoncio Prado', type: 'Implementación de tienda', place: 'Chiclayo, Lambayeque', pillar: 'cons', photo: '[FOTO: interior terminado desde el ingreso]' },
+  { title: 'Botica Inkafarma Cañete', type: 'Levantamiento de observaciones INDECI', place: 'Cañete, Lima', pillar: 'mant', photo: '[FOTO: técnico revisando tablero, plano medio]' },
+  { title: 'Agencias Scotiabank (6 sedes)', type: 'Mantenimiento de tableros eléctricos y letreros luminosos', place: 'Lima', pillar: 'mant', photo: '[FOTO: letrero luminoso de agencia, de noche]' },
+  { title: 'Oficinas administrativas POMICA', type: 'Obra civil · 90 m²', place: 'Santiago, Ica', pillar: 'cons', photo: '[FOTO: oficina concluida, luz lateral]' },
+  { title: 'Tienda ÉL Chincha', type: 'Remodelación de tienda', place: 'Chincha, Ica', pillar: 'cons', photo: '[FOTO: vitrina remodelada, plano frontal]' },
+  { title: '[Proyecto de ingeniería por definir]', type: '[Expediente técnico o supervisión — por definir]', place: '[Ubicación por definir]', pillar: 'ing', photo: '[FOTO: ingeniero en obra con planos — por definir]' }
+];
+var NX_CHIPS = [
+  { id: 'todos', label: 'Todos' },
+  { id: 'mant', label: 'Mantenimiento' },
+  { id: 'cons', label: 'Construcción' },
+  { id: 'ing', label: 'Ingeniería' }
+];
+var NX_CLIENTS = ['La Tinka', 'MINISO', 'Tiendas MASS', 'BBVA', 'Interbank', 'Scotiabank', 'Grupo EFE', 'Inkafarma', 'Mifarma', 'Vivanda', 'OXXO', 'POMICA'];
+
+function nxReduced() {
+  try { return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0, f: 'todos', playing: true, cp: 0 };
+  }
+  componentDidMount() {
+    this.startTimer();
+    var still = this.props.motion === false || nxReduced();
+    if (still) { this.setState({ cp: 1 }); return; }
+    var self = this;
+    var el = null;
+    try { el = document.getElementById('nx-hitos'); } catch (e) { el = null; }
+    if (el && typeof IntersectionObserver !== 'undefined') {
+      this.io = new IntersectionObserver(function (entries) {
+        for (var k = 0; k < entries.length; k++) {
+          if (entries[k].isIntersecting) { self.io.disconnect(); self.io = null; self.count(); break; }
+        }
+      }, { threshold: 0.35 });
+      this.io.observe(el);
+    } else {
+      this.count();
+    }
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    if (this.raf) cancelAnimationFrame(this.raf);
+    if (this.io) this.io.disconnect();
+  }
+  count() {
+    var self = this;
+    var start = null;
+    var dur = 1600;
+    var step = function (t) {
+      if (start === null) start = t;
+      var p = Math.min(1, (t - start) / dur);
+      self.setState({ cp: p });
+      if (p < 1) self.raf = requestAnimationFrame(step);
+    };
+    this.raf = requestAnimationFrame(step);
+  }
+  startTimer() {
+    clearInterval(this.timer);
+    var self = this;
+    this.timer = setInterval(function () {
+      if (!self.state.playing) return;
+      self.setState(function (s) { return { i: (s.i + 1) % NX_SLIDES.length }; });
+    }, 5000);
+  }
+  renderVals() {
+    var self = this;
+    var i = this.state.i;
+    var f = this.state.f;
+    var n = NX_SLIDES.length;
+    var playing = this.state.playing;
+    var go = function (k) { self.setState({ i: (k + n) % n }); self.startTimer(); };
+    var p = this.state.cp;
+    var e = 1 - Math.pow(1 - p, 3);
+    var pad = function (x) { return x < 10 ? '0' + x : '' + x; };
+    var counts = { todos: NX_PROJECTS.length };
+    NX_PROJECTS.forEach(function (pr) { counts[pr.pillar] = (counts[pr.pillar] || 0) + 1; });
+    var list = NX_PROJECTS.filter(function (pr) { return f === 'todos' || pr.pillar === f; });
+    return {
+      accent: this.props.accent ?? '#24782A',
+      motionClass: this.props.motion === false ? 'nx-still' : '',
+      pausedClass: playing ? '' : 'nx-paused',
+      slide: NX_SLIDES[i],
+      slideNum: pad(i + 1),
+      slideTotal: pad(n),
+      slides: NX_SLIDES.map(function (s, k) {
+        var on = k === i;
+        return { photo: s.photo, op: on ? '1' : '0', sc: on ? '1' : '1.04', blur: on ? '0px' : '6px', hidden: on ? 'false' : 'true' };
+      }),
+      prev: function () { go(i - 1); },
+      next: function () { go(i + 1); },
+      playing: playing,
+      paused: !playing,
+      playLabel: playing ? 'Pausar carrusel' : 'Reanudar carrusel',
+      togglePlay: function () { self.setState({ playing: !playing }); if (!playing) self.startTimer(); },
+      dots: NX_SLIDES.map(function (s, k) {
+        return { active: k === i, current: k === i ? 'true' : 'false', go: function () { go(k); }, label: 'Ver ' + s.title };
+      }),
+      chips: NX_CHIPS.map(function (c) {
+        return { label: c.label, count: counts[c.id] || 0, active: c.id === f, idle: c.id !== f, pick: function () { self.setState({ f: c.id }); } };
+      }),
+      projects: list.map(function (pr, k) {
+        return { title: pr.title, type: pr.type, place: pr.place, photo: pr.photo, pillarLabel: NX_PILLARS[pr.pillar], delay: Math.min(k * 50, 300) + 'ms' };
+      }),
+      clients: NX_CLIENTS,
+      h1: '+' + Math.round(50 * e),
+      h2: '+' + Math.round(50 * e),
+      h3: '+' + Math.round(45 * e),
+      h4: '' + Math.round(5 * e)
+    };
+  }
+}
+</script>
+</body>
+</html>

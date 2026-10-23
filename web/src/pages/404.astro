@@ -1,0 +1,18 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { whatsappUrl } from '../config/site';
+---
+
+<BaseLayout title="Página no encontrada" description="La página que buscas no existe o fue movida. Vuelve al inicio de NEXOS Ingenieros o escríbenos por WhatsApp." noindex>
+  <section class="flex min-h-[70vh] items-center bg-ink px-5 py-24 text-white">
+    <div class="mx-auto max-w-3xl text-center">
+      <p class="eyebrow text-green-light">Error 404</p>
+      <h1 class="mt-4 text-section font-extrabold tracking-tight-display">Esta página no existe</h1>
+      <p class="mt-5 text-lg text-on-dark">Puede que el enlace haya cambiado. Te ayudamos a encontrar lo que buscas.</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3">
+        <a href="/" class="press inline-flex min-h-12 items-center rounded-full bg-green px-6 font-extrabold text-ink">Ir al inicio</a>
+        <a href={whatsappUrl()} class="press inline-flex min-h-12 items-center rounded-full border border-white/40 px-6 font-bold">Escríbenos por WhatsApp</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>NEXOS Inicio · A4 Ticket</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&amp;family=Nunito+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1D4FA0}a:hover{color:#0E1A4F}
+.a4-links{display:flex}
+.a4-menu{display:none}
+.a4-sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.a4-h1{min-height:2.16em}
+.a4-caret{display:inline-block;width:0.08em;height:0.9em;margin-left:0.06em;vertical-align:-0.08em;background:#8FD88A;border-radius:2px;animation:a4blink 1s steps(1) infinite}
+@keyframes a4blink{50%{opacity:0}}
+@media (max-width: 560px){.a4-h1{min-height:3.24em}}
+@media (prefers-reduced-motion: reduce){.a4-caret{animation:none}}
+.a4-ear{transition: transform 160ms ease-out, color 160ms ease-out}
+.a4-ear:hover{color:#24782A}
+.a4-ear:active{transform: translateY(-50%) scale(0.94)}
+@media (max-width: 1180px){
+  .a4-links{display:none}
+  .a4-menu{display:inline-flex}
+}
+@media (max-width: 1000px){
+  .a4-pills{grid-template-columns:repeat(2,minmax(0,1fr)) !important;border-radius:32px !important}
+}
+@media (max-width: 480px){
+  .a4-pills{grid-template-columns:minmax(0,1fr) !important}
+}
+</style>
+</helmet>
+<div style="font-family: 'Nunito Sans', system-ui, sans-serif; color: #1A2233; background: #ffffff; width: 100%; overflow-x: hidden">
+
+  <!-- Hero tipo ticket: tarjeta con muesca superior (logo), muescas laterales, nav integrado y selector de pilares -->
+  <section id="inicio" style="padding: clamp(10px, 1.6vw, 20px) clamp(10px, 1.6vw, 20px) 0">
+    <div style="position: relative; max-width: 1400px; margin: 0 auto; border-radius: clamp(24px, 3vw, 40px); background: linear-gradient(125deg, #0E1A4F 0%, #163A86 55%, #1D4FA0 78%, #2C7F4A 120%); color: #ffffff; padding: clamp(12px, 1.4vw, 18px) clamp(16px, 3vw, 44px) clamp(28px, 4vw, 52px)">
+
+      <!-- Muesca superior con el logo -->
+      <div style="position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: clamp(168px, 21vw, 290px); height: clamp(66px, 6.6vw, 90px); background: #ffffff; border-radius: 0 0 clamp(20px, 2.2vw, 30px) clamp(20px, 2.2vw, 30px); display: flex; align-items: center; justify-content: center; z-index: 2">
+        <div style="position: absolute; top: 0; left: -24px; width: 24px; height: 24px; background: radial-gradient(circle at 0 100%, transparent 23.5px, #ffffff 24px)"></div>
+        <div style="position: absolute; top: 0; right: -24px; width: 24px; height: 24px; background: radial-gradient(circle at 100% 100%, transparent 23.5px, #ffffff 24px)"></div>
+        <a href="#inicio" style="display: flex; align-items: center; margin-top: -4px; width: 76px; height: 43px"><img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: clamp(44px, 4.6vw, 64px); width: auto; display: block"></a>
+      </div>
+
+      <!-- Muescas laterales tipo ticket = flechas anterior / siguiente servicio -->
+      <button type="button" class="a4-ear" onClick="{{prev}}" aria-label="Servicio anterior" style="position: absolute; top: 46%; transform: translateY(-50%); width: 64px; height: 64px; border-radius: 50%; border: none; background: #ffffff; color: #0E1A4F; display: flex; align-items: center; cursor: pointer; z-index: 2; padding: 0 9px; box-sizing: border-box; left: -32px; justify-content: flex-end"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+      <button type="button" class="a4-ear" onClick="{{next}}" aria-label="Servicio siguiente" style="position: absolute; top: 46%; transform: translateY(-50%); width: 64px; height: 64px; border-radius: 50%; border: none; background: #ffffff; color: #0E1A4F; display: flex; align-items: center; cursor: pointer; z-index: 2; padding: 0 9px; box-sizing: border-box; right: -32px; justify-content: flex-start"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg></button>
+
+      <!-- Nav integrado: 3 enlaces a cada lado, mismo ancho y misma distancia a la muesca del logo -->
+      <header style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: clamp(48px, 4.6vw, 60px)">
+        <nav class="a4-links" aria-label="Principal izquierda" style="gap: 10px; align-items: center; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 14px">
+          <a href="#inicio" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 132px; min-height: 44px; box-sizing: border-box; text-decoration: none; border-radius: 999px; color: #0E1A4F; background: #ffffff; border: 1px solid #ffffff">Inicio</a>
+          <a href="#clientes" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 132px; min-height: 44px; box-sizing: border-box; text-decoration: none; border-radius: 999px; color: #ffffff; border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.08)">Clientes</a>
+          <a href="#proyectos" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 132px; min-height: 44px; box-sizing: border-box; text-decoration: none; border-radius: 999px; color: #ffffff; border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.08)">Proyectos</a>
+        </nav>
+        <nav class="a4-links" aria-label="Principal derecha" style="gap: 10px; align-items: center; font-family: Montserrat, sans-serif; font-weight: 600; font-size: 14px">
+          <a href="#nosotros" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 132px; min-height: 44px; box-sizing: border-box; text-decoration: none; border-radius: 999px; color: #ffffff; border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.08)">Nosotros</a>
+          <a href="#blog" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 132px; min-height: 44px; box-sizing: border-box; text-decoration: none; border-radius: 999px; color: #ffffff; border: 1px solid rgba(255,255,255,0.28); background: rgba(255,255,255,0.08)">Blog</a>
+          <a href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; justify-content: center; gap: 8px; width: 132px; min-height: 44px; box-sizing: border-box; text-decoration: none; border-radius: 999px; color: #ffffff; background: {{accent}}; border: 1px solid transparent; font-weight: 700"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>Contáctanos</a>
+        </nav>
+        <button class="a4-menu" type="button" aria-label="Abrir menú" style="width: 44px; height: 44px; border-radius: 50%; align-items: center; justify-content: center; box-sizing: border-box; border: 1px solid rgba(255,255,255,0.35); background: rgba(255,255,255,0.08); color: #ffffff">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"></path></svg>
+        </button>
+        <a class="a4-menu" href="https://wa.me/51984387498" aria-label="Contáctanos por WhatsApp" style="width: 44px; height: 44px; border-radius: 50%; align-items: center; justify-content: center; box-sizing: border-box; background: {accent}; color: #ffffff">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+        </a>
+      </header>
+
+      <!-- Selector de servicios (pastilla grande) -->
+      <div id="servicios" class="a4-pills" role="group" aria-label="Elige un servicio" style="margin-top: clamp(30px, 4vw, 48px); background: #ffffff; border-radius: 999px; padding: 4px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; box-shadow: 0 18px 50px rgba(5,10,40,0.35)">
+        <sc-for list="{{pills}}" as="pl" hint-placeholder-count="4">
+          <sc-if value="{{pl.active}}" hint-placeholder-val="{{false}}">
+            <button type="button" onClick="{{pl.pick}}" aria-pressed="true" style="min-height: 46px; border: none; border-radius: 999px; background: #0E1A4F; color: #ffffff; font-family: Montserrat, sans-serif; font-weight: 700; font-size: clamp(14px, 1.15vw, 16px); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 14px; cursor: pointer">
+              <span style="width: 10px; height: 10px; border-radius: 50%; background: #8FD88A; flex: none"></span>{{pl.label}}
+            </button>
+          </sc-if>
+          <sc-if value="{{pl.idle}}" hint-placeholder-val="{{true}}">
+            <button type="button" onClick="{{pl.pick}}" aria-pressed="false" style="min-height: 46px; border: none; border-radius: 999px; background: transparent; color: #0E1A4F; font-family: Montserrat, sans-serif; font-weight: 700; font-size: clamp(14px, 1.15vw, 16px); display: flex; align-items: center; justify-content: center; gap: 8px; padding: 6px 14px; cursor: pointer">
+              <span style="width: 10px; height: 10px; border-radius: 50%; border: 2px solid #9AA6C2; box-sizing: border-box; flex: none"></span>{{pl.label}}
+            </button>
+          </sc-if>
+        </sc-for>
+      </div>
+      <p style="margin: 14px 0 0; padding: 0 clamp(8px, 2vw, 28px); font-size: 15px; line-height: 1.5; color: #DCE4F5; display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline">
+        <span>{{pillDesc}}</span>
+        <a href="#servicios" style="color: #8FD88A; font-weight: 700; text-decoration: none">Ver servicios →</a>
+      </p>
+
+      <!-- Texto + imagen del servicio seleccionado (flechas recorren los servicios) -->
+      <div style="margin-top: clamp(28px, 4vw, 52px); display: flex; flex-wrap: wrap; gap: clamp(24px, 4vw, 56px); align-items: stretch">
+        <div style="flex: 1 1 400px; min-width: 0; padding: 0 clamp(4px, 1.2vw, 16px)">
+          <p style="margin: 0 0 14px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #8FD88A">Construcción · Ingeniería · Mantenimiento</p>
+          <h1 class="a4-h1" style="margin: 0 0 18px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(30px, 3.8vw, 52px); line-height: 1.08">
+            <span class="a4-sr">Soluciones en construcción, ingeniería y mantenimiento integral.</span>
+            <span aria-hidden="true">Soluciones en <span style="color: #8FD88A">{{typed}}</span><span class="a4-caret"></span></span>
+          </h1>
+          <p style="margin: 0 0 26px; font-size: 18px; line-height: 1.55; color: #DCE4F5; max-width: 520px">Equipo multidisciplinario con respuesta inmediata para tiendas, agencias bancarias, oficinas e industria en Lima, Ica y provincias.</p>
+          <div style="display: flex; flex-wrap: wrap; gap: 12px">
+            <a href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: #ffffff; color: #0E1A4F; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 16px; padding: 14px 24px; border-radius: 999px; min-height: 48px; box-sizing: border-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+              Escríbenos por WhatsApp
+            </a>
+            <a href="#proyectos" style="display: inline-flex; align-items: center; color: #ffffff; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 16px; padding: 14px 24px; border-radius: 999px; border: 2px solid rgba(255,255,255,0.6); min-height: 48px; box-sizing: border-box">Ver proyectos</a>
+          </div>
+        </div>
+
+        <div style="flex: 1 1 440px; min-width: 0; position: relative; display: flex; flex-direction: column">
+          <div style="position: relative; width: 100%; flex: 1 1 auto; min-height: 280px; border-radius: clamp(18px, 2vw, 28px); overflow: hidden; background: #0B1442; box-shadow: 0 24px 60px rgba(5,10,40,0.45)">
+            <img src="{{hero.img}}" alt="{{hero.alt}}" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Nosotros + hitos -->
+  <section id="nosotros" style="background: #F4F6FA; padding: 72px 20px">
+    <div style="max-width: 1240px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 48px; align-items: center">
+      <div style="flex: 1 1 420px; min-width: 0">
+        <p style="margin: 0 0 10px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #24782A">Quiénes somos</p>
+        <h2 style="margin: 0 0 16px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.15; color: #0E1A4F">Socios estratégicos para la operación de tus establecimientos</h2>
+        <p style="margin: 0 0 20px; font-size: 17px; line-height: 1.65; color: #4A5468">Somos una empresa peruana de construcción, ingeniería y mantenimiento integral. Nuestro equipo multidisciplinario trabaja bajo altos estándares de seguridad, con una gestión eficiente y respuesta inmediata a cada requerimiento.</p>
+        <a href="#nosotros" style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; color: #1D4FA0">Conoce más sobre NEXOS →</a>
+      </div>
+      <div style="flex: 1 1 420px; min-width: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px">
+        <div style="background: #ffffff; border-radius: 16px; padding: 24px; border: 1px solid #E3E7EF">
+          <p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 44px; color: #0E1A4F">+50</p>
+          <p style="margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: #4A5468">establecimientos comerciales con nuestro mantenimiento integral</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 16px; padding: 24px; border: 1px solid #E3E7EF">
+          <p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 44px; color: #0E1A4F">+50</p>
+          <p style="margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: #4A5468">clientes satisfechos</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 16px; padding: 24px; border: 1px solid #E3E7EF">
+          <p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 44px; color: #0E1A4F">+45</p>
+          <p style="margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: #4A5468">proyectos ejecutados</p>
+        </div>
+        <div style="background: #ffffff; border-radius: 16px; padding: 24px; border: 1px solid #E3E7EF">
+          <p style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: 44px; color: #0E1A4F">5</p>
+          <p style="margin: 6px 0 0; font-size: 15px; line-height: 1.45; color: #4A5468">regiones del Perú con obras realizadas</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proyectos -->
+  <section id="proyectos" style="padding: 80px 20px">
+    <div style="max-width: 1240px; margin: 0 auto">
+      <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px; margin-bottom: 28px">
+        <div>
+          <p style="margin: 0 0 10px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #24782A">Proyectos ejecutados</p>
+          <h2 style="margin: 0; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 38px); color: #0E1A4F">Experiencia que se ve en obra</h2>
+        </div>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px" role="group" aria-label="Filtrar por pilar">
+          <sc-for list="{{chips}}" as="c" hint-placeholder-count="5">
+            <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}">
+              <button type="button" onClick="{{c.pick}}" aria-pressed="true" style="min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 2px solid #0E1A4F; background: #0E1A4F; color: #ffffff; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 14px; cursor: pointer">{{c.label}}</button>
+            </sc-if>
+            <sc-if value="{{c.idle}}" hint-placeholder-val="{{true}}">
+              <button type="button" onClick="{{c.pick}}" aria-pressed="false" style="min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 2px solid #D5DBE6; background: #ffffff; color: #0E1A4F; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 14px; cursor: pointer">{{c.label}}</button>
+            </sc-if>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px">
+        <sc-for list="{{projects}}" as="p" hint-placeholder-count="6">
+          <article style="border-radius: 16px; overflow: hidden; border: 1px solid #E3E7EF; background: #ffffff; display: flex; flex-direction: column">
+            <sc-if value="{{p.img}}" hint-placeholder-val="{{true}}">
+              <img src="{{p.img}}" alt="{{p.title}}" style="width: 100%; height: 210px; object-fit: cover; display: block">
+            </sc-if>
+            <sc-if value="{{p.noImg}}" hint-placeholder-val="{{false}}">
+              <div style="height: 210px; background: #E9EDF5; display: flex; align-items: center; justify-content: center; color: #4A5468; font-size: 13px; text-align: center; padding: 16px; box-sizing: border-box">[FOTO DEL PROYECTO PENDIENTE]</div>
+            </sc-if>
+            <div style="padding: 18px 20px 22px; display: flex; flex-direction: column; gap: 6px">
+              <span style="align-self: flex-start; font-size: 12px; font-weight: 700; color: #24782A; background: #E8F4E6; padding: 4px 10px; border-radius: 999px">{{p.pillarLabel}}</span>
+              <h3 style="margin: 4px 0 0; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 18px; color: #0E1A4F">{{p.title}}</h3>
+              <p style="margin: 0; font-size: 15px; color: #4A5468">{{p.type}}</p>
+              <p style="margin: 0; font-size: 14px; color: #4A5468">{{p.place}}</p>
+            </div>
+          </article>
+        </sc-for>
+      </div>
+      <div style="margin-top: 28px; text-align: center">
+        <a href="#proyectos" style="font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; color: #1D4FA0">Ver todos los proyectos (por servicio, lugar y cliente) →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Clientes -->
+  <section id="clientes" style="background: #F4F6FA; padding: 72px 20px">
+    <div style="max-width: 1240px; margin: 0 auto; text-align: center">
+      <p style="margin: 0 0 10px; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: #24782A">Clientes</p>
+      <h2 style="margin: 0 0 32px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 38px); color: #0E1A4F">Marcas que confían en nuestro trabajo</h2>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px">
+        <sc-for list="{{clients}}" as="cl" hint-placeholder-count="12">
+          <div style="height: 84px; border-radius: 12px; background: #ffffff; border: 1px solid #E3E7EF; display: flex; align-items: center; justify-content: center; padding: 10px; box-sizing: border-box; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 15px; color: #6A7385">{{cl}}</div>
+        </sc-for>
+      </div>
+      <p style="margin: 16px 0 0; font-size: 13px; color: #6A7385">[Logos oficiales pendientes]</p>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contacto" style="padding: 72px 20px">
+    <div style="max-width: 1240px; margin: 0 auto; border-radius: 24px; background: linear-gradient(125deg, #0E1A4F 0%, #1D4FA0 100%); color: #ffffff; padding: clamp(32px, 5vw, 64px); display: flex; flex-wrap: wrap; gap: 32px; align-items: center; justify-content: space-between; box-sizing: border-box">
+      <div style="flex: 1 1 420px; min-width: 0">
+        <h2 style="margin: 0 0 12px; font-family: Montserrat, sans-serif; font-weight: 800; font-size: clamp(26px, 3vw, 38px); line-height: 1.15">¿Tienes un proyecto o un local que mantener?</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #DCE4F5">Cuéntanos qué necesitas y te respondemos con una propuesta a medida.</p>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 12px">
+        <a href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #ffffff; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 16px; padding: 15px 24px; border-radius: 999px; min-height: 48px; box-sizing: border-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+          +51 984 387 498
+        </a>
+        <a href="mailto:operaciones@nexos-ing.com" style="display: inline-flex; align-items: center; gap: 10px; color: #ffffff; text-decoration: none; font-family: Montserrat, sans-serif; font-weight: 700; font-size: 16px; padding: 15px 24px; border-radius: 999px; border: 2px solid rgba(255,255,255,0.6); min-height: 48px; box-sizing: border-box">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="M3 7l9 6 9-6"></path></svg>
+          Escríbenos un correo
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="background: #0A1238; color: #C9D2E6; padding: 56px 20px 28px">
+    <div style="max-width: 1240px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 36px">
+      <div>
+        <div style="background: #ffffff; border-radius: 12px; padding: 10px 14px; display: inline-block"><img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: 52px; width: auto; display: block"></div>
+        <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6">Brindamos soluciones en construcción, ingeniería y mantenimiento integral.</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-family: Montserrat, sans-serif; font-size: 15px; color: #ffffff">Contacto</h3>
+        <p style="margin: 0 0 6px; font-size: 15px"><a href="tel:+51984387498" style="color: #C9D2E6">+51 984 387 498</a></p>
+        <p style="margin: 0 0 6px; font-size: 15px"><a href="mailto:operaciones@nexos-ing.com" style="color: #C9D2E6">operaciones@nexos-ing.com</a></p>
+        <p style="margin: 0; font-size: 15px">Horario: [POR DEFINIR]</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-family: Montserrat, sans-serif; font-size: 15px; color: #ffffff">Sedes</h3>
+        <p style="margin: 0 0 6px; font-size: 15px">San Martín de Porres, Lima – Perú</p>
+        <p style="margin: 0; font-size: 15px">Ica, Ica – Perú</p>
+      </div>
+      <div>
+        <h3 style="margin: 0 0 12px; font-family: Montserrat, sans-serif; font-size: 15px; color: #ffffff">Síguenos</h3>
+        <p style="margin: 0; font-size: 15px">[Facebook · LinkedIn · Instagram — enlaces por definir]</p>
+      </div>
+    </div>
+    <div style="max-width: 1240px; margin: 36px auto 0; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 13px; color: #8E9AB8">© 2026 NEXOS Ingenieros. Todos los derechos reservados.</div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#24782A","options":["#24782A","#1D4FA0","#0E1A4F"]},"$preview":{"width":1440,"height":3300}}'>
+var NX_PILLARS = { mant: 'Mantenimiento de locales', retail: 'Implementación retail', obras: 'Obras e ingeniería', indeci: 'INDECI · ITSE' };
+var NX_PROJECTS = [
+  { img: '/_blob/3242833e63a953b6b33042d98baf6bf5', title: 'Tienda MINISO La Rambla', type: 'Implementación de tienda', place: 'San Borja, Lima', pillar: 'retail' },
+  { img: '/_blob/9f179a05656075c3e95de9b50d9b2a5a', title: 'Tienda MASS Calle 4', type: 'Implementación de tienda', place: 'Pisco, Ica', pillar: 'retail' },
+  { img: '/_blob/c0d7d7b9258092946cf7a3716173bd7b', title: 'Botica Inkafarma Cañete', type: 'Levantamiento de observaciones INDECI', place: 'San Vicente de Cañete, Lima', pillar: 'indeci' },
+  { img: '/_blob/9fb6db836da7ad422c2bf97e04396e23', title: 'Tienda La Tinka Leoncio Prado', type: 'Implementación de tienda', place: 'Chiclayo, Lambayeque', pillar: 'retail' },
+  { img: '', title: 'Agencias Scotiabank (6 sedes)', type: 'Mantenimiento de tableros eléctricos y letreros luminosos', place: 'Lima', pillar: 'mant' },
+  { img: '/_blob/8748be8e913e218a67b687b6b94656a8', title: 'Oficinas administrativas POMICA', type: 'Obra civil · 90 m²', place: 'Santiago, Ica', pillar: 'obras' },
+  { img: '/_blob/031dbcdd15d27ef4f59d8fb467fe2d49', title: 'Tienda ÉL Chincha', type: 'Remodelación de tienda', place: 'Chincha, Ica', pillar: 'retail' }
+];
+var NX_CHIPS = [
+  { id: 'todos', label: 'Todos' },
+  { id: 'mant', label: 'Mantenimiento' },
+  { id: 'retail', label: 'Retail' },
+  { id: 'obras', label: 'Obras' },
+  { id: 'indeci', label: 'INDECI · ITSE' }
+];
+var NX_TYPE_WORDS = ['construcción.', 'ingeniería.', 'mantenimiento integral.'];
+var NX_HERO_PILLS = [
+  { id: 'mant', img: '/_blob/55c6d24086256fb457cb2992f2fb2400', alt: 'Técnico de NEXOS realizando mantenimiento en azotea', label: 'Mantenimiento de locales', desc: 'Mantenimiento preventivo y correctivo de instalaciones eléctricas, tableros, pozos a tierra, climatización y estructuras para bancos, oficinas y tiendas.' },
+  { id: 'retail', img: '/_blob/3242833e63a953b6b33042d98baf6bf5', alt: 'Tienda MINISO implementada por NEXOS', label: 'Implementación retail', desc: 'Implementación y remodelación de tiendas, agencias y oficinas llave en mano: drywall, acabados, iluminación, redes y mobiliario.' },
+  { id: 'obras', img: '/_blob/cb9424b06ba77e94fde9b121d4194aa7', alt: 'Ingeniero con estación topográfica', label: 'Obras e ingeniería', desc: 'Ejecución y supervisión de obras civiles e industriales, con proyectos de ingeniería eléctrica, sanitaria y de redes de agua.' },
+  { id: 'indeci', img: '/_blob/c0d7d7b9258092946cf7a3716173bd7b', alt: 'Botica Inkafarma con observaciones INDECI levantadas', label: 'INDECI · ITSE', desc: 'Levantamiento de observaciones INDECI y Certificado ITSE: pozo a tierra, tableros, luces de emergencia, retardante de fuego y contra incendio.' }
+];
+var NX_CLIENTS = ['La Tinka', 'MINISO', 'Tiendas MASS', 'BBVA', 'Interbank', 'Scotiabank', 'Grupo EFE', 'Inkafarma', 'Mifarma', 'Vivanda', 'OXXO', 'POMICA'];
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { f: 'todos', pl: 'mant', typed: '' };
+  }
+  componentDidMount() {
+    this.startTimer();
+    this.startTyping();
+  }
+  componentWillUnmount() {
+    clearInterval(this.timer);
+    clearTimeout(this.typeTimer);
+  }
+  startTyping() {
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { this.setState({ typed: 'construcción, ingeniería y mantenimiento integral.' }); return; }
+    let w = 0, n = 0, del = false;
+    const tick = () => {
+      const word = NX_TYPE_WORDS[w];
+      let wait = del ? 35 : 65;
+      if (!del) {
+        n += 1;
+        if (n >= word.length) { n = word.length; del = true; wait = 1900; }
+      } else {
+        n -= 1;
+        if (n <= 0) { n = 0; del = false; w = (w + 1) % NX_TYPE_WORDS.length; wait = 350; }
+      }
+      this.setState({ typed: word.slice(0, n) });
+      this.typeTimer = setTimeout(tick, wait);
+    };
+    this.typeTimer = setTimeout(tick, 400);
+  }
+  startTimer() {
+    clearInterval(this.timer);
+    this.timer = setInterval(() => {
+      this.setState((s) => ({ pl: NX_HERO_PILLS[(NX_HERO_PILLS.findIndex((p) => p.id === s.pl) + 1) % NX_HERO_PILLS.length].id }));
+    }, 5000);
+  }
+  renderVals() {
+    const f = this.state.f;
+    const n = NX_HERO_PILLS.length;
+    const k = Math.max(0, NX_HERO_PILLS.findIndex((p) => p.id === this.state.pl));
+    const goTo = (j) => { this.setState({ pl: NX_HERO_PILLS[(j + n) % n].id }); this.startTimer(); };
+    return {
+      accent: this.props.accent ?? '#24782A',
+      typed: this.state.typed,
+      hero: NX_HERO_PILLS[k],
+      prev: () => goTo(k - 1),
+      next: () => goTo(k + 1),
+      chips: NX_CHIPS.map((c) => ({ label: c.label, active: c.id === f, idle: c.id !== f, pick: () => this.setState({ f: c.id }) })),
+      projects: NX_PROJECTS.filter((p) => f === 'todos' || p.pillar === f).map((p) => ({ ...p, img: p.img || false, noImg: !p.img, pillarLabel: NX_PILLARS[p.pillar] })),
+      clients: NX_CLIENTS,
+      pills: NX_HERO_PILLS.map((p) => ({ label: p.label, active: p.id === this.state.pl, idle: p.id !== this.state.pl, pick: () => goTo(NX_HERO_PILLS.indexOf(p)) })),
+      pillDesc: NX_HERO_PILLS[k].desc
+    };
+  }
+}
+</script>
+</body>
+</html>

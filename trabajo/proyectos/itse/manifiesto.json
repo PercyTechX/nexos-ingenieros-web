@@ -1,0 +1,57 @@
+{ "pilar": "4. Adecuacioin y Cumplimientos ITSE", "proyectos": [
+  { "slug": "ct-chimbote", "carpeta_origen": "CT CHIMBOTE - INTEGRATEL",
+    "titulo": "CT Chimbote - Integratel",
+    "cliente": "Integratel Perú",
+    "tipo": "Adecuación de instalaciones para cumplimiento ITSE [POR CONFIRMAR alcance exacto]",
+    "ubicacion": "Chimbote, Áncash [POR CONFIRMAR dirección]",
+    "descripcion": "Se observan trabajos de verificación y medición en tableros eléctricos, intervenciones en cubierta metálica y escaleras de gato con jaula de protección en azotea, como parte de la adecuación del local. [POR CONFIRMAR alcance]",
+    "portada": "portada.webp",
+    "galeria": ["galeria-1.webp", "galeria-2.webp", "galeria-3.webp", "galeria-4.webp", "galeria-5.webp"],
+    "fotos_origen": {
+      "portada.webp": "4fc5f209-9009-4fd1-852a-68784403b202.jpg",
+      "galeria-1.webp": "watermarked_img_15578594343829044785.jpg",
+      "galeria-2.webp": "watermarked_img_3295780760865331566.jpg",
+      "galeria-3.webp": "watermarked_img_1691692885960104072.jpg",
+      "galeria-4.webp": "watermarked_img_6602715482075266982.jpg",
+      "galeria-5.webp": "WhatsApp Image 2026-10-15 at 10.48.33 AM (1).jpeg"
+    },
+    "notas": "Todas las fotos son verticales (no hay horizontal para portada). Portada: técnico midiendo en tablero, cara parcialmente cortada. Los archivos 'watermarked_img_*' no muestran marca de agua visible. Excluidas: A_INTEGRATEL.jpeg (es el logo del cliente, 200x200, útil como logo pero no como foto) y watermarked_img_11826729821252059064.jpg (técnico en escalera, poco informativa). No hay fotos sospechosas de IA."
+  },
+  { "slug": "ct-cusco", "carpeta_origen": "CT CUSCO - INTEGRATEL",
+    "titulo": "CT Cusco - Integratel",
+    "cliente": "Integratel Perú",
+    "tipo": "Adecuación de instalaciones eléctricas para cumplimiento ITSE [POR CONFIRMAR alcance exacto]",
+    "ubicacion": "Cusco [POR CONFIRMAR dirección]",
+    "descripcion": "Se observan tableros eléctricos de distribución con directorio de circuitos rotulado, pruebas de resistencia de aislamiento, canalizaciones en tubería conduit, señalización de riesgo eléctrico y luces de emergencia. [POR CONFIRMAR alcance]",
+    "portada": "portada.webp",
+    "galeria": ["galeria-1.webp", "galeria-2.webp", "galeria-3.webp", "galeria-4.webp", "galeria-5.webp"],
+    "fotos_origen": {
+      "portada.webp": "WhatsApp Image 2026-10-15 at 6.29.35 PM (1).jpeg",
+      "galeria-1.webp": "WhatsApp Image 2026-10-15 at 6.29.35 PM.jpeg",
+      "galeria-2.webp": "WhatsApp Image 2026-10-15 at 6.29.32 PM.jpeg",
+      "galeria-3.webp": "WhatsApp Image 2026-10-15 at 6.29.33 PM (1).jpeg",
+      "galeria-4.webp": "WhatsApp Image 2026-10-15 at 6.29.34 PM (1).jpeg",
+      "galeria-5.webp": "WhatsApp Image 2026-10-15 at 6.29.34 PM.jpeg"
+    },
+    "notas": "SOSPECHOSAS DE IA / RETOQUE (no usadas): 'Panel de distribución eléctrica organizado.png', 'Panel eléctrico industrial con cableado organizado.png', 'Panel eléctrico industrial organizado.png' (nombres descriptivos tipo generador, acabado excesivamente limpio). Son visualmente las más vistosas: si el cliente confirma que son fotos reales retocadas, podrían sustituir a la portada. Excluidas también: INTEGRATEL.jpeg (logo), 6.29.35 PM (2) (casi duplicado de la portada), 6.29.33 PM (2) (técnico agachado, poco claro) y 6.29.34 PM (3) (caja con pared manchada). Las fotos reales tienen luz algo plana; galeria-3 (megóhmetro) tiene zona superior oscura."
+  },
+  { "slug": "siemens-energy", "carpeta_origen": "SIEMENS ENERGY",
+    "titulo": "Siemens Energy - Lurín",
+    "cliente": "Siemens Energy",
+    "tipo": "Adecuación de instalaciones eléctricas y de seguridad para cumplimiento ITSE [POR CONFIRMAR alcance exacto]",
+    "ubicacion": "Lurín, Lima (según sello de geolocalización de las fotos: 371 Eucaliptos, Parcela Casco Viejo) [POR CONFIRMAR]",
+    "descripcion": "Se observan trabajos en tableros eléctricos de una nave industrial, puesta a tierra de botoneras, mobiliario y estructuras, y la instalación de luces de emergencia con su señalización. [POR CONFIRMAR alcance]",
+    "portada": "portada.webp",
+    "galeria": ["galeria-1.webp", "galeria-2.webp", "galeria-3.webp", "galeria-4.webp", "galeria-5.webp", "galeria-6.webp"],
+    "fotos_origen": {
+      "portada.webp": "WhatsApp Image 2026-10-16 at 3.34.54 PM.jpeg",
+      "galeria-1.webp": "WhatsApp Image 2026-10-16 at 3.41.47 PM.jpeg",
+      "galeria-2.webp": "WhatsApp Image 2026-10-16 at 3.41.48 PM.jpeg",
+      "galeria-3.webp": "WhatsApp Image 2026-10-16 at 3.41.49 PM (1).jpeg",
+      "galeria-4.webp": "WhatsApp Image 2026-10-16 at 3.41.50 PM.jpeg",
+      "galeria-5.webp": "WhatsApp Image 2026-10-16 at 3.41.52 PM (1).jpeg",
+      "galeria-6.webp": "WhatsApp Image 2026-10-16 at 3.41.54 PM.jpeg"
+    },
+    "notas": "Casi todas las fotos (3.41.48 en adelante) llevan un sello de fecha y geolocalización superpuesto en la esquina inferior derecha ('6 set. 2025 ... Lurín, Provincia de Lima'); no se recortó porque ocupa una zona amplia. galeria-2 a galeria-6 lo tienen. La portada (tablero abierto, sin persona) y galeria-1 no tienen sello; no hay horizontal sin sello. galeria-2 muestra la puerta con logo 'Siemens Energy'. Fecha según sello: setiembre 2025. La foto '3.41.53 PM' (no usada) muestra otra dirección en el sello ('Las Praderas, Lurín'): verificar si todo es la misma sede. No hay fotos sospechosas de IA."
+  }
+] }

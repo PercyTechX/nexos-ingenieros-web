@@ -1,0 +1,74 @@
+[
+  {
+    "id": "faq-01",
+    "pillar": "mant",
+    "question": "¿Qué incluye el mantenimiento preventivo de un local comercial?",
+    "answer": "Revisamos y mantenemos de forma programada tableros eléctricos, luminarias, pozos a tierra, aire acondicionado, extracción de aire, estructuras y acabados. Así prevenimos fallas y tu local sigue operando sin interrupciones.",
+    "needsValidation": false,
+    "order": 1
+  },
+  {
+    "id": "faq-02",
+    "pillar": "mant",
+    "question": "¿Atienden agencias bancarias y oficinas en Lima?",
+    "answer": "Sí. Hemos realizado mantenimiento en agencias y oficinas de empresas como Scotiabank, BBVA y Expeditors. Atendemos en Lima, Callao, Ica y provincias.",
+    "needsValidation": false,
+    "order": 2
+  },
+  {
+    "id": "faq-03",
+    "pillar": "retail",
+    "question": "¿Implementan tiendas dentro de centros comerciales?",
+    "answer": "Sí. Hemos implementado tiendas de MINISO, Tiendas MASS y La Tinka, entre otras: canalizaciones, tableros, iluminación, redes, CCTV y acabados, coordinando con la administración del centro comercial.",
+    "needsValidation": false,
+    "order": 3
+  },
+  {
+    "id": "faq-04",
+    "pillar": "retail",
+    "question": "¿Trabajan proyectos llave en mano?",
+    "answer": "Sí. Podemos encargarnos desde la ingeniería y la propuesta hasta la ejecución y la entrega del local listo para operar.",
+    "needsValidation": false,
+    "order": 4
+  },
+  {
+    "id": "faq-05",
+    "pillar": "obras",
+    "question": "¿Ejecutan obras civiles e industriales fuera de Lima?",
+    "answer": "Sí. Tenemos obras en Ica, Chiclayo, Chimbote, Pucallpa y Cusco, además de Lima y Callao.",
+    "needsValidation": false,
+    "order": 5
+  },
+  {
+    "id": "faq-06",
+    "pillar": "obras",
+    "question": "¿Realizan proyectos de ingeniería eléctrica, sanitaria y de redes de agua?",
+    "answer": "Sí. Desarrollamos la ingeniería y ejecutamos instalaciones eléctricas, sanitarias y de agua potable y alcantarillado, como en el almacén central de Agrifresh en Ica.",
+    "needsValidation": false,
+    "order": 6
+  },
+  {
+    "id": "faq-07",
+    "pillar": "indeci",
+    "question": "¿Qué es el Certificado ITSE y quién lo necesita?",
+    "answer": "Es el certificado que emite la municipalidad tras la Inspección Técnica de Seguridad en Edificaciones (ITSE). Lo requieren los establecimientos para obtener o mantener su licencia de funcionamiento, según su nivel de riesgo.",
+    "needsValidation": true,
+    "order": 7
+  },
+  {
+    "id": "faq-08",
+    "pillar": "indeci",
+    "question": "¿Cómo levantan las observaciones de INDECI / ITSE en boticas y tiendas?",
+    "answer": "Revisamos el acta de observaciones, ejecutamos las correcciones (pozo a tierra, tableros, luces de emergencia, retardante de fuego, señalización, entre otras) y entregamos la documentación técnica para la nueva inspección.",
+    "needsValidation": true,
+    "order": 8
+  },
+  {
+    "id": "faq-09",
+    "pillar": "indeci",
+    "question": "¿Cada cuánto se debe medir el pozo a tierra?",
+    "answer": "Se recomienda medirlo de forma periódica (al menos una vez al año) y siempre antes de una inspección ITSE, con su protocolo firmado por un ingeniero electricista colegiado.",
+    "needsValidation": true,
+    "order": 9
+  }
+]

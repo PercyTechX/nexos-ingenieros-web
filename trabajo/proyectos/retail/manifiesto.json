@@ -1,0 +1,257 @@
+{
+  "pilar": "2. Desarrollo e Implementacion Retail",
+  "proyectos": [
+    {
+      "slug": "tinka-leoncio-prado",
+      "carpeta_origen": "1. LA TINKA LEONCIO PRADO",
+      "titulo": "Tienda La Tinka Leoncio Prado",
+      "cliente": "La Tinka S.A. - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Calle Leoncio Prado 1109, Chiclayo",
+      "descripcion": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes y cableado eléctrico y de comunicaciones.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "NEXOS INGENIEROS.png",
+        "galeria-1.webp": "Fachada de Tinka.png",
+        "galeria-2.webp": "NEXOS INGENIEROS (2).png",
+        "galeria-3.webp": "NEXOS INGENIEROS (3).png"
+      },
+      "notas": "Solo 4 fotos aprovechables (TINKA.jpg es el logo, excluido). Todas son PNG: 'Fachada de Tinka.png' es sospechosa de IA/retoque; las 'NEXOS INGENIEROS*.png' parecen fotos reales posiblemente retocadas/reescaladas. Sin fotos de proceso de obra."
+    },
+    {
+      "slug": "tinka-carmen-de-la-legua",
+      "carpeta_origen": "2. LA TINKA CARMEN DE LA LEGUA",
+      "titulo": "Tienda La Tinka Carmen de la Legua",
+      "cliente": "La Tinka S.A. - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Carmen de la Legua, Callao",
+      "descripcion": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes y cableado eléctrico y de comunicaciones.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "NEXOS INGENIEROS (3) (1).png",
+        "galeria-1.webp": "NEXOS INGENIEROS (2).png",
+        "galeria-2.webp": "NEXOS INGENIEROS.png"
+      },
+      "notas": "Flojo: solo 3 fotos (TINKA.jpg es logo). 'NEXOS INGENIEROS.png' y la portada son tomas muy parecidas del mismo ángulo. Archivo 'NEXOS INGENIEROS*.png': parece foto real pero con posible reescalado/retoque. Sin fotos de proceso."
+    },
+    {
+      "slug": "miniso-plaza-norte",
+      "carpeta_origen": "3. MINISO PLAZA NORTE",
+      "titulo": "Tienda Miniso Plaza Norte",
+      "cliente": "Miniso Perú - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Centro comercial Plaza Norte, Lima",
+      "descripcion": "Implementación de tienda: tableros eléctricos, luminarias, tomacorrientes, cableado eléctrico y de comunicaciones, y canalización (bandejas portacables, tuberías EMT y PVC) para electricidad, detección y alarma SCI, audio, video, CCTV, voz y datos.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "NEXOS INGENIEROS (2).png",
+        "galeria-1.webp": "NEXOS INGENIEROS (1).png",
+        "galeria-2.webp": "NEXOS INGENIEROS (3).png",
+        "galeria-3.webp": "NEXOS INGENIEROS.png"
+      },
+      "notas": "4 fotos (MINISO.png es logo). Todas 'NEXOS INGENIEROS*.png' (posible retoque/reescalado, se ven reales). Tienda terminada sin mercadería; sin fotos de proceso."
+    },
+    {
+      "slug": "miniso-real-plaza-pucallpa",
+      "carpeta_origen": "4. MINISO REAL PLAZA PUCALLPA",
+      "titulo": "Tienda Miniso Real Plaza Pucallpa",
+      "cliente": "Miniso Perú - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Centro comercial Real Plaza, Pucallpa",
+      "descripcion": "Implementación de tienda: tableros eléctricos, luminarias, tomacorrientes, cableado eléctrico y de comunicaciones, y canalización (bandejas portacables, tuberías EMT y PVC) para electricidad, detección y alarma SCI, audio, video, CCTV, voz y datos.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp",
+        "galeria-4.webp",
+        "galeria-5.webp",
+        "galeria-6.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "WhatsApp Image 2026-10-15 at 6.58.41 PM.jpeg",
+        "galeria-1.webp": "39fae3c4-8bf1-47e1-a8fc-527a8adda864.jpg",
+        "galeria-2.webp": "WhatsApp Image 2026-10-15 at 6.58.35 PM (1).jpeg",
+        "galeria-3.webp": "WhatsApp Image 2026-10-15 at 6.58.36 PM.jpeg",
+        "galeria-4.webp": "WhatsApp Image 2026-10-15 at 6.58.37 PM.jpeg",
+        "galeria-5.webp": "WhatsApp Image 2026-10-15 at 6.58.42 PM (1).jpeg",
+        "galeria-6.webp": "WhatsApp Image 2026-10-15 at 6.58.42 PM (3).jpeg"
+      },
+      "notas": "Buen material real (WhatsApp): proceso (drywall, ductos/tuberías SCI en techo, bandeja) y resultado. Excluidos: logo, NEXOS INGENIEROS.png, tomas casi idénticas (6.58.41 PM (1), 6.58.42 PM (2)/(4)) y fotos con luz amarillenta."
+    },
+    {
+      "slug": "mass-calle-4-pisco",
+      "carpeta_origen": "5. TIENDA MASS CALLE 4",
+      "titulo": "Tienda Mass Calle 4 de Julio, Pisco",
+      "cliente": "Tiendas Mass - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Calle 4 de Julio 175, Pisco",
+      "descripcion": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp",
+        "galeria-4.webp",
+        "galeria-5.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "WhatsApp Image 2026-10-15 at 6.58.10 PM.jpeg",
+        "galeria-1.webp": "Fachada Mass iluminada de noche.png",
+        "galeria-2.webp": "WhatsApp Image 2026-10-15 at 6.55.50 PM (1).jpeg",
+        "galeria-3.webp": "WhatsApp Image 2026-10-15 at 6.55.52 PM (2).jpeg",
+        "galeria-4.webp": "WhatsApp Image 2026-10-15 at 6.57.24 PM.jpeg",
+        "galeria-5.webp": "WhatsApp Image 2026-10-15 at 6.58.10 PM (1).jpeg"
+      },
+      "notas": "Mucho material real de proceso (24 fotos, muchas casi iguales). galeria-1 'Fachada Mass iluminada de noche.png': Posible imagen generada o retocada con IA (nombre descriptivo/aspecto HDR muy limpio). Excluidos: logo, 'Diseño sin título.png' (versión editada de la foto del tablero) y 'NEXOS INGENIEROS (1).png'. Portada real pero con mercadería en primer plano; si se prefiere fachada, usar galeria-1 con cuidado."
+    },
+    {
+      "slug": "mass-paraiso-pachacamac",
+      "carpeta_origen": "6. TIENDA MASS PARAISO5 PA",
+      "titulo": "Tienda Mass Paraíso, Pachacámac",
+      "cliente": "Tiendas Mass - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Mza. D5 lote 7, Cercado Pachacámac, Lima",
+      "descripcion": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "NEXOS INGENIEROS (3).png",
+        "galeria-1.webp": "Tienda Mass bajo cables urbanos.png",
+        "galeria-2.webp": "Almacén industrial amplio y ordenado.png",
+        "galeria-3.webp": "Almacén industrial con estanterías y carros llenos.png"
+      },
+      "notas": "FLOJO y sospechoso: las 3 fotos de galería ('Tienda Mass bajo cables urbanos', 'Almacén industrial amplio y ordenado', 'Almacén industrial con estanterías y carros llenos') -> Posible imagen generada o retocada con IA (nombre descriptivo/aspecto HDR muy limpio). La portada ('NEXOS INGENIEROS (3).png') parece real con posible retoque. No hay fotos de obra reales."
+    },
+    {
+      "slug": "mass-llanos-ate",
+      "carpeta_origen": "7. TIENDA MASS LLANOS",
+      "titulo": "Tienda Mass Llanos, Ate",
+      "cliente": "Tiendas Mass - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Av. Marco Puente Llanos mz A lt 3, Ate Vitarte, Lima",
+      "descripcion": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "NEXOS INGENIEROS (1).png",
+        "galeria-1.webp": "NEXOS INGENIEROS (3).png",
+        "galeria-2.webp": "Obra en progreso bajo cielo azul.png",
+        "galeria-3.webp": "Interior industrial en construcción con escalera amarilla.png"
+      },
+      "notas": "FLOJO: portada vertical (no hay horizontal real del resultado). galeria-2 'Obra en progreso bajo cielo azul.png' y galeria-3 'Interior industrial en construcción con escalera amarilla.png' -> Posible imagen generada o retocada con IA (nombre descriptivo/aspecto HDR muy limpio). Archivo 'NEXOS INGENIEROS*.png': parece foto real pero con posible reescalado/retoque."
+    },
+    {
+      "slug": "mass-libertad-san-miguel",
+      "carpeta_origen": "8. TIENDA MASS LIBERTAD",
+      "titulo": "Tienda Mass Libertad, San Miguel",
+      "cliente": "Tiendas Mass - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Av. Libertad 2068 lt 35 mz JV, San Miguel, Lima",
+      "descripcion": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "Interior industrial de supermercado iluminado.png",
+        "galeria-1.webp": "Entrada del supermercado Mass.png",
+        "galeria-2.webp": "NEXOS INGENIEROS.png"
+      },
+      "notas": "FLOJO: solo 3 fotos (MASS.jpeg es logo). Portada 'Interior industrial de supermercado iluminado.png' y galeria-1 'Entrada del supermercado Mass.png' -> Posible imagen generada o retocada con IA (nombre descriptivo/aspecto HDR muy limpio). Única foto de obra aparentemente real: 'NEXOS INGENIEROS.png' (galeria-2), que podría usarse de portada si se quiere evitar IA."
+    },
+    {
+      "slug": "mass-ruisenores-santa-anita",
+      "carpeta_origen": "9. TIENDA MASS RUISEÑORES3 SA",
+      "titulo": "Tienda Mass Ruiseñores, Santa Anita",
+      "cliente": "Tiendas Mass - GDS Infraestructura",
+      "tipo": "Implementación de tienda",
+      "ubicacion": "Av. Los Ruiseñores 383 mz A lote 25, Coop. Los Chancas, Santa Anita, Lima",
+      "descripcion": "Implementación de tienda: canalización (bandejas portacables, tuberías EMT y PVC) para sistema eléctrico, comunicaciones, intrusión y CCTV; tableros eléctricos, pozo a tierra SPAT, luminarias, tomacorrientes, estabilizador de tensión y cableado eléctrico y de comunicaciones.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp",
+        "galeria-4.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "NEXOS INGENIEROS (3).png",
+        "galeria-1.webp": "Fachada amarilla de tienda Mass nocturna.png",
+        "galeria-2.webp": "WhatsApp Image 2026-10-15 at 7.15.55 PM.jpeg",
+        "galeria-3.webp": "Electricista trabajando en paneles industriales.png",
+        "galeria-4.webp": "WhatsApp Image 2026-10-15 at 7.15.56 PM.jpeg"
+      },
+      "notas": "galeria-1 'Fachada amarilla de tienda Mass nocturna.png' y galeria-3 'Electricista trabajando en paneles industriales.png' -> Posible imagen generada o retocada con IA (nombre descriptivo/aspecto HDR muy limpio). Archivo 'NEXOS INGENIEROS*.png': parece foto real pero con posible reescalado/retoque (portada). Fotos WhatsApp reales: tableros terminados y montaje de bandeja; se omitió '7.15.56 PM (1)' por parecida."
+    },
+    {
+      "slug": "el-chincha",
+      "carpeta_origen": "10. ÉL CHINCHA",
+      "titulo": "Tienda ÉL Chincha",
+      "cliente": "Tiendas ÉL - Panorama BPO",
+      "tipo": "Remodelación de tienda",
+      "ubicacion": "Av. Óscar R. Benavides 263, Chincha, Ica",
+      "descripcion": "Remodelación de tienda: mobiliario, espejos laminados, luminarias, extractores, tomacorrientes, puntos de red y gabinete de comunicaciones, cambio de enchape, tabiquería drywall, empaste y pintura, reubicación de cámaras, mantenimiento de aire acondicionado y nueva lona del letrero luminoso.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp",
+        "galeria-3.webp",
+        "galeria-4.webp",
+        "galeria-5.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "WhatsApp Image 2026-10-15 at.jpeg",
+        "galeria-1.webp": "NEXOS INGENIEROS (2).png",
+        "galeria-2.webp": "WhatsApp Image 2026-10-15 at 7.17.04 PM.jpeg",
+        "galeria-3.webp": "WhatsApp Image 2026-17.02 PM.jpeg",
+        "galeria-4.webp": "WhatsApp Image 2026-10-15 at 7.17.00 PM.jpeg",
+        "galeria-5.webp": "Pasillo moderno con madera y espejos.png"
+      },
+      "notas": "Buen material real. galeria-5 'Pasillo moderno con madera y espejos.png' -> Posible imagen generada o retocada con IA (nombre descriptivo/aspecto HDR muy limpio). galeria-1 (letrero con andamio) es 'NEXOS INGENIEROS (2).png', parece real. Excluidos: logo ÉL.png, 'NEXOS INGENIEROS (3)/(4).png' (duplicados retocados de fotos WhatsApp) y 'WhatsApp Image 2026-10-15.jpeg' (casi igual a la portada)."
+    },
+    {
+      "slug": "john-holden-chorrillos",
+      "carpeta_origen": "11. JOHN HOLEN CHORRILLOS",
+      "titulo": "Tienda John Holden Chorrillos",
+      "cliente": "John Holden - Panorama BPO",
+      "tipo": "Remodelación de tienda",
+      "ubicacion": "Av. El Sol 1175, Chorrillos, Lima",
+      "descripcion": "Remodelación de tienda: resane, empastado y pintura de muros y techos de todos los ambientes, e instalación de tabiquería con sistema drywall.",
+      "portada": "portada.webp",
+      "galeria": [
+        "galeria-1.webp",
+        "galeria-2.webp"
+      ],
+      "fotos_origen": {
+        "portada.webp": "NEXOS INGENIEROS (3) (2).png",
+        "galeria-1.webp": "NEXOS INGENIEROS (2) (1).png",
+        "galeria-2.webp": "NEXOS INGENIEROS (4).png"
+      },
+      "notas": "FLOJO: solo 3 fotos (JOHN HOLDEN.png es logo). Archivo 'NEXOS INGENIEROS*.png': parece foto real pero con posible reescalado/retoque. Sin fotos de proceso. Ojo: carpeta dice 'HOLEN' y brochure 'JHON HOLDEN'; se usó 'John Holden'."
+    }
+  ]
+}

@@ -1,0 +1,670 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>NEXOS Inicio · A2 Bento</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&amp;family=Hanken+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#ffffff}
+a{color:#1D4FA0}a:hover{color:#0E1A4F}
+
+.nx{--ink:#0E1A4F;--blue:#1D4FA0;--green:#3FA535;--green-d:#24782A;--text:#2E3850;--muted:#536077;--line:#E3E8F0;--soft:#F5F7FB;--ease-out:cubic-bezier(0.23,1,0.32,1);--ease-io:cubic-bezier(0.77,0,0.175,1);--r:28px}
+.nx *{box-sizing:border-box}
+.nx ::selection{background:#D3EFCF;color:#0E1A4F}
+.nx a:focus-visible,.nx button:focus-visible{outline:3px solid #1D4FA0;outline-offset:3px}
+.nx h1,.nx h2,.nx h3{text-wrap:balance}
+.nx p{text-wrap:pretty}
+.nx-disp{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-optical-sizing:auto}
+.nx-num{font-variant-numeric:tabular-nums lining-nums}
+
+.nx-wrap{max-width:1280px;margin:0 auto;padding:0 clamp(16px,3vw,32px)}
+.nx-links{display:flex}
+.nx-burger{display:none}
+
+/* Cuadrícula bento */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:clamp(10px,1.2vw,16px)}
+.d-2{grid-column:span 2}.d-3{grid-column:span 3}.d-4{grid-column:span 4}.d-5{grid-column:span 5}.d-6{grid-column:span 6}.d-7{grid-column:span 7}.d-8{grid-column:span 8}.d-12{grid-column:span 12}
+.r-2{grid-row:span 2}
+
+.cell{position:relative;background:#ffffff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 1px 2px rgba(14,26,79,0.04),0 10px 28px -16px rgba(14,26,79,0.14);transition:transform 260ms var(--ease-out),box-shadow 260ms var(--ease-out),border-color 200ms ease}
+.press{transition:transform 160ms var(--ease-out),box-shadow 260ms var(--ease-out),background-color 200ms ease,border-color 200ms ease,color 200ms ease}
+.press:active{transform:scale(0.97)}
+.nx-arrow{transition:transform 220ms var(--ease-out)}
+@media (hover:hover) and (pointer:fine){
+  .lift:hover{transform:translateY(-4px);box-shadow:0 2px 4px rgba(14,26,79,0.05),0 26px 44px -22px rgba(14,26,79,0.26);border-color:#D2D9E5}
+  .lift.press:active{transform:translateY(-4px) scale(0.97)}
+  .lift:hover .nx-arrow,.btn:hover .nx-arrow{transform:translate(3px,-3px)}
+  .btn-ghost:hover{border-color:#0E1A4F;background:#F5F7FB}
+  .chip-idle:hover{border-color:#9AA6BC;color:#0E1A4F}
+  .navlink:hover{color:#1D4FA0}
+  .cl-tile:hover{color:#0E1A4F;background:#F7FAF6}
+  .ctrl:hover{background:#0E1A4F;color:#ffffff;border-color:#0E1A4F}
+}
+
+/* Placeholder de foto */
+.ph{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;text-align:center;padding:24px;overflow:hidden;background-color:#EEF3FA;background-image:repeating-linear-gradient(135deg,rgba(29,79,160,0.045) 0 1px,transparent 1px 14px),linear-gradient(140deg,#EDF2FB 0%,#F1F7EF 100%)}
+.ph-cam{width:48px;height:48px;border-radius:50%;background:#ffffff;border:1px solid #DCE3EE;display:flex;align-items:center;justify-content:center;color:#1D4FA0;box-shadow:0 6px 16px -8px rgba(14,26,79,0.25);flex:none}
+.ph-txt{margin:0;max-width:36ch;font-size:13px;line-height:1.5;color:#3E4A63}
+
+/* Carrusel */
+.nx-track{display:flex;width:100%;height:100%;transition:transform 560ms var(--ease-io);will-change:transform}
+.nx-slide{flex:0 0 100%;height:100%;position:relative}
+.dot-fill{display:block;height:100%;width:100%;border-radius:4px;background:#3FA535;transform-origin:left center;animation:nx-fill 5s linear both}
+
+/* Pilares sobre la línea */
+.pil{--c:clamp(150px,15vw,204px);--band:156px;overflow:hidden}
+.pil-band{position:absolute;left:0;right:0;top:0;height:var(--band);background:radial-gradient(120% 140% at 10% 0%,#E6F4E3 0%,rgba(230,244,227,0) 55%),radial-gradient(120% 160% at 92% 10%,#E3ECFA 0%,rgba(227,236,250,0) 60%),#F6F9FC}
+.pil-line{position:absolute;left:0;right:0;top:calc(var(--band) - 1px);height:3px;background:linear-gradient(90deg,#3FA535 0%,#1D4FA0 100%);transform-origin:left center;z-index:1}
+.pil-cols{position:relative;z-index:2;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,3vw,44px);padding:0 clamp(20px,3vw,44px) clamp(28px,3.4vw,48px)}
+.pil-col{display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:calc(var(--band) - var(--c) / 2)}
+.pil-circle{width:var(--c);height:var(--c);border-radius:50%;flex:none;border:6px solid #ffffff;box-shadow:0 18px 36px -18px rgba(14,26,79,0.35),0 0 0 1px #E3E8F0;overflow:hidden}
+.pil-ic{width:clamp(44px,4.4vw,60px);height:clamp(44px,4.4vw,60px)}
+.pil-body{display:flex;flex-direction:column;align-items:center}
+
+/* Proyectos */
+.pgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-flow:dense;gap:clamp(10px,1.2vw,16px)}
+.pj-feat{grid-column:span 2;grid-row:span 2}
+.pj{animation:nx-pop 360ms var(--ease-out) backwards}
+
+/* Clientes */
+.cl-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.cl-tile{transition:color 200ms ease,background-color 200ms ease}
+
+/* Entrada del hero (al cargar) */
+.hin{animation:nx-in 620ms var(--ease-out) backwards}
+.hin.k2{animation-delay:60ms}.hin.k3{animation-delay:120ms}.hin.k4{animation-delay:180ms}.hin.k5{animation-delay:240ms}.hin.k6{animation-delay:300ms}
+
+@keyframes nx-in{from{opacity:0;translate:0 16px;scale:0.98}to{opacity:1;translate:0 0;scale:1}}
+@keyframes nx-fade{from{opacity:0}to{opacity:1}}
+@keyframes nx-pop{from{opacity:0;scale:0.97}to{opacity:1;scale:1}}
+@keyframes nx-rise{from{opacity:0;translate:0 28px;scale:0.97}to{opacity:1;translate:0 0;scale:1}}
+@keyframes nx-drawx{from{scale:0 1}to{scale:1 1}}
+@keyframes nx-drawy{from{scale:1 0}to{scale:1 1}}
+@keyframes nx-fill{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Aparición escalonada al hacer scroll (visible por defecto si no hay soporte) */
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference){
+    .rv{animation:nx-rise both var(--ease-out);animation-timeline:view();animation-range:entry 0% entry 70%}
+    .rv.k2{animation-range:entry 8% entry 78%}
+    .rv.k3{animation-range:entry 16% entry 86%}
+    .rv.k4{animation-range:entry 24% entry 94%}
+    .pil-line{animation:nx-drawx both var(--ease-out);animation-timeline:view();animation-range:entry 30% cover 45%}
+    .pil-circle{animation:nx-pop both var(--ease-out);animation-timeline:view();animation-range:entry 20% entry 80%}
+    .pil-circle.k2{animation-range:entry 30% entry 90%}
+    .pil-circle.k3{animation-range:entry 40% entry 100%}
+  }
+}
+
+/* Movimiento reducido: menos y más suave, nunca contenido oculto */
+@media (prefers-reduced-motion: reduce){
+  .hin,.hin.k2,.hin.k3,.hin.k4,.hin.k5,.hin.k6{animation:nx-fade 240ms ease both;animation-delay:0ms}
+  .pj{animation:nx-fade 200ms ease backwards;animation-delay:0ms !important}
+  .nx-track{transition:none}
+  .dot-fill{animation:none}
+  .press:active,.lift.press:active{transform:none}
+  .lift:hover{transform:none}
+  .nx-arrow{transition:none}
+}
+
+/* Tablet */
+@media (max-width: 1024px){
+  .t-4{grid-column:span 4}.t-6{grid-column:span 6}.t-12{grid-column:span 12}
+  .r-2{grid-row:auto}
+  .pgrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pj-feat{grid-column:span 2;grid-row:auto}
+  .hero-tall{min-height:0 !important}
+  .car-cell{height:clamp(440px,70vw,560px)}
+}
+/* Navegación colapsada */
+@media (max-width: 900px){
+  .nx-links{display:none}
+  .nx-navcta{display:none !important}
+  .nx-burger{display:inline-flex}
+}
+/* Móvil */
+@media (max-width: 760px){
+  .pil{--c:92px}
+  .pil-band{display:none}
+  .pil-line{top:32px;bottom:32px;left:calc(clamp(20px,3vw,44px) + 46px - 1px);right:auto;width:3px;height:auto;background:linear-gradient(180deg,#3FA535 0%,#1D4FA0 100%);transform-origin:center top}
+  .pil-cols{grid-template-columns:1fr;padding-top:32px;gap:32px}
+  .pil-col{flex-direction:row;align-items:flex-start;text-align:left;padding-top:0;gap:18px}
+  .pil-body{align-items:flex-start}
+  .pil-ic{width:32px;height:32px}
+  .pil-cam{display:none !important}
+  .cl-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@supports (animation-timeline: view()){
+  @media (prefers-reduced-motion: no-preference) and (max-width: 760px){
+    .pil-line{animation-name:nx-drawy;animation-range:entry 10% cover 60%}
+  }
+}
+@media (max-width: 640px){
+  .m-6{grid-column:span 6}.m-12{grid-column:span 12}
+  .pgrid{grid-template-columns:1fr}
+  .pj-feat{grid-column:auto}
+  .nx{--r:22px}
+  .hide-m{display:none !important}
+}
+</style>
+</helmet>
+<div class="nx" style="font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #2E3850; background: #ffffff; width: 100%; overflow-x: hidden; font-size: 16px; line-height: 1.55">
+
+  <!-- Navegación -->
+  <header style="position: sticky; top: 0; z-index: 30; background: #ffffff; border-bottom: 1px solid #E9EDF3">
+    <div class="nx-wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-top: 12px; padding-bottom: 12px">
+      <a href="#inicio" style="display: flex; align-items: center; flex: none"><img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: clamp(44px, 4vw, 54px); width: auto; display: block"></a>
+      <nav class="nx-links" aria-label="Principal" style="gap: clamp(18px, 2.2vw, 32px); align-items: center; font-weight: 600; font-size: 15px">
+        <a class="navlink" href="#inicio" style="color: #0E1A4F; text-decoration: none; transition: color 200ms ease">Inicio</a>
+        <a class="navlink" href="#nosotros" style="color: #0E1A4F; text-decoration: none; transition: color 200ms ease">Nosotros</a>
+        <a class="navlink" href="#servicios" style="color: #0E1A4F; text-decoration: none; transition: color 200ms ease">Servicios</a>
+        <a class="navlink" href="#proyectos" style="color: #0E1A4F; text-decoration: none; transition: color 200ms ease">Proyectos</a>
+        <a class="navlink" href="#clientes" style="color: #0E1A4F; text-decoration: none; transition: color 200ms ease">Clientes</a>
+        <a class="navlink" href="#contacto" style="color: #0E1A4F; text-decoration: none; transition: color 200ms ease">Contacto</a>
+      </nav>
+      <a class="nx-navcta btn press" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 8px; background: {{accent}}; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 999px; min-height: 46px; flex: none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+        Cotiza por WhatsApp
+      </a>
+      <button class="nx-burger press" type="button" aria-label="Abrir menú" aria-expanded="false" style="width: 46px; height: 46px; border: 1px solid #D5DBE6; border-radius: 14px; background: #ffffff; align-items: center; justify-content: center; color: #0E1A4F; cursor: pointer; padding: 0">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- HERO BENTO -->
+  <section id="inicio" style="padding: clamp(16px, 2vw, 28px) 0 clamp(56px, 7vw, 96px); background: linear-gradient(180deg, #F5F7FB 0%, #ffffff 100%)">
+    <div class="nx-wrap">
+      <div class="bento">
+
+        <!-- Celda eslogan -->
+        <div class="cell hin hero-tall d-7 t-12" style="min-height: clamp(480px, 40vw, 580px); padding: clamp(28px, 3.6vw, 56px); overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; background: radial-gradient(90% 80% at 0% 0%, #E7F5E4 0%, rgba(231,245,228,0) 60%), radial-gradient(80% 90% at 100% 100%, #E2EBFA 0%, rgba(226,235,250,0) 62%), #ffffff">
+          <svg viewBox="0 0 560 360" aria-hidden="true" style="position: absolute; right: clamp(-120px, -6vw, -40px); bottom: -36px; width: clamp(300px, 34vw, 520px); height: auto; pointer-events: none">
+            <path d="M40 330 A240 240 0 0 1 520 330" fill="none" stroke="#3FA535" stroke-opacity="0.32" stroke-width="14" stroke-linecap="round"></path>
+            <path d="M92 330 A188 188 0 0 1 468 330" fill="none" stroke="#1D4FA0" stroke-opacity="0.12" stroke-width="2"></path>
+            <g fill="none" stroke="#1D4FA0" stroke-opacity="0.2" stroke-width="2" stroke-linejoin="round">
+              <path d="M170 330V214h52v116"></path>
+              <path d="M232 330V160h64v170"></path>
+              <path d="M306 330V196h56v134"></path>
+              <path d="M244 184h40M244 208h40M244 232h40M244 256h40M182 236h28M182 260h28M318 220h32M318 244h32"></path>
+            </g>
+          </svg>
+          <div style="position: relative">
+            <h1 class="nx-disp" style="margin: 0; font-weight: 750; font-size: clamp(40px, 4.7vw, 72px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F; max-width: 13ch">Soluciones en construcción, ingeniería y mantenimiento integral.</h1>
+          </div>
+          <div style="position: relative; display: flex; flex-direction: column; gap: 24px">
+            <p style="margin: 0; font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; color: #3A4560; max-width: 44ch">Equipo multidisciplinario con respuesta inmediata para tiendas, agencias bancarias y oficinas en Lima, Ica y provincias.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 10px">
+              <a class="btn press" href="https://wa.me/51984387498" style="display: inline-flex; align-items: center; gap: 10px; background: {{accent}}; color: #ffffff; text-decoration: none; font-weight: 700; font-size: 16px; padding: 14px 24px; border-radius: 999px; min-height: 52px; box-shadow: 0 10px 22px -12px rgba(36,120,42,0.6)">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+                Escríbenos por WhatsApp
+              </a>
+              <a class="btn btn-ghost press" href="#proyectos" style="display: inline-flex; align-items: center; gap: 8px; color: #0E1A4F; background: #ffffff; text-decoration: none; font-weight: 700; font-size: 16px; padding: 14px 22px; border-radius: 999px; border: 1.5px solid #C9D2E0; min-height: 52px">
+                Ver proyectos
+                <svg class="nx-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Celda carrusel -->
+        <div class="cell hin k2 hero-tall car-cell d-5 t-12" role="region" aria-roledescription="carrusel" aria-label="Proyectos destacados" style="min-height: clamp(480px, 40vw, 580px); padding: 8px; display: flex; flex-direction: column; overflow: hidden">
+          <div style="position: relative; flex: 1 1 auto; min-height: 0; border-radius: 22px; overflow: hidden">
+            <div class="nx-track" style="transform: translate3d({{trackX}}, 0, 0)">
+              <sc-for list="{{slides}}" as="s" hint-placeholder-count="6">
+                <div class="nx-slide" role="group" aria-roledescription="diapositiva" aria-label="{{s.pos}}" aria-hidden="{{s.hidden}}">
+                  <div class="ph" style="position: absolute; inset: 0; padding-bottom: 128px">
+                    <span class="ph-cam"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H7l1.5-2h7L17 6h1.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+                    <p class="ph-txt">{{s.ph}}</p>
+                  </div>
+                  <div style="position: absolute; left: 12px; right: 12px; bottom: 12px; background: #ffffff; border: 1px solid #E3E8F0; border-radius: 16px; padding: 14px 16px; box-shadow: 0 10px 24px -16px rgba(14,26,79,0.35)">
+                    <p style="margin: 0 0 4px; font-size: 13px; font-weight: 600; color: #24782A">{{s.type}}</p>
+                    <p class="nx-disp" style="margin: 0; font-weight: 700; font-size: 20px; line-height: 1.2; letter-spacing: -0.015em; color: #0E1A4F">{{s.title}}</p>
+                    <p style="margin: 2px 0 0; font-size: 14px; color: #536077">{{s.place}}</p>
+                  </div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 6px 2px 10px">
+            <div style="display: flex; align-items: center">
+              <sc-for list="{{dots}}" as="d" hint-placeholder-count="6">
+                <button type="button" class="press" onClick="{{d.go}}" aria-label="{{d.label}}" style="height: 44px; min-width: 22px; border: none; background: transparent; padding: 0 4px; display: flex; align-items: center; justify-content: center; cursor: pointer">
+                  <sc-if value="{{d.active}}" hint-placeholder-val="{{false}}"><span style="display: block; width: 30px; height: 8px; border-radius: 4px; background: #D9E6D6; overflow: hidden"><span class="dot-fill"></span></span></sc-if>
+                  <sc-if value="{{d.idle}}" hint-placeholder-val="{{true}}"><span style="display: block; width: 8px; height: 8px; border-radius: 4px; background: #C3CCDA"></span></sc-if>
+                </button>
+              </sc-for>
+            </div>
+            <div style="display: flex; gap: 8px">
+              <button type="button" class="ctrl press" onClick="{{prev}}" aria-label="Proyecto anterior" style="width: 46px; height: 46px; border-radius: 50%; border: 1px solid #D5DBE6; background: #ffffff; color: #0E1A4F; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>
+              </button>
+              <button type="button" class="ctrl press" onClick="{{next}}" aria-label="Proyecto siguiente" style="width: 46px; height: 46px; border-radius: 50%; border: 1px solid #D5DBE6; background: #ffffff; color: #0E1A4F; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18l6-6-6-6"></path></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Celda WhatsApp -->
+        <a class="cell lift press hin k3 d-4 t-12 m-12" href="https://wa.me/51984387498" style="background: {{accent}}; border-color: transparent; color: #ffffff; text-decoration: none; padding: clamp(22px, 2.4vw, 32px); min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; overflow: hidden">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 12px">
+            <span style="width: 52px; height: 52px; border-radius: 50%; background: rgba(255,255,255,0.16); border: 1px solid rgba(255,255,255,0.3); display: flex; align-items: center; justify-content: center">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.4A8.4 8.4 0 1 1 21 11.5z"></path></svg>
+            </span>
+            <svg class="nx-arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+          </div>
+          <div>
+            <p class="nx-disp" style="margin: 0; font-weight: 700; font-size: clamp(24px, 2.2vw, 30px); line-height: 1.05; letter-spacing: -0.02em; color: #ffffff">Cotiza por WhatsApp</p>
+            <p class="nx-num" style="margin: 8px 0 0; font-size: 16px; font-weight: 500; color: #ffffff">+51 984 387 498 · respuesta inmediata</p>
+          </div>
+        </a>
+
+        <!-- Hitos -->
+        <div class="cell lift hin k4 d-3 t-4 m-6" style="padding: clamp(20px, 2.2vw, 30px); min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px">
+          <p class="nx-disp nx-num" style="margin: 0; font-weight: 750; font-size: clamp(48px, 5vw, 76px); line-height: 0.9; letter-spacing: -0.04em; color: #0E1A4F">+{{hp}}</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.4; color: #3A4560; font-weight: 500">proyectos ejecutados</p>
+        </div>
+        <div class="cell lift hin k5 d-3 t-4 m-6" style="padding: clamp(20px, 2.2vw, 30px); min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px">
+          <p class="nx-disp nx-num" style="margin: 0; font-weight: 750; font-size: clamp(48px, 5vw, 76px); line-height: 0.9; letter-spacing: -0.04em; color: #1D4FA0">+{{hc}}</p>
+          <p style="margin: 0; font-size: 15px; line-height: 1.4; color: #3A4560; font-weight: 500">clientes satisfechos</p>
+        </div>
+        <div class="cell lift hin k6 d-2 t-4 m-12" style="padding: clamp(20px, 2vw, 26px); min-height: 190px; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; background: #F7F9FC">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#24782A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>
+          <div>
+            <p class="nx-disp" style="margin: 0; font-weight: 700; font-size: 20px; line-height: 1.1; color: #0E1A4F">Lima · Ica</p>
+            <p style="margin: 4px 0 0; font-size: 14px; line-height: 1.4; color: #536077">Sedes en San Martín de Porres e Ica</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PILARES: tres círculos sobre la línea -->
+  <section id="servicios" style="padding: clamp(48px, 6vw, 88px) 0">
+    <div class="nx-wrap">
+      <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 16px 40px; margin-bottom: clamp(24px, 3vw, 40px)">
+        <h2 class="nx-disp" style="margin: 0; font-weight: 750; font-size: clamp(34px, 4.4vw, 64px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F; max-width: 14ch">Tres pilares, un solo equipo.</h2>
+        <p style="margin: 0; font-size: 17px; line-height: 1.6; color: #3A4560; max-width: 46ch">Mantenemos, construimos y gestionamos con el mismo equipo multidisciplinario, para que cada establecimiento tenga un solo responsable técnico.</p>
+      </div>
+
+      <div class="cell pil rv k2">
+        <div class="pil-band" aria-hidden="true"></div>
+        <div class="pil-line" aria-hidden="true"></div>
+        <div class="pil-cols">
+
+          <article class="pil-col">
+            <div class="pil-circle ph" style="padding: 0; gap: 8px">
+              <svg class="pil-ic" viewBox="0 0 24 24" fill="none" stroke="#24782A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.6 17.4a1.9 1.9 0 0 0 2.7 2.7l5.7-5.7a4 4 0 0 0 5.4-5.4l-2.6 2.6-2.3-.4-.4-2.3z"></path></svg>
+              <span class="pil-cam" style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #3E4A63; background: #ffffff; border: 1px solid #DCE3EE; border-radius: 999px; padding: 3px 9px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H7l1.5-2h7L17 6h1.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+                Foto
+              </span>
+            </div>
+            <div class="pil-body">
+              <h3 class="nx-disp" style="margin: 20px 0 10px; font-weight: 700; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.15; letter-spacing: -0.015em; color: #0E1A4F">Mantenimiento integral</h3>
+              <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #3A4560; max-width: 34ch">Instalaciones eléctricas, levantamiento de observaciones ITSE/INDECI, sistemas contra incendio y alarma, CCTV, redes y climatización.</p>
+              <p style="margin: 12px 0 0; font-size: 12.5px; line-height: 1.45; color: #536077; max-width: 34ch">[FOTO circular: técnico NEXOS con casco y chaleco revisando un tablero eléctrico — plano medio, luz natural]</p>
+            </div>
+          </article>
+
+          <article class="pil-col">
+            <div class="pil-circle ph k2" style="padding: 0; gap: 8px">
+              <svg class="pil-ic" viewBox="0 0 24 24" fill="none" stroke="#1D4FA0" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6M9 11h.01M15 11h.01"></path></svg>
+              <span class="pil-cam" style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #3E4A63; background: #ffffff; border: 1px solid #DCE3EE; border-radius: 999px; padding: 3px 9px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H7l1.5-2h7L17 6h1.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+                Foto
+              </span>
+            </div>
+            <div class="pil-body">
+              <h3 class="nx-disp" style="margin: 20px 0 10px; font-weight: 700; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.15; letter-spacing: -0.015em; color: #0E1A4F">Construcción e implementación</h3>
+              <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #3A4560; max-width: 34ch">Obras civiles, remodelaciones, implementación de tiendas y oficinas, drywall, acabados y estructuras metálicas.</p>
+              <p style="margin: 12px 0 0; font-size: 12.5px; line-height: 1.45; color: #536077; max-width: 34ch">[FOTO circular: implementación de tienda con drywall y estructura metálica en avance — plano general, luz interior uniforme]</p>
+            </div>
+          </article>
+
+          <article class="pil-col">
+            <div class="pil-circle ph k3" style="padding: 0; gap: 8px">
+              <svg class="pil-ic" viewBox="0 0 24 24" fill="none" stroke="#0E1A4F" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="5" r="2"></circle><path d="M11 6.8L6 21M13 6.8L18 21M7.6 16.5h8.8"></path></svg>
+              <span class="pil-cam" style="display: inline-flex; align-items: center; gap: 5px; font-size: 11px; font-weight: 600; color: #3E4A63; background: #ffffff; border: 1px solid #DCE3EE; border-radius: 999px; padding: 3px 9px">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H7l1.5-2h7L17 6h1.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.5"></circle></svg>
+                Foto
+              </span>
+            </div>
+            <div class="pil-body">
+              <h3 class="nx-disp" style="margin: 20px 0 10px; font-weight: 700; font-size: clamp(20px, 1.8vw, 24px); line-height: 1.15; letter-spacing: -0.015em; color: #0E1A4F">Ingeniería y gestión de proyectos</h3>
+              <p style="margin: 0; font-size: 15.5px; line-height: 1.6; color: #3A4560; max-width: 34ch">Supervisión, expedientes técnicos, costos y presupuestos, control de obra, consultoría, topografía, Invierte.pe y contrataciones del Estado.</p>
+              <p style="margin: 12px 0 0; font-size: 12.5px; line-height: 1.45; color: #536077; max-width: 34ch">[FOTO circular: ingeniero con estación total en levantamiento topográfico — plano medio, exteriores, luz de mañana]</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIÉNES SOMOS + HITOS -->
+  <section id="nosotros" style="padding: clamp(48px, 6vw, 88px) 0; background: #F5F7FB">
+    <div class="nx-wrap">
+      <div id="nx-nos" class="bento">
+
+        <div class="cell lift rv d-7 t-12 r-2" style="padding: clamp(28px, 3.6vw, 56px); display: flex; flex-direction: column; justify-content: space-between; gap: 32px">
+          <h2 class="nx-disp" style="margin: 0; font-weight: 750; font-size: clamp(34px, 4.2vw, 60px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F; max-width: 13ch">Excelente gestión y respuesta inmediata.</h2>
+          <div>
+            <p style="margin: 0 0 24px; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.65; color: #3A4560; max-width: 60ch">Somos una empresa peruana de construcción, ingeniería y mantenimiento integral, conformada por un equipo multidisciplinario con amplia experiencia, comprometidos con soluciones efectivas e integrales, mejora continua y altos estándares de seguridad. Nuestra estrategia: excelente gestión y respuesta inmediata.</p>
+            <a class="btn btn-ghost press" href="#contacto" style="display: inline-flex; align-items: center; gap: 8px; color: #0E1A4F; background: #ffffff; text-decoration: none; font-weight: 700; font-size: 15px; padding: 12px 20px; border-radius: 999px; border: 1.5px solid #C9D2E0; min-height: 48px">
+              Conversemos
+              <svg class="nx-arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="cell lift rv k2 d-5 t-6 m-12" style="padding: clamp(24px, 2.6vw, 36px); display: flex; flex-direction: column; justify-content: space-between; gap: 20px; min-height: 220px; overflow: hidden; background: radial-gradient(100% 120% at 100% 0%, #E2EBFA 0%, rgba(226,235,250,0) 65%), #ffffff">
+          <p class="nx-disp nx-num" style="margin: 0; font-weight: 750; font-size: clamp(64px, 7vw, 112px); line-height: 0.85; letter-spacing: -0.045em; color: #1D4FA0">+{{ne}}</p>
+          <p style="margin: 0; font-size: 16px; line-height: 1.45; color: #3A4560; font-weight: 500; max-width: 30ch">establecimientos comerciales con nuestro mantenimiento integral</p>
+        </div>
+
+        <div class="cell lift rv k3 d-5 t-6 m-12" style="padding: clamp(24px, 2.6vw, 36px); display: flex; flex-direction: column; justify-content: space-between; gap: 20px; min-height: 220px">
+          <div style="display: flex; align-items: flex-end; gap: 14px">
+            <p class="nx-disp nx-num" style="margin: 0; font-weight: 750; font-size: clamp(64px, 7vw, 112px); line-height: 0.85; letter-spacing: -0.045em; color: #0E1A4F">{{nr}}</p>
+            <p style="margin: 0 0 6px; font-size: 16px; font-weight: 600; color: #3A4560">regiones</p>
+          </div>
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px">
+            <li style="font-size: 14px; font-weight: 600; color: #0E1A4F; background: #F1F4F9; border: 1px solid #E3E8F0; border-radius: 999px; padding: 6px 12px">Lima</li>
+            <li style="font-size: 14px; font-weight: 600; color: #0E1A4F; background: #F1F4F9; border: 1px solid #E3E8F0; border-radius: 999px; padding: 6px 12px">Callao</li>
+            <li style="font-size: 14px; font-weight: 600; color: #0E1A4F; background: #F1F4F9; border: 1px solid #E3E8F0; border-radius: 999px; padding: 6px 12px">Ica</li>
+            <li style="font-size: 14px; font-weight: 600; color: #0E1A4F; background: #F1F4F9; border: 1px solid #E3E8F0; border-radius: 999px; padding: 6px 12px">Lambayeque</li>
+            <li style="font-size: 14px; font-weight: 600; color: #0E1A4F; background: #F1F4F9; border: 1px solid #E3E8F0; border-radius: 999px; padding: 6px 12px">Ucayali</li>
+          </ul>
+        </div>
+
+        <div class="cell lift rv d-5 t-12" style="padding: clamp(24px, 2.6vw, 36px); display: flex; flex-direction: column; justify-content: center">
+          <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column">
+            <li style="display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #E9EDF3">
+              <span style="width: 40px; height: 40px; flex: none; border-radius: 12px; background: #EAF5E8; color: #24782A; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></span>
+              <span class="nx-disp" style="font-weight: 650; font-size: 19px; color: #0E1A4F; letter-spacing: -0.01em">Soluciones efectivas e integrales</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 14px; padding: 16px 0; border-bottom: 1px solid #E9EDF3">
+              <span style="width: 40px; height: 40px; flex: none; border-radius: 12px; background: #E8EEF9; color: #1D4FA0; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17l5-5 4 4 7-8M15 8h5v5"></path></svg></span>
+              <span class="nx-disp" style="font-weight: 650; font-size: 19px; color: #0E1A4F; letter-spacing: -0.01em">Mejora continua</span>
+            </li>
+            <li style="display: flex; align-items: center; gap: 14px; padding: 16px 0 4px">
+              <span style="width: 40px; height: 40px; flex: none; border-radius: 12px; background: #EBEDF4; color: #0E1A4F; display: flex; align-items: center; justify-content: center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.6-3 8.4-7 10-4-1.6-7-5.4-7-10V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+              <span class="nx-disp" style="font-weight: 650; font-size: 19px; color: #0E1A4F; letter-spacing: -0.01em">Altos estándares de seguridad</span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="cell rv k2 d-7 t-12" style="padding: 8px; min-height: 300px; display: flex">
+          <div class="ph" style="flex: 1; border-radius: 22px; min-height: 284px">
+            <span class="ph-cam"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H7l1.5-2h7L17 6h1.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+            <p class="ph-txt">[FOTO: equipo multidisciplinario de NEXOS en obra con EPP completo (casco, chaleco, lentes) — plano general en grupo, luz natural de mañana, fondo de tienda en implementación]</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS -->
+  <section id="proyectos" style="padding: clamp(56px, 7vw, 104px) 0">
+    <div class="nx-wrap">
+      <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 20px 40px; margin-bottom: clamp(24px, 3vw, 36px)">
+        <h2 class="nx-disp" style="margin: 0; font-weight: 750; font-size: clamp(34px, 4.4vw, 64px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F; max-width: 14ch">Experiencia que se ve en obra.</h2>
+        <div role="group" aria-label="Filtrar proyectos por pilar" style="display: flex; flex-wrap: wrap; gap: 6px; padding: 6px; background: #F5F7FB; border: 1px solid #E3E8F0; border-radius: 999px">
+          <sc-for list="{{chips}}" as="c" hint-placeholder-count="4">
+            <sc-if value="{{c.active}}" hint-placeholder-val="{{false}}">
+              <button type="button" class="press" onClick="{{c.pick}}" aria-pressed="true" style="min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 1px solid #0E1A4F; background: #0E1A4F; color: #ffffff; font-family: inherit; font-weight: 700; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px">{{c.label}} <span class="nx-num" style="font-size: 12px; font-weight: 700; color: #0E1A4F; background: #ffffff; border-radius: 999px; padding: 1px 7px">{{c.count}}</span></button>
+            </sc-if>
+            <sc-if value="{{c.idle}}" hint-placeholder-val="{{true}}">
+              <button type="button" class="press chip-idle" onClick="{{c.pick}}" aria-pressed="false" style="min-height: 44px; padding: 10px 18px; border-radius: 999px; border: 1px solid transparent; background: transparent; color: #3A4560; font-family: inherit; font-weight: 600; font-size: 15px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px">{{c.label}} <span class="nx-num" style="font-size: 12px; font-weight: 700; color: #536077; background: #E6EAF1; border-radius: 999px; padding: 1px 7px">{{c.count}}</span></button>
+            </sc-if>
+          </sc-for>
+        </div>
+      </div>
+
+      <div class="pgrid rv k2">
+        <sc-for list="{{projects}}" as="p" hint-placeholder-count="8">
+          <sc-if value="{{p.featured}}" hint-placeholder-val="{{false}}">
+            <article class="cell lift pj pj-feat" style="padding: 8px; display: flex; flex-direction: column; animation-delay: {{p.delay}}">
+              <div class="ph" style="flex: 1 1 auto; min-height: 300px; border-radius: 22px">
+                <span class="ph-cam"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H7l1.5-2h7L17 6h1.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+                <p class="ph-txt">{{p.ph}}</p>
+              </div>
+              <div style="padding: 18px 16px 12px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px">
+                <div style="min-width: 0">
+                  <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #3A4560"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{p.dot}}"></span>{{p.pillarLabel}}</span>
+                  <h3 class="nx-disp" style="margin: 6px 0 4px; font-weight: 700; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.1; letter-spacing: -0.02em; color: #0E1A4F">{{p.title}}</h3>
+                  <p style="margin: 0; font-size: 15px; color: #3A4560">{{p.type}}</p>
+                </div>
+                <p style="margin: 0; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; font-weight: 600; color: #536077"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>{{p.place}}</p>
+              </div>
+            </article>
+          </sc-if>
+          <sc-if value="{{p.normal}}" hint-placeholder-val="{{true}}">
+            <article class="cell lift pj" style="padding: 8px; display: flex; flex-direction: column; animation-delay: {{p.delay}}">
+              <div class="ph" style="aspect-ratio: 4 / 3; border-radius: 20px; padding: 18px; gap: 10px">
+                <span class="ph-cam" style="width: 40px; height: 40px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5A2.5 2.5 0 0 1 5.5 6H7l1.5-2h7L17 6h1.5A2.5 2.5 0 0 1 21 8.5v9a2.5 2.5 0 0 1-2.5 2.5h-13A2.5 2.5 0 0 1 3 17.5z"></path><circle cx="12" cy="13" r="3.5"></circle></svg></span>
+                <p class="ph-txt" style="font-size: 12.5px">{{p.ph}}</p>
+              </div>
+              <div style="padding: 14px 12px 10px; display: flex; flex-direction: column; gap: 4px">
+                <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 13px; font-weight: 600; color: #3A4560"><span style="width: 8px; height: 8px; border-radius: 50%; background: {{p.dot}}"></span>{{p.pillarLabel}}</span>
+                <h3 class="nx-disp" style="margin: 4px 0 0; font-weight: 700; font-size: 19px; line-height: 1.2; letter-spacing: -0.01em; color: #0E1A4F">{{p.title}}</h3>
+                <p style="margin: 0; font-size: 14.5px; line-height: 1.45; color: #3A4560">{{p.type}}</p>
+                <p style="margin: 2px 0 0; display: inline-flex; align-items: center; gap: 6px; font-size: 14px; color: #536077"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>{{p.place}}</p>
+              </div>
+            </article>
+          </sc-if>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLIENTES -->
+  <section id="clientes" style="padding: clamp(48px, 6vw, 88px) 0; background: #F5F7FB">
+    <div class="nx-wrap">
+      <div class="bento">
+        <div class="cell rv d-4 t-12" style="padding: clamp(28px, 3vw, 44px); display: flex; flex-direction: column; justify-content: space-between; gap: 24px">
+          <h2 class="nx-disp" style="margin: 0; font-weight: 750; font-size: clamp(32px, 3.4vw, 50px); line-height: 1; letter-spacing: -0.035em; color: #0E1A4F">Marcas que confían en nuestro trabajo.</h2>
+          <p style="margin: 0; font-size: 14px; color: #536077">[Logos oficiales pendientes]</p>
+        </div>
+        <div class="cell rv k2 d-8 t-12" style="overflow: hidden">
+          <div class="cl-grid">
+            <sc-for list="{{clients}}" as="cl" hint-placeholder-count="12">
+              <div class="cl-tile nx-disp" style="min-height: clamp(84px, 8vw, 112px); display: flex; align-items: center; justify-content: center; padding: 12px; text-align: center; font-weight: 650; font-size: clamp(15px, 1.4vw, 19px); letter-spacing: -0.01em; color: #536077; border-right: 1px solid #E9EDF3; border-bottom: 1px solid #E9EDF3; margin: 0 -1px -1px 0">{{cl}}</div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section id="contacto" style="padding: clamp(56px, 7vw, 104px) 0">
+    <div class="nx-wrap">
+      <div class="bento">
+        <div class="cell rv d-7 t-12 r-2" style="padding: clamp(28px, 4vw, 64px); min-height: 360px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 32px; background: radial-gradient(90% 90% at 0% 100%, #E3F3DF 0%, rgba(227,243,223,0) 60%), radial-gradient(90% 100% at 100% 0%, #DFE9FA 0%, rgba(223,233,250,0) 62%), #ffffff">
+          <svg viewBox="0 0 560 300" aria-hidden="true" style="position: absolute; right: -60px; top: -80px; width: clamp(260px, 30vw, 460px); height: auto; pointer-events: none">
+            <path d="M40 290 A240 240 0 0 1 520 290" fill="none" stroke="#1D4FA0" stroke-opacity="0.14" stroke-width="14" stroke-linecap="round"></path>
+          </svg>
+          <h2 class="nx-disp" style="position: relative; margin: 0; font-weight: 750; font-size: clamp(36px, 4.6vw, 68px); line-height: 0.98; letter-spacing: -0.035em; color: #0E1A4F; max-width: 14ch">¿Tienes un proyecto o un local que mantener?</h2>
+          <p style="position: relative; margin: 0; font-size: clamp(17px, 1.3vw, 19px); line-height: 1.6; color: #3A4560; max-width: 44ch">Cuéntanos qué necesitas y te respondemos con una propuesta a medida.</p>
+        </div>
+        <a class="cell lift press rv k2 d-5 t-12" href="https://wa.me/51984387498" style="background: {{accent}}; border-color: transparent; color: #ffffff; text-decoration: none; padding: clamp(24px, 2.6vw, 36px); min-height: 172px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <span style="font-size: 15px; font-weight: 600; color: #ffffff">WhatsApp</span>
+            <svg class="nx-arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+          </div>
+          <p class="nx-disp nx-num" style="margin: 0; font-weight: 750; font-size: clamp(28px, 3vw, 42px); line-height: 1; letter-spacing: -0.03em; color: #ffffff">+51 984 387 498</p>
+        </a>
+        <a class="cell lift press rv k3 d-5 t-12" href="mailto:operaciones@nexos-ing.com" style="color: #0E1A4F; text-decoration: none; padding: clamp(24px, 2.6vw, 36px); min-height: 172px; display: flex; flex-direction: column; justify-content: space-between; gap: 20px">
+          <div style="display: flex; justify-content: space-between; align-items: center">
+            <span style="font-size: 15px; font-weight: 600; color: #3A4560">Correo</span>
+            <svg class="nx-arrow" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M8 7h9v9"></path></svg>
+          </div>
+          <p class="nx-disp" style="margin: 0; font-weight: 700; font-size: clamp(20px, 2vw, 28px); line-height: 1.15; letter-spacing: -0.02em; color: #0E1A4F; overflow-wrap: anywhere">operaciones@nexos-ing.com</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER (claro) -->
+  <footer style="background: #F5F7FB; border-top: 1px solid #E3E8F0; padding: clamp(44px, 5vw, 64px) 0 28px">
+    <div class="nx-wrap">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 32px 40px">
+        <div>
+          <img src="/_blob/69a5340afabe913b48a41aaafb90111d" alt="NEXOS Ingenieros" style="height: 56px; width: auto; display: block; border-radius: 10px">
+          <p style="margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: #3A4560; max-width: 30ch">Soluciones en construcción, ingeniería y mantenimiento integral.</p>
+        </div>
+        <div>
+          <h3 class="nx-disp" style="margin: 0 0 12px; font-weight: 700; font-size: 16px; color: #0E1A4F">Contacto</h3>
+          <p style="margin: 0 0 6px; font-size: 15px"><a class="nx-num" href="tel:+51984387498" style="color: #1D4FA0; text-underline-offset: 3px">+51 984 387 498</a></p>
+          <p style="margin: 0 0 6px; font-size: 15px"><a href="mailto:operaciones@nexos-ing.com" style="color: #1D4FA0; text-underline-offset: 3px">operaciones@nexos-ing.com</a></p>
+          <p style="margin: 0; font-size: 15px; color: #3A4560">Horario: [POR DEFINIR]</p>
+        </div>
+        <div>
+          <h3 class="nx-disp" style="margin: 0 0 12px; font-weight: 700; font-size: 16px; color: #0E1A4F">Sedes</h3>
+          <p style="margin: 0 0 6px; font-size: 15px; color: #3A4560">San Martín de Porres, Lima – Perú</p>
+          <p style="margin: 0; font-size: 15px; color: #3A4560">Ica, Ica – Perú</p>
+        </div>
+        <div>
+          <h3 class="nx-disp" style="margin: 0 0 12px; font-weight: 700; font-size: 16px; color: #0E1A4F">Síguenos</h3>
+          <p style="margin: 0; font-size: 15px; color: #3A4560">[Redes sociales POR DEFINIR]</p>
+        </div>
+      </div>
+      <div style="margin-top: 36px; padding-top: 20px; border-top: 1px solid #E3E8F0; font-size: 13px; color: #536077">© 2026 NEXOS Ingenieros. Todos los derechos reservados.</div>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#24782A","options":["#24782A","#1D4FA0","#0E1A4F"]},"$preview":{"width":1440,"height":5800}}'>
+var NX_SLIDES = [
+  { title: 'Tienda MINISO La Rambla', type: 'Implementación de tienda', place: 'San Borja, Lima', ph: '[FOTO: tienda MINISO La Rambla recién implementada — plano general frontal desde el pasillo del centro comercial, luz interior cálida, góndolas ordenadas]' },
+  { title: 'Tienda MASS Calle 4', type: 'Implementación de tienda', place: 'Pisco, Ica', ph: '[FOTO: fachada de la tienda MASS Calle 4 terminada — plano general desde la vereda, luz de día, letrero encendido]' },
+  { title: 'Tienda La Tinka Leoncio Prado', type: 'Implementación de tienda', place: 'Chiclayo, Lambayeque', ph: '[FOTO: interior de la tienda La Tinka con mobiliario instalado — plano abierto a altura de ojos, luz artificial uniforme]' },
+  { title: 'Botica Inkafarma Cañete', type: 'Levantamiento de observaciones INDECI', place: 'Cañete, Lima', ph: '[FOTO: técnico NEXOS con casco y chaleco corrigiendo un tablero eléctrico en la botica — plano medio, luz natural]' },
+  { title: 'Oficinas administrativas POMICA', type: 'Obra civil · 90 m²', place: 'Santiago, Ica', ph: '[FOTO: oficinas administrativas POMICA terminadas — plano general interior, luz natural lateral, acabados limpios]' },
+  { title: 'Tienda ÉL Chincha', type: 'Remodelación de tienda', place: 'Chincha, Ica', ph: '[FOTO: tienda ÉL Chincha después de la remodelación — plano frontal de la vitrina iluminada, hora dorada]' }
+];
+var NX_PILLARS = {
+  mant: { label: 'Mantenimiento integral', dot: '#3FA535' },
+  cons: { label: 'Construcción e implementación', dot: '#1D4FA0' },
+  ing: { label: 'Ingeniería y gestión', dot: '#0E1A4F' }
+};
+var NX_PROJECTS = [
+  { title: 'Tienda MINISO La Rambla', type: 'Implementación de tienda', place: 'San Borja, Lima', pillar: 'cons', ph: '[FOTO: tienda MINISO La Rambla implementada — plano general frontal, luz interior cálida, góndolas ordenadas]' },
+  { title: 'Tienda MASS Calle 4', type: 'Implementación de tienda', place: 'Pisco, Ica', pillar: 'cons', ph: '[FOTO: fachada de MASS Calle 4 — plano general desde la vereda, luz de día]' },
+  { title: 'Tienda La Tinka Leoncio Prado', type: 'Implementación de tienda', place: 'Chiclayo, Lambayeque', pillar: 'cons', ph: '[FOTO: interior de La Tinka con mobiliario instalado — plano abierto, luz uniforme]' },
+  { title: 'Botica Inkafarma Cañete', type: 'Levantamiento de observaciones INDECI', place: 'Cañete, Lima', pillar: 'mant', ph: '[FOTO: técnico NEXOS en tablero eléctrico de la botica — plano medio, luz natural]' },
+  { title: 'Agencias Scotiabank (6 sedes)', type: 'Mantenimiento de tableros eléctricos y letreros luminosos', place: 'Lima', pillar: 'mant', ph: '[FOTO: técnico NEXOS dando mantenimiento a un letrero luminoso de agencia — contrapicado, luz de tarde]' },
+  { title: 'Oficinas administrativas POMICA', type: 'Obra civil, 90 m²', place: 'Santiago, Ica', pillar: 'cons', ph: '[FOTO: oficinas POMICA terminadas — plano general interior, luz natural lateral]' },
+  { title: 'Tienda ÉL Chincha', type: 'Remodelación de tienda', place: 'Chincha, Ica', pillar: 'cons', ph: '[FOTO: tienda ÉL Chincha remodelada — plano frontal de vitrina iluminada, hora dorada]' },
+  { title: '[Proyecto de ingeniería por definir]', type: '[Expediente técnico / supervisión]', place: '[Ubicación]', pillar: 'ing', ph: '[FOTO: ingeniero NEXOS revisando planos de expediente técnico en obra — plano medio, luz natural]' }
+];
+var NX_CHIPS = [
+  { id: 'todos', label: 'Todos' },
+  { id: 'mant', label: 'Mantenimiento' },
+  { id: 'cons', label: 'Construcción' },
+  { id: 'ing', label: 'Ingeniería' }
+];
+var NX_CLIENTS = ['La Tinka', 'MINISO', 'Tiendas MASS', 'BBVA', 'Interbank', 'Scotiabank', 'Grupo EFE', 'Inkafarma', 'Mifarma', 'Vivanda', 'OXXO', 'POMICA'];
+
+function nxReduced() {
+  try { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) { return false; }
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { i: 0, f: 'todos', hp: 45, hc: 50, ne: 50, nr: 5 };
+    this.alive = false;
+  }
+  componentDidMount() {
+    this.alive = true;
+    this.startTimer();
+    if (nxReduced()) return;
+    this.count(['hp', 'hc'], [45, 50], 1400);
+    var el = null;
+    try { el = document.getElementById('nx-nos'); } catch (e) { el = null; }
+    if (el && typeof IntersectionObserver !== 'undefined' && el.getBoundingClientRect().top > window.innerHeight) {
+      this.setState({ ne: 0, nr: 0 });
+      this.io = new IntersectionObserver((entries) => {
+        if (entries.some((x) => x.isIntersecting)) {
+          if (this.io) { this.io.disconnect(); this.io = null; }
+          this.count(['ne', 'nr'], [50, 5], 1400);
+        }
+      }, { threshold: 0.25 });
+      this.io.observe(el);
+    }
+  }
+  componentWillUnmount() {
+    this.alive = false;
+    clearInterval(this.timer);
+    if (this.io) { this.io.disconnect(); this.io = null; }
+  }
+  startTimer() {
+    clearInterval(this.timer);
+    this.timer = setInterval(() => {
+      this.setState((s) => ({ i: (s.i + 1) % NX_SLIDES.length }));
+    }, 5000);
+  }
+  count(keys, targets, dur) {
+    if (typeof requestAnimationFrame === 'undefined') return;
+    var t0 = null;
+    var step = (t) => {
+      if (!this.alive) return;
+      if (t0 === null) t0 = t;
+      var p = Math.min(1, (t - t0) / dur);
+      var e = 1 - Math.pow(1 - p, 3);
+      var s = {};
+      keys.forEach((k, j) => { s[k] = Math.round(targets[j] * e); });
+      this.setState(s);
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+  renderVals() {
+    const i = this.state.i;
+    const f = this.state.f;
+    const n = NX_SLIDES.length;
+    const go = (k) => { this.setState({ i: (k + n) % n }); this.startTimer(); };
+    const list = NX_PROJECTS.filter((p) => f === 'todos' || p.pillar === f);
+    return {
+      accent: this.props.accent ?? '#24782A',
+      hp: this.state.hp,
+      hc: this.state.hc,
+      ne: this.state.ne,
+      nr: this.state.nr,
+      trackX: (-i * 100) + '%',
+      slides: NX_SLIDES.map((s, k) => ({ ...s, hidden: k === i ? 'false' : 'true', pos: (k + 1) + ' de ' + n + ': ' + s.title })),
+      prev: () => go(i - 1),
+      next: () => go(i + 1),
+      dots: NX_SLIDES.map((s, k) => ({ active: k === i, idle: k !== i, go: () => go(k), label: 'Ver ' + s.title })),
+      chips: NX_CHIPS.map((c) => ({
+        label: c.label,
+        count: c.id === 'todos' ? NX_PROJECTS.length : NX_PROJECTS.filter((p) => p.pillar === c.id).length,
+        active: c.id === f,
+        idle: c.id !== f,
+        pick: () => this.setState({ f: c.id })
+      })),
+      projects: list.map((p, k) => ({
+        ...p,
+        featured: k === 0,
+        normal: k !== 0,
+        delay: (Math.min(k, 6) * 45) + 'ms',
+        pillarLabel: NX_PILLARS[p.pillar].label,
+        dot: NX_PILLARS[p.pillar].dot
+      })),
+      clients: NX_CLIENTS
+    };
+  }
+}
+</script>
+</body>
+</html>

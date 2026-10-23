@@ -1,0 +1,26 @@
+# Dependencias y builds
+node_modules/
+web/dist/
+web/.astro/
+.env
+.env.*
+!.env.example
+
+# Material original del cliente (pesado y privado): no se versiona
+documentosDelCliente/
+*.docx#
+.~lock*
+
+# Binarios de trabajo (las imágenes finales viven en web/src/assets)
+trabajo/**/*.png
+trabajo/**/*.jpg
+trabajo/**/*.jpeg
+trabajo/**/*.webp
+trabajo/**/*.svg
+trabajo/**/*.pdf
+trabajo/maquetas-claude-design/project/fotos/
+
+# Sistema / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json

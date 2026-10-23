@@ -1,0 +1,162 @@
+[
+  {
+    "id": "bbva",
+    "name": "BBVA",
+    "logo": "../../assets/clientes/bbva.webp"
+  },
+  {
+    "id": "canvia",
+    "name": "Canvia",
+    "logo": "../../assets/clientes/canvia.webp"
+  },
+  {
+    "id": "clinica-centenario-peruano-japonesa",
+    "name": "Clínica Centenario Peruano Japonesa",
+    "logo": "../../assets/clientes/clinica-centenario-peruano-japonesa.webp"
+  },
+  {
+    "id": "clorox-marca",
+    "name": "Clorox",
+    "logo": "../../assets/clientes/clorox-marca.webp"
+  },
+  {
+    "id": "comunidad-andina",
+    "name": "Comunidad Andina",
+    "logo": "../../assets/clientes/comunidad-andina.webp"
+  },
+  {
+    "id": "dhl",
+    "name": "DHL",
+    "logo": "../../assets/clientes/dhl.webp"
+  },
+  {
+    "id": "dicar-logistic",
+    "name": "Dicar Logistic",
+    "logo": "../../assets/clientes/dicar-logistic.webp"
+  },
+  {
+    "id": "dollarcity-peru",
+    "name": "Dollarcity",
+    "logo": "../../assets/clientes/dollarcity-peru.webp"
+  },
+  {
+    "id": "expeditors",
+    "name": "Expeditors",
+    "logo": "../../assets/clientes/expeditors.webp"
+  },
+  {
+    "id": "fix",
+    "name": "FIX",
+    "logo": "../../assets/clientes/fix.webp"
+  },
+  {
+    "id": "gds-infraestructura",
+    "name": "GDS Infraestructura",
+    "logo": "../../assets/clientes/gds-infraestructura.webp"
+  },
+  {
+    "id": "inkafarma",
+    "name": "Inkafarma",
+    "logo": "../../assets/clientes/inkafarma.webp"
+  },
+  {
+    "id": "instituto-arzobispo-loayza",
+    "name": "Instituto Arzobispo Loayza",
+    "logo": "../../assets/clientes/instituto-arzobispo-loayza.webp"
+  },
+  {
+    "id": "interbank",
+    "name": "Interbank",
+    "logo": "../../assets/clientes/interbank.webp"
+  },
+  {
+    "id": "john-holden",
+    "name": "John Holden",
+    "logo": "../../assets/clientes/john-holden.webp"
+  },
+  {
+    "id": "la-curacao",
+    "name": "La Curacao",
+    "logo": "../../assets/clientes/la-curacao.webp"
+  },
+  {
+    "id": "lukers",
+    "name": "Lukers",
+    "logo": "../../assets/clientes/lukers.webp"
+  },
+  {
+    "id": "mifarma",
+    "name": "Mifarma",
+    "logo": "../../assets/clientes/mifarma.webp"
+  },
+  {
+    "id": "miniso",
+    "name": "MINISO",
+    "logo": "../../assets/clientes/miniso.webp"
+  },
+  {
+    "id": "municipalidad-provincial-de-palpa",
+    "name": "Municipalidad Provincial de Palpa",
+    "logo": "../../assets/clientes/municipalidad-provincial-de-palpa.webp"
+  },
+  {
+    "id": "oxxo",
+    "name": "OXXO",
+    "logo": "../../assets/clientes/oxxo.webp"
+  },
+  {
+    "id": "panorama-bpo",
+    "name": "Panorama",
+    "logo": "../../assets/clientes/panorama-bpo.webp"
+  },
+  {
+    "id": "plaza-vea",
+    "name": "Plaza Vea",
+    "logo": "../../assets/clientes/plaza-vea.webp"
+  },
+  {
+    "id": "pomica",
+    "name": "POMICA",
+    "logo": "../../assets/clientes/pomica.webp"
+  },
+  {
+    "id": "scotiabank",
+    "name": "Scotiabank",
+    "logo": "../../assets/clientes/scotiabank.webp"
+  },
+  {
+    "id": "siemens-energy",
+    "name": "Siemens Energy",
+    "logo": "../../assets/clientes/siemens-energy.webp"
+  },
+  {
+    "id": "telxius",
+    "name": "Telxius",
+    "logo": "../../assets/clientes/telxius.webp"
+  },
+  {
+    "id": "tgestiona",
+    "name": "TGestiona",
+    "logo": "../../assets/clientes/tgestiona.webp"
+  },
+  {
+    "id": "tiendas-adams",
+    "name": "Tiendas Adams",
+    "logo": "../../assets/clientes/tiendas-adams.webp"
+  },
+  {
+    "id": "tiendas-efe",
+    "name": "Tiendas EFE",
+    "logo": "../../assets/clientes/tiendas-efe.webp"
+  },
+  {
+    "id": "tiendas-mass",
+    "name": "Tiendas MASS",
+    "logo": "../../assets/clientes/tiendas-mass.webp"
+  },
+  {
+    "id": "universidad-nacional-agraria-la-molina",
+    "name": "Universidad Nacional Agraria La Molina",
+    "logo": "../../assets/clientes/universidad-nacional-agraria-la-molina.webp"
+  }
+]

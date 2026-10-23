@@ -1,0 +1,65 @@
+---
+/**
+ * Página temporal de la F1: verifica layout, tokens, fuente, contenido e imágenes.
+ * En la F2 se reemplaza por el Inicio completo (maqueta A7).
+ */
+import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, PILLARS } from '../config/site';
+import logoBlanco from '../assets/marca/logo-blanco.webp';
+
+const proyectos = (await getCollection('proyectos')).sort((a, b) => a.data.order - b.data.order);
+const clientes = await getCollection('clientes');
+const faq = await getCollection('faq');
+---
+
+<BaseLayout
+  title="Mantenimiento de locales comerciales, obras e ITSE en Lima"
+  description="NEXOS Ingenieros: mantenimiento de locales comerciales, implementación de tiendas retail, obras civiles e ingeniería y certificado ITSE en Lima, Ica y todo el Perú."
+  noindex
+>
+  <section class="bg-ink px-5 py-20 text-white">
+    <div class="mx-auto max-w-6xl">
+      <Image src={logoBlanco} alt="NEXOS Ingenieros" height={96} class="h-24 w-auto" loading="eager" />
+      <h1 class="mt-8 text-display font-extrabold tracking-tight-display">
+        <span class="eyebrow mb-4 text-green-light">{SITE.name} · Base técnica (F1)</span>
+        {SITE.slogan}
+      </h1>
+      <p class="mt-6 max-w-2xl text-lg text-on-dark">
+        Página temporal: comprueba tokens de marca, fuente, colecciones de contenido e imágenes optimizadas.
+      </p>
+    </div>
+  </section>
+
+  <section class="bg-surface px-5 py-16">
+    <div class="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        PILLARS.map((p) => (
+          <article data-reveal="up" class="rounded-card border border-line bg-white p-6">
+            <p class="eyebrow text-green-dark">{p.num}</p>
+            <h2 class="mt-2 text-lg font-extrabold text-navy">{p.name}</h2>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="bg-blueprint px-5 py-16">
+    <div class="mx-auto max-w-6xl">
+      <p class="font-bold text-navy">
+        Contenido cargado: {proyectos.length} proyectos · {clientes.length} clientes · {faq.length} preguntas
+      </p>
+      <div class="mt-6 grid gap-4 sm:grid-cols-3">
+        {
+          proyectos.slice(0, 6).map((p) => (
+            <figure data-reveal="zoom" class="overflow-hidden rounded-card bg-white shadow-lift">
+              <Image src={p.data.cover} alt={p.data.title} width={480} class="h-48 w-full object-cover" />
+              <figcaption class="p-4 text-sm font-bold text-navy">{p.data.title}</figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>

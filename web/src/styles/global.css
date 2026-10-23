@@ -1,0 +1,136 @@
+@import 'tailwindcss';
+@import '@fontsource-variable/plus-jakarta-sans';
+
+/* ============================================================
+   Tokens de marca NEXOS (extraídos de la maqueta A7)
+   Uso en clases: bg-navy, text-green-light, rounded-card, shadow-lift…
+   ============================================================ */
+@theme {
+  /* Colores */
+  --color-ink: #0a1440; /* fondo oscuro principal (hero, secciones oscuras) */
+  --color-navy: #0e1a4f; /* azul marino de marca: textos y botones oscuros */
+  --color-blue-deep: #163a86;
+  --color-blue: #1d4fa0; /* azul de marca: enlaces y acentos */
+  --color-blue-soft: #5a8eea; /* acentos sobre fondo oscuro */
+  --color-green: #3fa535; /* verde de marca: CTA sobre fondo oscuro, decorativo */
+  --color-green-dark: #24782a; /* verde con texto blanco (contraste AA) */
+  --color-green-light: #8fd88a; /* verde sobre fondo oscuro */
+  --color-green-tint: #e8f4e6;
+  --color-surface: #f3f6fb; /* fondo claro alterno */
+  --color-surface-blue: #eef3fb; /* plano técnico / mapa */
+  --color-line: #e3e7ef;
+  --color-text: #18203a;
+  --color-muted: #4a5468;
+  --color-subtle: #6a7385;
+  --color-on-dark: #c9d2e6; /* texto secundario sobre oscuro */
+  --color-on-dark-muted: #a9b4ce;
+
+  /* Tipografía */
+  --font-sans: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
+  --text-display: clamp(2.375rem, 5.4vw, 4.875rem);
+  --text-display--line-height: 1.02;
+  --text-section: clamp(2.125rem, 4.4vw, 3.75rem);
+  --text-section--line-height: 1.04;
+  --tracking-tight-display: -0.03em;
+  --tracking-eyebrow: 0.16em;
+
+  /* Radios y sombras */
+  --radius-card: 1.5rem;
+  --radius-panel: 1.75rem;
+  --radius-xl2: 2.25rem;
+  --shadow-lift: 0 24px 50px rgb(14 26 79 / 0.18);
+  --shadow-panel: 0 30px 70px rgb(10 20 64 / 0.25);
+  --shadow-cta: 0 12px 30px rgb(63 165 53 / 0.35);
+
+  /* Curva de animación (ease-out fuerte, Emil Kowalski) */
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-white font-sans text-text antialiased;
+  }
+  :focus-visible {
+    outline: 3px solid var(--color-green);
+    outline-offset: 3px;
+  }
+  ::selection {
+    background: var(--color-green-light);
+    color: var(--color-ink);
+  }
+}
+
+/* ============================================================
+   Utilidades propias
+   ============================================================ */
+@utility eyebrow {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+}
+
+/* Botón con presión (scale 0.97) */
+@utility press {
+  transition:
+    transform 160ms var(--ease-out-strong),
+    box-shadow 220ms ease-out,
+    background-color 200ms ease-out;
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+/* Retícula de plano técnico (sección Proyectos) */
+@utility bg-blueprint {
+  background-color: var(--color-surface-blue);
+  background-image:
+    linear-gradient(rgb(29 79 160 / 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(29 79 160 / 0.07) 1px, transparent 1px),
+    linear-gradient(rgb(29 79 160 / 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(29 79 160 / 0.12) 1px, transparent 1px);
+  background-size:
+    24px 24px,
+    24px 24px,
+    120px 120px,
+    120px 120px;
+}
+
+/* Texto solo para lectores de pantalla y buscadores */
+@utility sr-only-seo {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Elementos que GSAP revela al hacer scroll: visibles por defecto (sin JS o con movimiento reducido) */
+[data-reveal] {
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
