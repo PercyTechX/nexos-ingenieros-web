@@ -1,0 +1,118 @@
+---
+/**
+ * Hero de servicio, variante "Recorrido técnico": texto a la izquierda y, a la derecha, el objeto recortado del pilar
+ * dentro del anillo (como el Inicio) con las especialidades flotando alrededor.
+ */
+import { Image } from 'astro:assets';
+import Breadcrumb from '../ui/Breadcrumb.astro';
+import Icon from '../ui/Icon.astro';
+import { ICON } from '../ui/icons';
+import type { ServiceContent, SubService } from '../../data/servicios';
+
+interface Props {
+  content: ServiceContent;
+  subs: SubService[];
+  crumbs: { name: string; url?: string }[];
+}
+const { content: c, subs, crumbs } = Astro.props;
+const chipPos = ['top-[8%] left-[0%]', 'top-[30%] right-[-2%]', 'bottom-[24%] left-[-4%]', 'bottom-[6%] right-[6%]'];
+---
+
+<section class="hero relative overflow-hidden px-5 pt-30 pb-14 text-white sm:pt-36 lg:min-h-[min(88vh,840px)] lg:pb-16">
+  <div class="mx-auto grid max-w-310 items-center gap-10 lg:grid-cols-[1.05fr_1fr]">
+    <div class="min-w-0">
+      <Breadcrumb items={crumbs} class="mb-6" />
+      <p class="eyebrow mb-4 text-green-light">{c.eyebrow}</p>
+      <h1 class="mb-5 text-[clamp(2.25rem,min(4.3vw,7svh),4rem)] leading-[1.04] font-extrabold tracking-tight-display text-balance">{c.h1}</h1>
+      <p class="mb-8 max-w-140 text-lg leading-[1.7] text-on-dark">{c.intro}</p>
+      <div class="mb-9 flex flex-wrap gap-3">
+        <a href="#cotizar" class="press inline-flex min-h-13 items-center gap-2.5 rounded-full bg-green px-6 font-extrabold text-ink shadow-cta">
+          Cotiza este servicio <Icon d={ICON.arrow} size={18} stroke={2.4} />
+        </a>
+        <a href="#especialidades" class="press inline-flex min-h-13 items-center rounded-full border border-white/30 px-6 font-bold text-white">
+          Ver especialidades
+        </a>
+      </div>
+      <dl class="m-0 flex flex-wrap gap-x-9 gap-y-4">
+        {
+          c.highlights.map((h) => (
+            <div class="flex flex-col-reverse">
+              <dt class="mt-1 text-[13px] text-on-dark-muted">{h.label}</dt>
+              <dd class="m-0 text-[clamp(22px,2.4vw,30px)] leading-none font-extrabold text-white">{h.value}</dd>
+            </div>
+          ))
+        }
+      </dl>
+    </div>
+
+    <div class="relative mx-auto aspect-square w-full max-w-130" aria-hidden="true">
+      <span class="glow absolute inset-[6%] rounded-full"></span>
+      <span class="ring absolute inset-[10%] rounded-full border-2 border-dashed border-white/12"></span>
+      <span class="absolute inset-[18%] rounded-full border border-green-light/30"></span>
+      <Image src={c.obj} alt="" widths={[420, 840]} sizes="420px" loading="eager" class="obj absolute inset-x-[16%] bottom-[12%] mx-auto max-h-[72%] w-auto object-contain" />
+      {
+        subs.map((s, k) => (
+          <span class={`chip absolute flex items-center gap-2 rounded-full border border-white/16 bg-ink/70 py-2 pr-4 pl-2 text-[13px] font-bold whitespace-nowrap backdrop-blur ${chipPos[k]}`} style={`animation-delay:${-k * 1.4}s`}>
+            <span class="flex size-8 items-center justify-center rounded-full bg-green-light/16 text-green-light">
+              <Icon d={s.icon} size={15} stroke={2} />
+            </span>
+            {s.chip}
+          </span>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--color-ink);
+    background-image:
+      var(--dots-blue),
+      var(--dots-green),
+      radial-gradient(45% 55% at 75% 45%, rgb(29 79 160 / 0.55), transparent 70%),
+      radial-gradient(35% 40% at 10% 80%, rgb(63 165 53 / 0.2), transparent 70%);
+    background-size:
+      var(--dots-size),
+      100% 100%,
+      100% 100%;
+    background-position:
+      var(--dots-position),
+      0 0,
+      0 0;
+  }
+  .glow {
+    background: radial-gradient(circle, rgb(90 142 234 / 0.35), transparent 65%);
+  }
+  .ring {
+    animation: spin 60s linear infinite;
+  }
+  .chip {
+    animation: float 6s ease-in-out infinite;
+    box-shadow: 0 14px 30px rgb(0 0 0 / 0.25);
+  }
+  .obj {
+    filter: drop-shadow(0 30px 40px rgb(0 0 0 / 0.45));
+  }
+  @keyframes spin {
+    to {
+      rotate: 360deg;
+    }
+  }
+  @keyframes float {
+    50% {
+      translate: 0 -8px;
+    }
+  }
+  @media (max-width: 480px) {
+    .chip {
+      font-size: 11px;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ring,
+    .chip {
+      animation: none;
+    }
+  }
+</style>

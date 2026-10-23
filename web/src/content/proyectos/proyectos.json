@@ -8,7 +8,7 @@
     "place": "Lima (varias agencias)",
     "city": "lima",
     "type": "Mantenimiento de tableros eléctricos y letreros luminosos",
-    "description": "Mantenimiento de tableros eléctricos y letreros luminosos en agencias Scotiabank. Se observan trabajos en fachada de día y de noche, mediciones eléctricas y revisión de interruptores.",
+    "description": "Mantenimiento de tableros eléctricos y letreros luminosos en agencias Scotiabank de Lima: trabajos en fachada de día y de noche, mediciones eléctricas y revisión de interruptores.",
     "cover": "../../assets/proyectos/agencias-scotiabank/portada.webp",
     "gallery": [
       "../../assets/proyectos/agencias-scotiabank/galeria-1.webp",
@@ -50,7 +50,7 @@
     "place": "Av. Juan Antonio Pezet 1340-1360, San Isidro, Lima",
     "city": "lima",
     "type": "Implementación de sistema de extracción de aire",
-    "description": "Implementación de sistema de extracción de aire. Se observan ductos flexibles, rejillas, extractor en azotea y tablero eléctrico de alimentación.",
+    "description": "Implementación del sistema de extracción de aire de la tienda: ductos flexibles, rejillas, extractor en azotea y tablero eléctrico de alimentación.",
     "cover": "../../assets/proyectos/vivanda-pezet/portada.webp",
     "gallery": [
       "../../assets/proyectos/vivanda-pezet/galeria-1.webp",
@@ -71,7 +71,7 @@
     "place": "Centro comercial Plaza Lima Sur",
     "city": "lima",
     "type": "Cambio de luminarias",
-    "description": "Desmontaje, suministro e instalación de luminarias en tienda Adams. Se observan cambio de downlights, tubos y luminarias de riel.",
+    "description": "Desmontaje, suministro e instalación de luminarias en la tienda Adams: cambio de downlights, tubos y luminarias de riel.",
     "cover": "../../assets/proyectos/adams-plaza-lima-sur/portada.webp",
     "gallery": [
       "../../assets/proyectos/adams-plaza-lima-sur/galeria-1.webp",
@@ -92,7 +92,7 @@
     "place": "Av. Alfonso Ugarte 1230, Breña, Lima",
     "city": "lima",
     "type": "Mantenimiento de puertas enrollables",
-    "description": "Mantenimiento de estructuras metálicas y puerta enrollable. Se observan limpieza de grafiti y pintado de la cortina metálica.",
+    "description": "Mantenimiento de estructuras metálicas y de la puerta enrollable: limpieza de grafiti y pintado de la cortina metálica.",
     "cover": "../../assets/proyectos/lukers-alfonso-ugarte/portada.webp",
     "gallery": [
       "../../assets/proyectos/lukers-alfonso-ugarte/galeria-1.webp",
@@ -111,7 +111,7 @@
     "place": "Av. Javier Prado Este 444, San Isidro, Lima",
     "city": "lima",
     "type": "Mantenimiento de pintura en oficina central",
-    "description": "Mantenimiento de pintura en la oficina central. Se observan protección de mobiliario, resane, lijado y pintado de muros.",
+    "description": "Mantenimiento de pintura en la oficina central: protección del mobiliario, resane, lijado y pintado de muros.",
     "cover": "../../assets/proyectos/oficinas-expeditors/portada.webp",
     "gallery": [
       "../../assets/proyectos/oficinas-expeditors/galeria-1.webp",
@@ -151,7 +151,7 @@
     "place": "C.C. Megaplaza",
     "city": "lima",
     "type": "Proyecto de mejora de iluminación",
-    "description": "Se observan trabajos de cambio de luminarias (downlights y riel) en tienda Adams y medición de nivel de iluminación con luxómetro.",
+    "description": "Mejora de la iluminación de la tienda Adams: cambio de luminarias (downlights y riel) y medición del nivel de iluminación con luxómetro.",
     "cover": "../../assets/proyectos/adams-megaplaza/portada.webp",
     "gallery": [
       "../../assets/proyectos/adams-megaplaza/galeria-1.webp",
@@ -445,7 +445,8 @@
       "../../assets/proyectos/agrifresh-agua-potable-alcantarillado/galeria-1.webp"
     ],
     "pending": false,
-    "order": 23
+    "order": 23,
+    "seoTitle": "Agua potable y alcantarillado Agrifresh, Ica"
   },
   {
     "id": "bbva-oficina-premium-el-polo",
@@ -478,7 +479,7 @@
     "place": "La Molina, Lima",
     "city": "lima",
     "type": "Remodelación de SS.HH. de laboratorio de enseñanza",
-    "description": "Se observan trabajos de remodelación de servicios higiénicos: picado de piso y muros, tendido de nuevas tuberías de desagüe y agua, y el resultado con enchapes, aparatos sanitarios y puertas de cubículos.",
+    "description": "Remodelación de los servicios higiénicos de un laboratorio de enseñanza: picado de piso y muros, nuevas tuberías de agua y desagüe, enchapes, aparatos sanitarios y puertas de cubículos.",
     "cover": "../../assets/proyectos/unalm-servicios-higienicos/portada.webp",
     "gallery": [
       "../../assets/proyectos/unalm-servicios-higienicos/galeria-1.webp",
@@ -488,7 +489,8 @@
       "../../assets/proyectos/unalm-servicios-higienicos/galeria-5.webp"
     ],
     "pending": true,
-    "order": 25
+    "order": 25,
+    "seoTitle": "Remodelación de SS.HH. UNALM, La Molina"
   },
   {
     "id": "laboratorio-forense",
@@ -499,7 +501,7 @@
     "place": "Jesús María, Lima",
     "city": "lima",
     "type": "Implementación de laboratorio forense digital",
-    "description": "Se observan trabajos de canalización con tubería metálica y cajas de paso sobre soportes en azotea, armado de tableros eléctricos con pruebas de aislamiento (megado), gabinete de comunicaciones y ambientes terminados con paneles LED y luces de emergencia.",
+    "description": "Implementación de un laboratorio forense digital: canalización con tubería metálica y cajas de paso en azotea, armado de tableros eléctricos con pruebas de aislamiento (megado), gabinete de comunicaciones, paneles LED y luces de emergencia.",
     "cover": "../../assets/proyectos/laboratorio-forense/portada.webp",
     "gallery": [
       "../../assets/proyectos/laboratorio-forense/galeria-1.webp",
@@ -521,7 +523,7 @@
     "place": "Por confirmar",
     "city": "lima",
     "type": "Proyecto de mitigación contra inundaciones internas",
-    "description": "Se observan trabajos de demolición de piso de concreto e instalación de canaletas de drenaje con rejillas metálicas en un estacionamiento, con zona de trabajo señalizada y delimitada.",
+    "description": "Mitigación contra inundaciones internas en el estacionamiento: demolición de piso de concreto e instalación de canaletas de drenaje con rejillas metálicas, con la zona de trabajo señalizada y delimitada.",
     "cover": "../../assets/proyectos/canvia-estacionamiento/portada.webp",
     "gallery": [
       "../../assets/proyectos/canvia-estacionamiento/galeria-1.webp",
@@ -542,7 +544,7 @@
     "place": "Chimbote, Áncash",
     "city": "chimbote",
     "type": "Levantamiento de observaciones ITSE",
-    "description": "Se observan trabajos de verificación y medición en tableros eléctricos, intervenciones en cubierta metálica y escaleras de gato con jaula de protección en azotea, como parte de la adecuación del local. [POR CONFIRMAR alcance]",
+    "description": "Levantamiento de observaciones ITSE en la central de telecomunicaciones: verificación y medición de tableros eléctricos, y adecuación de la cubierta metálica y de las escaleras de gato con jaula de protección.",
     "cover": "../../assets/proyectos/ct-chimbote/portada.webp",
     "gallery": [
       "../../assets/proyectos/ct-chimbote/galeria-1.webp",
@@ -563,7 +565,7 @@
     "place": "Cusco",
     "city": "cusco",
     "type": "Levantamiento de observaciones ITSE",
-    "description": "Se observan tableros eléctricos de distribución con directorio de circuitos rotulado, pruebas de resistencia de aislamiento, canalizaciones en tubería conduit, señalización de riesgo eléctrico y luces de emergencia. [POR CONFIRMAR alcance]",
+    "description": "Levantamiento de observaciones ITSE en la central de telecomunicaciones: tableros de distribución con directorio de circuitos, pruebas de aislamiento (megado), canalización en tubería conduit, señalización de riesgo eléctrico y luces de emergencia.",
     "cover": "../../assets/proyectos/ct-cusco/portada.webp",
     "gallery": [
       "../../assets/proyectos/ct-cusco/galeria-1.webp",
@@ -584,7 +586,7 @@
     "place": "Lurín, Lima",
     "city": "lima",
     "type": "Levantamiento de observaciones ITSE",
-    "description": "Se observan trabajos en tableros eléctricos de una nave industrial, puesta a tierra de botoneras, mobiliario y estructuras, y la instalación de luces de emergencia con su señalización. [POR CONFIRMAR alcance]",
+    "description": "Levantamiento de observaciones ITSE en una nave industrial: trabajos en tableros eléctricos, puesta a tierra de botoneras, mobiliario y estructuras, e instalación de luces de emergencia con su señalización.",
     "cover": "../../assets/proyectos/siemens-energy/portada.webp",
     "gallery": [
       "../../assets/proyectos/siemens-energy/galeria-1.webp",

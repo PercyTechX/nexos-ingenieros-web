@@ -10,12 +10,25 @@ import { getCollection } from 'astro:content';
 import SectionHeading from '../ui/SectionHeading.astro';
 import Icon from '../ui/Icon.astro';
 import { ICON } from '../ui/icons';
-import { whatsappUrl } from '../../config/site';
+import { whatsappUrl, type PillarId } from '../../config/site';
 import { faqLd } from '../../lib/schema';
 
+interface Props {
+  /** Solo las preguntas de un pilar (páginas de servicio): sin filtros. */
+  pillar?: PillarId;
+  eyebrow?: string;
+  intro?: string;
+}
+const {
+  pillar,
+  eyebrow = 'Preguntas frecuentes sobre mantenimiento, Defensa Civil (INDECI) y certificado ITSE',
+  intro = 'Lo que más nos consultan sobre mantenimiento, implementación de tiendas, obras y certificado ITSE.',
+} = Astro.props;
 const VISIBLE = 6;
 const PILLAR_ORDER = ['mant', 'indeci', 'retail', 'obras'] as const;
-const sorted = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
+const sorted = (await getCollection('faq'))
+  .filter((f) => (pillar ? f.data.pillar === pillar : f.data.home))
+  .sort((a, b) => a.data.order - b.data.order);
 // Intercala por pilar: mant 1, ITSE 1, retail 1, obras 1, mant 2, ITSE 2…
 const byPillar = PILLAR_ORDER.map((id) => sorted.filter((f) => f.data.pillar === id));
 const faqs = Array.from({ length: Math.max(...byPillar.map((l) => l.length)) }, (_, r) => byPillar.flatMap((l) => l[r] ?? [])).flat();
@@ -28,13 +41,13 @@ const ld = faqLd(faqs.map((f) => ({ q: f.data.question, a: f.data.answer })));
   <script type="application/ld+json" set:html={JSON.stringify(ld)} />
   <div class="mx-auto flex max-w-310 flex-wrap items-start gap-[clamp(32px,5vw,72px)]">
     <div class="min-w-0 flex-[1_1_320px] lg:sticky lg:top-28">
-      <SectionHeading eyebrow="Preguntas frecuentes sobre mantenimiento, Defensa Civil (INDECI) y certificado ITSE">
+      <SectionHeading eyebrow={eyebrow}>
         Resolvemos tus <Fragment slot="accent">dudas</Fragment>
       </SectionHeading>
       <p class="mt-4.5 mb-6 text-[17px] leading-relaxed text-muted">
-        Lo que más nos consultan sobre mantenimiento, implementación de tiendas, obras y certificado ITSE.
+        {intro}
       </p>
-      <div role="group" aria-label="Filtrar preguntas" class="mb-7 flex flex-wrap gap-2" data-faq-tabs>
+      {!pillar && (<div role="group" aria-label="Filtrar preguntas" class="mb-7 flex flex-wrap gap-2" data-faq-tabs>
         {
           tabs.map(([id, name], k) => (
             <button
@@ -47,7 +60,7 @@ const ld = faqLd(faqs.map((f) => ({ q: f.data.question, a: f.data.answer })));
             </button>
           ))
         }
-      </div>
+      </div>)}
       <div class="rounded-[22px] border border-line bg-white p-5 shadow-[0_10px_30px_rgb(14_26_79/0.06)]">
         <p class="mb-3 font-extrabold text-navy">¿No encuentras tu respuesta?</p>
         <a href={whatsappUrl('Hola NEXOS, tengo una consulta:')} class="press inline-flex min-h-11.5 items-center rounded-full bg-green-dark px-5 text-sm font-extrabold text-white" data-track="whatsapp_click">

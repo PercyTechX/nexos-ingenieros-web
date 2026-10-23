@@ -1,0 +1,32 @@
+---
+/** Banda oscura de cabecera para páginas internas (proyectos, fichas, servicios): fondo ink con puntos y brillos de marca. */
+interface Props {
+  class?: string;
+}
+const { class: className = '' } = Astro.props;
+---
+
+<section class:list={['band relative px-5 pt-30 text-white sm:pt-34', className]}>
+  <div class="mx-auto max-w-310">
+    <slot />
+  </div>
+</section>
+
+<style>
+  .band {
+    background-color: var(--color-ink);
+    background-image:
+      var(--dots-blue),
+      var(--dots-green),
+      radial-gradient(50% 70% at 85% 10%, rgb(29 79 160 / 0.55), transparent 70%),
+      radial-gradient(35% 50% at 0% 100%, rgb(63 165 53 / 0.18), transparent 70%);
+    background-size:
+      var(--dots-size),
+      100% 100%,
+      100% 100%;
+    background-position:
+      var(--dots-position),
+      0 0,
+      0 0;
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+/** Portada del blog con paginación: /blog/, /blog/2/, … */
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import BlogListing from '../../components/blog/BlogListing.astro';
+import Cotizar from '../../components/home/Cotizar.astro';
+import { getPosts } from '../../lib/blog';
+import { breadcrumbLd } from '../../lib/schema';
+
+export const getStaticPaths = (async ({ paginate }) => paginate(await getPosts(), { pageSize: 13 })) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+const first = page.currentPage === 1;
+const title = first ? 'Blog de mantenimiento, obras e ITSE en Perú' : `Blog de mantenimiento, obras e ITSE · Página ${page.currentPage}`;
+const description =
+  'Guías prácticas sobre certificado ITSE, pozo a tierra, tableros eléctricos, mantenimiento de locales, implementación de tiendas y obras, con normas vigentes.';
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  noindex={page.data.length === 0}
+  jsonLd={breadcrumbLd([
+    { name: 'Inicio', url: '/' },
+    { name: 'Blog', url: '/blog/' },
+  ])}
+>
+  <Header slot="header" />
+  <BlogListing
+    eyebrow="Blog · NEXOS Ingenieros"
+    h1="Guías de mantenimiento, obras e ITSE para empresas"
+    intro="Respondemos lo que más preguntan los responsables de locales, oficinas y plantas: qué exige la norma, cada cuánto hacer cada trabajo, cuánto cuesta y cómo prepararte para Defensa Civil."
+    posts={page.data}
+    total={page.total}
+    crumbs={first ? [{ name: 'Inicio', url: '/' }, { name: 'Blog' }] : [{ name: 'Inicio', url: '/' }, { name: 'Blog', url: '/blog/' }, { name: `Página ${page.currentPage}` }]}
+    page={{ current: page.currentPage, last: page.lastPage, prev: page.url.prev, next: page.url.next }}
+  />
+  <Cotizar />
+  <Footer slot="footer" />
+</BaseLayout>

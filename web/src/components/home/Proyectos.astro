@@ -5,6 +5,7 @@ import { getCollection } from 'astro:content';
 import SectionHeading from '../ui/SectionHeading.astro';
 import MapaObras from '../islands/MapaObras.svelte';
 import { CITIES, PERU_PATH, PERU_VIEWBOX } from '../../data/peru-map';
+import { placeLabel } from '../../lib/proyectos';
 
 const label = { mant: 'Mantenimiento', retail: 'Retail', obras: 'Obras e ingeniería', indeci: 'INDECI · ITSE' };
 const entries = (await getCollection('proyectos')).sort((a, b) => a.data.order - b.data.order);
@@ -15,7 +16,7 @@ const works = await Promise.all(
       id: e.id,
       title: e.data.title,
       client: e.data.client,
-      place: e.data.place,
+      place: placeLabel(e.data),
       type: e.data.type,
       city: e.data.city,
       pillar: e.data.pillar,

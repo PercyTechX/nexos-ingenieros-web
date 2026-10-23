@@ -1,0 +1,72 @@
+---
+/**
+ * Índice de servicios (/servicios/): banda con H1 y accesos a los 4 servicios · tarjetas de los pilares (las del Inicio)
+ * · cómo trabajamos · cotizador.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import PageBand from '../../components/ui/PageBand.astro';
+import Icon from '../../components/ui/Icon.astro';
+import { ICON } from '../../components/ui/icons';
+import Servicios from '../../components/home/Servicios.astro';
+import ComoTrabajamos from '../../components/home/ComoTrabajamos.astro';
+import Cotizar from '../../components/home/Cotizar.astro';
+import { PILLARS } from '../../config/site';
+import { breadcrumbLd } from '../../lib/schema';
+
+const crumbs = [{ name: 'Inicio', url: '/' }, { name: 'Servicios' }];
+const jsonLd = breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: 'Servicios', url: '/servicios/' }]);
+---
+
+<BaseLayout
+  title="Servicios de mantenimiento, obras e ITSE"
+  description="Mantenimiento de locales comerciales, implementación de tiendas, obras civiles e ingeniería y levantamiento de observaciones ITSE en Lima, Ica y provincias."
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+
+  <PageBand class="pb-[clamp(40px,6vw,72px)]">
+    <Breadcrumb items={crumbs} class="mb-5" />
+    <p class="eyebrow mb-3.5 text-green-light">Nuestros servicios</p>
+    <h1 class="mb-5 max-w-[22ch] text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.03] font-extrabold tracking-tight-display text-balance">
+      Mantenimiento, implementación, obras y <span class="text-green-light">certificado ITSE</span>
+    </h1>
+    <p class="mb-9 max-w-150 text-lg leading-[1.7] text-on-dark">
+      Cuatro servicios con un solo equipo responsable, para locales comerciales, oficinas y plantas industriales en Lima, Ica y provincias.
+    </p>
+    <ul class="m-0 grid list-none gap-2.5 p-0 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        PILLARS.map((p) => (
+          <li>
+            <a href={`/servicios/${p.slug}/`} class="jump press flex h-full items-center gap-3 rounded-[18px] border border-white/14 bg-white/6 p-4 backdrop-blur">
+              <span class="text-[22px] leading-none font-extrabold text-green-light">{p.num}</span>
+              <span class="text-[15px] leading-snug font-bold">{p.short}</span>
+              <Icon d={ICON.arrow} size={16} stroke={2.4} class="ml-auto flex-none text-green-light" />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </PageBand>
+
+  <Servicios />
+  <ComoTrabajamos />
+  <Cotizar />
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .jump {
+    transition:
+      background-color 220ms ease-out,
+      border-color 220ms ease-out;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .jump:hover {
+      background: rgb(255 255 255 / 0.12);
+      border-color: rgb(143 216 138 / 0.5);
+    }
+  }
+</style>

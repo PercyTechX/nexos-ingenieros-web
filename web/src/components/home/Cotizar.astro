@@ -10,6 +10,11 @@ const channels = [
   { href: whatsappUrl(), label: 'WhatsApp', icon: ICON.whatsapp, pos: 'left-[26%] top-[46%]', delay: '-1.5s', main: true, track: 'whatsapp_click' },
   { href: SITE.phoneHref, label: 'Llamar', icon: ICON.phone, pos: 'left-[50%] top-[6%]', delay: '-3s', track: 'telefono_click' },
 ];
+interface Props {
+  /** Pilar preseleccionado en el cotizador (páginas de servicio). */
+  service?: string;
+}
+const { service } = Astro.props;
 const checks = ['Te responde nuestro equipo técnico', 'Visita técnica y propuesta a medida', 'Atención en Lima, Ica y provincias'];
 ---
 
@@ -47,7 +52,7 @@ const checks = ['Te responde nuestro equipo técnico', 'Visita técnica y propue
       </div>
     </div>
     <div class="min-w-0 flex-[1_1_480px] max-sm:-mx-1 sm:rounded-[26px] sm:border sm:border-white/18 sm:bg-linear-to-br sm:from-blue sm:to-blue-deep sm:p-[clamp(16px,2vw,24px)] sm:shadow-[0_24px_60px_rgb(0_0_0/0.3)]">
-      <Cotizador client:visible whatsapp={SITE.whatsapp} />
+      <Cotizador client:visible whatsapp={SITE.whatsapp} initial={service} />
     </div>
   </div>
 </section>

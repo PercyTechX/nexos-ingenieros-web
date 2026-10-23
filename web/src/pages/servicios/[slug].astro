@@ -1,0 +1,42 @@
+---
+/**
+ * Página de servicio (una por pilar). Plantilla elegida en la F3.1: variante "Recorrido técnico".
+ * Contenido en src/data/servicios.ts. Orden: hero · especialidades · cómo trabajamos · proyectos · FAQ · cotizador.
+ */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import HeroSplit from '../../components/servicio/HeroSplit.astro';
+import SubPestanas from '../../components/servicio/SubPestanas.astro';
+import ProyectosServicio from '../../components/servicio/ProyectosServicio.astro';
+import ComoTrabajamos from '../../components/home/ComoTrabajamos.astro';
+import Faq from '../../components/home/Faq.astro';
+import Cotizar from '../../components/home/Cotizar.astro';
+import { PILLARS } from '../../config/site';
+import { SERVICE_CONTENT } from '../../data/servicios';
+import { breadcrumbLd, serviceLd } from '../../lib/schema';
+
+export function getStaticPaths() {
+  return PILLARS.filter((p) => SERVICE_CONTENT[p.id]).map((p) => ({ params: { slug: p.slug }, props: { pillar: p } }));
+}
+
+const { pillar } = Astro.props;
+const c = SERVICE_CONTENT[pillar.id]!;
+const url = `/servicios/${pillar.slug}/`;
+const crumbs = [{ name: 'Inicio', url: '/' }, { name: 'Servicios', url: '/servicios/' }, { name: pillar.short }];
+const jsonLd = [
+  breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: 'Servicios', url: '/servicios/' }, { name: pillar.short, url }]),
+  serviceLd({ name: c.h1, description: c.description, url, serviceType: pillar.name }),
+];
+---
+
+<BaseLayout title={c.title} description={c.description} jsonLd={jsonLd}>
+  <Header slot="header" />
+  <HeroSplit content={c} subs={c.subs} crumbs={crumbs} />
+  <SubPestanas eyebrow={c.subsEyebrow} subs={c.subs} sectors={c.sectors} />
+  <ComoTrabajamos />
+  <ProyectosServicio pillar={pillar.id} eyebrow={c.projectsEyebrow} layout="carrusel" />
+  <Faq pillar={pillar.id} eyebrow={c.faqEyebrow} intro={c.faqIntro} />
+  <Cotizar service={pillar.id} />
+  <Footer slot="footer" />
+</BaseLayout>

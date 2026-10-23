@@ -16,6 +16,7 @@ const proyectos = defineCollection({
     z.object({
       pillar,
       title: z.string(),
+      seoTitle: z.string().max(46).optional(), // <title> cuando el título es muy largo
       client: z.string(), // cliente final (lo que se publica)
       clientInternal: z.string(), // incluye intermediario: NO se publica
       place: z.string(),
@@ -44,6 +45,7 @@ const faq = defineCollection({
     answer: z.string(),
     needsValidation: z.boolean(),
     order: z.number(),
+    home: z.boolean().default(true), // false: solo en la página de su servicio
   }),
 });
 

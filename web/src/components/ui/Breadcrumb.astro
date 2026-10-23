@@ -1,0 +1,31 @@
+---
+/** Ruta de navegación visible (el JSON-LD BreadcrumbList lo arma la página con breadcrumbLd). */
+interface Props {
+  items: { name: string; url?: string }[];
+  tone?: 'light' | 'dark';
+  class?: string;
+}
+const { items, tone = 'dark', class: className = '' } = Astro.props;
+const dark = tone === 'dark';
+---
+
+<nav aria-label="Ruta de navegación" class={className}>
+  <ol class:list={['m-0 flex list-none flex-wrap items-center gap-x-2 gap-y-1 p-0 text-[13px] font-semibold', dark ? 'text-on-dark-muted' : 'text-subtle']}>
+    {
+      items.map((it, k) => (
+        <li class="flex items-center gap-2">
+          {k > 0 && <span aria-hidden="true" class={dark ? 'text-white/30' : 'text-line'}>/</span>}
+          {it.url ? (
+            <a href={it.url} class:list={['transition-colors', dark ? 'hover:text-white' : 'hover:text-navy']}>
+              {it.name}
+            </a>
+          ) : (
+            <span aria-current="page" class={dark ? 'text-green-light' : 'text-green-dark'}>
+              {it.name}
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</nav>

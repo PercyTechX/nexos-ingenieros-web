@@ -1,0 +1,136 @@
+---
+/**
+ * Ficha de proyecto (una por obra), según la maqueta "Ficha de proyecto" aprobada en Claude Design.
+ * Banda oscura con ruta, H1 y etiquetas · galería · sobre el proyecto + datos + CTA · más proyectos del pilar.
+ * Se publica solo el cliente final (`client`); los datos "por confirmar" no se muestran (docs/SPEC.md §4).
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import PageBand from '../../components/ui/PageBand.astro';
+import Icon from '../../components/ui/Icon.astro';
+import { ICON } from '../../components/ui/icons';
+import Galeria from '../../components/proyecto/Galeria.astro';
+import ProyectosServicio from '../../components/servicio/ProyectosServicio.astro';
+import { PILLARS, whatsappUrl } from '../../config/site';
+import { breadcrumbLd } from '../../lib/schema';
+import { CITY, isKnown } from '../../lib/proyectos';
+
+export async function getStaticPaths() {
+  const proyectos = await getCollection('proyectos');
+  return proyectos.map((p) => ({ params: { id: p.id }, props: { p } }));
+}
+
+const { p } = Astro.props;
+const d = p.data;
+const pillar = PILLARS.find((x) => x.id === d.pillar)!;
+const city = CITY[d.city];
+const place = isKnown(d.place) ? d.place : '';
+
+const facts = [
+  { label: 'Cliente', value: d.client },
+  { label: 'Ubicación', value: place || city },
+  { label: 'Servicio', value: pillar.short, href: `/servicios/${pillar.slug}/` },
+  { label: 'Trabajo', value: d.type },
+];
+
+const base = `${d.type} para ${d.client}`;
+const tail = ' Proyecto ejecutado por NEXOS Ingenieros.';
+const more = ' Mira las fotos y el alcance del trabajo.';
+// La más completa que quepa en 160 caracteres (docs/SEO.md §2: 140–160)
+const description =
+  [
+    `${base} en ${place || city}.${tail}${more}`,
+    `${base} en ${city}.${tail}${more}`,
+    `${base} en ${place || city}.${tail}`,
+    `${base} en ${city}.${tail}`,
+    `${base} en ${city}.`,
+  ].find((t) => t.length <= 160) ?? `${base}.`;
+const crumbs = [{ name: 'Inicio', url: '/' }, { name: 'Proyectos', url: '/proyectos/' }, { name: d.title }];
+const jsonLd = breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: 'Proyectos', url: '/proyectos/' }, { name: d.title, url: `/proyectos/${p.id}/` }]);
+---
+
+<BaseLayout title={d.seoTitle ?? d.title} description={description} jsonLd={jsonLd} image={d.cover.src} type="article">
+  <Header slot="header" />
+
+  <PageBand class="pb-[clamp(140px,18vw,240px)]">
+      <Breadcrumb items={crumbs} class="mb-5" />
+      <p class="eyebrow mb-3.5 text-green-light">{pillar.name}</p>
+      <h1 class="mb-5 max-w-[22ch] text-[clamp(2rem,4.4vw,3.75rem)] leading-[1.05] font-extrabold tracking-tight-display text-balance">{d.title}</h1>
+      <ul class="m-0 flex list-none flex-wrap gap-2 p-0">
+        <li class="chip"><span class="text-on-dark-muted">Cliente</span> {d.client}</li>
+        <li class="chip"><Icon d={ICON.pin} size={14} class="text-green-light" /> {place || city}</li>
+        <li class="chip border-green-light/40 text-green-light">{pillar.short}</li>
+      </ul>
+  </PageBand>
+
+  <div class="relative z-[1] mx-auto -mt-[clamp(110px,15vw,200px)] max-w-310 px-5">
+    <Galeria images={[d.cover, ...d.gallery]} alt={`${d.type} — ${d.title}`} />
+  </div>
+
+  <section class="px-5 py-[clamp(48px,6vw,80px)]">
+    <div class="mx-auto grid max-w-310 items-start gap-[clamp(28px,4vw,56px)] lg:grid-cols-[1fr_380px]">
+      <div class="min-w-0">
+        <h2 class="mb-4 text-[clamp(26px,3vw,38px)] leading-[1.12] font-extrabold tracking-tight-display text-navy">
+          <span class="eyebrow mb-3 text-green-dark">Sobre el proyecto</span>
+          {d.type} para <span class="text-green">{d.client}</span>
+        </h2>
+        <p class="m-0 max-w-170 text-[17px] leading-[1.75] text-muted">{d.description}</p>
+        <a href={`/servicios/${pillar.slug}/`} class="mt-7 inline-flex items-center gap-2 font-extrabold text-blue">
+          Conoce nuestro servicio de {pillar.short.toLowerCase()} <Icon d={ICON.arrow} size={16} stroke={2.4} />
+        </a>
+      </div>
+
+      <aside class="rounded-xl2 border border-line bg-surface p-6 sm:p-7 lg:sticky lg:top-28">
+        <h2 class="mb-4 text-lg font-extrabold text-navy">Datos del proyecto</h2>
+        <dl class="m-0 mb-6 grid grid-cols-[96px_1fr] gap-x-3 gap-y-3 text-[15px]">
+          {
+            facts.map((f) => (
+              <>
+                <dt class="text-subtle">{f.label}</dt>
+                <dd class="m-0 font-bold text-navy">
+                  {f.href ? <a href={f.href} class="text-blue underline-offset-4 hover:underline">{f.value}</a> : f.value}
+                </dd>
+              </>
+            ))
+          }
+        </dl>
+        <div class="border-t border-line pt-5">
+          <p class="mb-3.5 text-[17px] font-extrabold text-navy">¿Necesitas algo similar?</p>
+          <div class="flex flex-wrap gap-2.5">
+            <a href={`/?servicio=${pillar.id}#cotizar`} class="press inline-flex min-h-12 items-center gap-2 rounded-full bg-green-dark px-5 text-sm font-extrabold text-white">
+              Cotiza tu proyecto <Icon d={ICON.arrow} size={15} stroke={2.4} />
+            </a>
+            <a
+              href={whatsappUrl(`Hola NEXOS, vi el proyecto "${d.title}" y necesito algo similar.`)}
+              data-track="whatsapp_click"
+              class="press inline-flex min-h-12 items-center gap-2 rounded-full border-2 border-line bg-white px-5 text-sm font-extrabold text-navy"
+            >
+              <Icon d={ICON.whatsapp} size={16} /> WhatsApp
+            </a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <ProyectosServicio pillar={d.pillar} exclude={p.id} eyebrow={`Proyectos de ${pillar.name.toLowerCase()}`} hook="Más proyectos de" accent={pillar.short.toLowerCase()} layout="carrusel" bg="surface" />
+
+  <Footer slot="footer" />
+</BaseLayout>
+
+<style>
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    border: 1px solid rgb(255 255 255 / 0.16);
+    border-radius: 999px;
+    background: rgb(255 255 255 / 0.06);
+    padding: 0.45rem 0.9rem;
+    font-size: 13px;
+    font-weight: 700;
+  }
+</style>

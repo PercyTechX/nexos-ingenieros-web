@@ -36,3 +36,5 @@
 | 17 | "Visita técnica sin compromiso" (¿es gratuita?) y plazo de respuesta del cotizador | Alta |
 | 18 | Descripciones de las 4 normas ISO en la sección Certificaciones | Media |
 | 19 | Política de privacidad (la redactamos nosotros y la aprueba el cliente) | Alta |
+| 20 | Textos de las 4 páginas de servicio (`web/src/data/servicios.ts`). Las preguntas faq-12 a faq-14 ya las validó el usuario (2026-10-22) | Alta |
+| 21 | Fotos en alta resolución (2 000 px o más) de 2–3 obras emblemáticas por servicio; hoy las originales llegan a 1 600 px. Falta una foto real de un sistema contra incendio | Media |

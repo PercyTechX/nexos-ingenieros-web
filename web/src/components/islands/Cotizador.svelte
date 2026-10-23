@@ -2,12 +2,12 @@
   /**
    * Cotizador: ¿qué necesitas? + razón social*, RUC (opcional, 11 dígitos), correo* → abre WhatsApp con el mensaje.
    * No guarda datos. Dispara el evento de analítica `cotizacion_enviada` si GA4 está cargado.
-   * Admite preselección por URL: ?servicio=mant|retail|obras|indeci
+   * Admite preselección por prop `initial` (páginas de servicio) o por URL: ?servicio=mant|retail|obras|indeci
    */
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
-  let { whatsapp }: { whatsapp: string } = $props();
+  let { whatsapp, initial = '' }: { whatsapp: string; initial?: string } = $props();
 
   const NEEDS = [
     { id: 'mant', code: 'MT', label: 'Mantenimiento de locales' },
@@ -16,7 +16,7 @@
     { id: 'indeci', code: 'IT', label: 'Observaciones INDECI / ITSE' },
   ];
 
-  let need = $state('');
+  let need = $state(initial);
   let company = $state('');
   let ruc = $state('');
   let email = $state('');

@@ -356,3 +356,109 @@ Idea para el plan SEO: una página por pilar, optimizada para sus 2 frases, más
   - **Orden intercalado por pilar** (mant, ITSE, retail, obras…), así las 6 visibles incluyen "¿Qué es el Certificado ITSE?" y "¿ITSE es lo mismo que Defensa Civil?".
   - **Columna izquierda fija** en escritorio (`lg:sticky`). La sección pasa de `overflow-hidden` a `overflow-clip` para que sticky funcione.
   - La sección baja de ~2 pantallazos a ~1 en laptop.
+- **F2 subida a GitHub** (pedido del usuario): commit 4c3abfe en `develop` y `main` (avance rápido). GitHub Actions compiló bien en las dos ramas. No despliega todavía porque faltan los secrets de Yachay.
+
+## F3 · Servicios y Proyectos (inicio 2026-10-22)
+- **Plan F3 aprobado:** 3.1 plantilla de servicio (2 variantes) → 3.2 contenido de los 4 servicios → 3.3 fichas de proyecto (30) → 3.4 listado /proyectos/ → 3.5 enlaces, datos estructurados y evaluación UX/SEO.
+- **F3.1 – 2 variantes de la plantilla, probadas con Mantenimiento** (páginas temporales `noindex`: `/prueba-servicio-1/` y `/prueba-servicio-2/`):
+  - **V1 "Catálogo":** hero con foto real a todo el ancho (Scotiabank) y velo oscuro con puntos · especialidades en tarjetas 2×2 con foto, ícono, H3 y lista · proyectos en cuadrícula de 4 · Cómo trabajamos · FAQ del servicio · cotizador.
+  - **V2 "Recorrido técnico":** hero partido con el tablero recortado dentro del anillo y las 4 especialidades flotando · especialidades en pestañas (escritorio) que en móvil se apilan · Cómo trabajamos · proyectos en carrusel con flechas · FAQ · cotizador.
+  - **Piezas nuevas:** `src/data/servicios.ts` (contenido por pilar, por ahora solo `mant`), `components/servicio/` (HeroFoto, HeroSplit, SubTarjetas, SubPestanas, ProyectosServicio), `ui/Breadcrumb.astro` y `serviceLd()` en `schema.ts`. La FAQ acepta `pillar`, `eyebrow` e `intro`; el cotizador acepta `service` para preseleccionar el pilar. Cómo trabajamos tiene ahora el margen vertical unificado.
+  - **SEO de la página:** title "Mantenimiento de locales y oficinas en Lima | NEXOS Ingenieros", meta de 157 caracteres, H1 "Mantenimiento de locales comerciales y oficinas en Lima", H3 por especialidad con búsquedas secundarias, JSON-LD Service + BreadcrumbList + FAQPage.
+  - **Observaciones:** las fotos originales del cliente miden como máximo 1600 px (en un hero a todo el ancho se ven algo suaves); no hay foto real de contra incendio (se usa el objeto recortado); el pilar Mantenimiento tiene solo 2 preguntas en la FAQ (se amplía en la F3.2).
+- **Blog: investigación y 33 borradores** (2026-10-22, pedido del usuario).
+  - **Investigación:** 5 agentes investigaron qué buscan las empresas en Google Perú sobre cada familia de servicios (eléctrico, mantenimiento general, retail, ingeniería y obras, ITSE). Usaron unas 1 500 consultas al autocompletado, búsquedas web y normativa verificada (D.S. 002-2018-PCM, A.130, Anexos de CENEPRED, Ley 32069 y su Reglamento, TUO Ley 28976, RM 175-2008-MEM/DM, SUNAT). Informes en `trabajo/investigacion-blog/`.
+  - **Calendario unificado:** 33 artículos sin repeticiones (`CALENDARIO.md`). 8 temas quedan en espera porque dependen del cliente (termografía, plan de seguridad, extintores, entre otros). `docs/SEO.md` §5 actualizado.
+  - **Redacción:** 6 agentes redactaron los 33 artículos en `web/src/content/blog/`, como borradores (`draft: true`, `validatedByClient: false`).
+    - Pasan `astro sync`.
+    - No hay H1 en el cuerpo.
+    - No aparecen nombres de intermediarios.
+    - Todos los enlaces internos a blog y proyectos existen.
+  - **Hallazgos clave:**
+    - El certificado ITSE dura 2 años.
+    - El plazo para subsanar es de 20 días hábiles (3 días en la ITSE posterior).
+    - El pozo a tierra debe dar ≤25 Ω, medirse cada año y llevar la firma de un ingeniero CIP.
+    - La A.130 está en consulta para modificarse (RM 264-2026-VIVIENDA).
+    - Las empresas buscan documentos (protocolo, plan, informe, formato) y costos.
+  - **Pendientes del cliente:** 126 puntos en `PENDIENTES-BLOG.md`.
+    - 27 son rangos de precio.
+    - 2 son casos propios: contra incendio y cambio de puerta enrollable.
+    - El resto es validación normativa y de alcance.
+    - El de detracción lo debe revisar un contador; los de la Ley 32069, un abogado.
+    - Varias portadas son de proyectos con `pending: true`.
+- **F3.1 decidida:** el usuario elige la **variante 2 "Recorrido técnico"**. Se borran las páginas de prueba y la variante 1 (HeroFoto, SubTarjetas).
+- **F3.2 – contenido de los 4 servicios** (`src/data/servicios.ts`) y ruta definitiva `src/pages/servicios/[slug].astro` (4 páginas generadas):
+  - Por servicio: title (59–62 caracteres con la marca), meta (154–158), H1 con la búsqueda principal, intro, 3 cifras, sectores, 4 especialidades (H3 + lista, del documento del cliente) con fotos reales de obras, proyectos del pilar en carrusel, FAQ del pilar y cotizador preseleccionado.
+  - **Fotos de especialidades:** Retail (MINISO Plaza Norte, ÉL Chincha, La Tinka), Obras (POMICA, UNALM, CANVIA; expedientes con el ingeniero recortado), ITSE (Integratel Chimbote y Cusco, Siemens Energy).
+  - **FAQ:** 6 preguntas nuevas (faq-12 a faq-17), 2 por servicio en Mantenimiento, Retail y Obras; campo `home: false` para que no alarguen la FAQ del Inicio. Las de criterio técnico quedan marcadas por validar.
+  - H1 del hero de servicio más chico (`clamp(2.25rem, min(4.3vw, 7svh), 4rem)` + `text-balance`) y etiquetas cortas (`chip`) para las especialidades flotantes.
+  - Pendientes del cliente #20 (validar textos) y #21 (fotos en alta resolución) agregados.
+  - Falta la página índice `/servicios/` (la ruta de navegación ya la enlaza): va en la F3.5.
+- **Plantilla del blog construida** (2026-10-22, pedido del usuario: "sigue para verlos en la web").
+  - **Rutas:**
+    - `/blog/`, paginado con `src/pages/blog/[...page].astro`: 1 destacado + 12 por página.
+    - `/blog/categoria/<slug>/`, una por pilar: mantenimiento, implementacion-retail, obras-e-ingenieria, itse-defensa-civil.
+    - `/blog/<slug>/`.
+  - **Componentes:** `components/blog/PostCard.astro` y `BlogListing.astro`; utilidades en `src/lib/blog.ts`; estilos del cuerpo en `src/styles/article.css` (`.prose-nexos`).
+  - **Página del artículo:**
+    - hero oscuro con ruta, categoría, H1, resumen, fecha y minutos de lectura;
+    - portada superpuesta;
+    - 3 columnas: índice que sigue la lectura (cerrado en móvil), cuerpo y tarjeta de CTA fija (cotizador con el pilar preseleccionado, WhatsApp con el título del artículo y enlace al servicio);
+    - debajo: proyectos relacionados, "Sigue leyendo" (3 del mismo pilar) y Cotizar;
+    - el CTA del medio del Markdown (párrafo en negrita con enlace al cotizador) se muestra como caja verde;
+    - JSON-LD de `BlogPosting` y `BreadcrumbList`.
+  - **Borradores:**
+    - Se generan en cualquier build local (`npm run dev` y `npm run build`), para revisarlos. El despliegue de GitHub Actions (`CI=true`) no los incluye, y `PUBLIC_HIDE_DRAFTS=true` los oculta también en local. Antes solo se veían con un comando aparte, y otra sesión los borraba al recompilar con `npm run build`.
+    - Llevan `noindex`, una etiqueta "Borrador" y un aviso, y los comentarios `VALIDAR` / `PRECIO CLIENTE` / `CASO CLIENTE` / `FUENTES` se ven como notas amarillas.
+  - **Orden:** con la misma fecha se ordenan según el calendario de publicación (`PRIORITY` en `lib/blog.ts`).
+  - **Pendiente menor:** en producción, mientras no haya artículos publicados, `/blog/` y las categorías salen vacías con `noindex`, pero siguen en el sitemap.
+  - **Verificado:** `astro check` sin errores; capturas en 1440 y 390 px. Bug corregido: el preflight de Tailwind quitaba las viñetas de las listas.
+- **FAQ validadas por el usuario:** faq-12 (sí, sin cerrar el local), faq-13 (alta demanda: cada 3 a 6 meses) y faq-14 (depende de los m²). Pasan a `needsValidation: false`.
+- **F3.3 – fichas de proyecto** (`src/pages/proyectos/[id].astro`, **30 páginas**), según la maqueta "Ficha de proyecto" aprobada:
+  - Banda oscura con puntos (ruta, pilar, H1, etiquetas de cliente, ubicación y servicio) · **galería** (`components/proyecto/Galeria.astro`: scroll-snap deslizable, flechas, contador, miniaturas, fondo difuminado de la misma foto para las verticales, la primera foto con prioridad) · "Sobre el proyecto" (H2 "<trabajo> para <cliente>", descripción y enlace al servicio) · tarjeta fija "Datos del proyecto" + "¿Necesitas algo similar?" (cotizador del Inicio con el pilar preseleccionado y WhatsApp con el nombre de la obra) · "Más proyectos de <pilar>" en carrusel.
+  - **SEO:** title = nombre de la obra (+ `seoTitle` en las 2 que pasaban de 65 caracteres), meta generada "<trabajo> para <cliente> en <lugar>. Proyecto ejecutado por NEXOS Ingenieros." (≤ 160), og:image = portada, BreadcrumbList.
+  - **Datos:** solo el cliente final; la ubicación "Por confirmar" (CANVIA) se reemplaza por la ciudad.
+  - **12 descripciones reescritas** como texto publicable (antes decían "Se observan…" o "[POR CONFIRMAR…]"), sin datos nuevos. Siguen marcadas `pending` las que el cliente debe confirmar.
+  - Las tarjetas de proyectos (servicio y ficha) muestran ahora el **nombre de la obra** como título y el tipo de trabajo debajo (antes se repetía el mismo tipo en 7 tarjetas).
+- **F3.4 – listado `/proyectos/`** (`src/pages/proyectos/index.astro`):
+  - Banda oscura con ruta, H1 "Proyectos de mantenimiento y construcción en todo el Perú", marcas destacadas y cifras calculadas (30 proyectos · 6 ciudades · 4 servicios).
+  - **Filtro por servicio** con contador por pilar (Todos 30 · Mantenimiento 8 · Retail 11 · Obras 8 · ITSE 3), barra fija bajo el header al bajar, texto "Mostrando N proyectos", entrada suave de las tarjetas. Se puede abrir filtrado con `?servicio=` (la URL se actualiza al filtrar). Sin JS se ven todos.
+  - Cuadrícula de 1/2/3/4 columnas y cotizador al final. Title "Proyectos de mantenimiento y obras en Perú | NEXOS Ingenieros", meta de 146.
+  - **Refactor:** tarjeta común `components/proyecto/ProyectoCard.astro` (listado, servicios y fichas) y `src/lib/proyectos.ts` (`CITY`, `isKnown`, `placeLabel`). La regla "no publicar datos por confirmar" vale ahora también en las tarjetas y en el mapa del Inicio (CANVIA mostraba "Por confirmar").
+- **F3.5 – cierre de la F3 (en curso):**
+  - **`/servicios/`** (`src/pages/servicios/index.astro`): banda oscura con H1 "Mantenimiento, implementación, obras y certificado ITSE", accesos rápidos a los 4 servicios, tarjetas de servicios del Inicio, Cómo trabajamos y cotizador. Title "Servicios de mantenimiento, obras e ITSE | NEXOS Ingenieros", meta de 157.
+  - **Refactor:** `components/ui/PageBand.astro` (banda oscura común de `/servicios/`, `/proyectos/` y fichas).
+  - **Auditoría automática del sitio compilado** (enlaces internos, anclas, H1 único, title, meta, alt, JSON-LD): servicios y proyectos sin errores. Metas de fichas ajustadas a 128–160. Enlaces rotos restantes: solo `/nosotros/` y `/politica-de-privacidad/` (F4).
+  - **Hallazgos del blog** (trabajo de la otra sesión, no se tocó): 32 titles de 67–86 caracteres con la marca y 9 metas de 161–165.
+  - Agentes `ux-ui-evaluador` y `seo-evaluador` lanzados sobre las páginas de la F3 (informes en `trabajo/evaluaciones/*-F3-2026-10-22.md`).
+- **Evaluaciones de la F3** (2026-10-22/23; informes completos en `trabajo/evaluaciones/`):
+  - **SEO** (`SEO-F3-2026-10-22.md`, ~155 consultas al autocompletado de Google Perú). Nota: servicios 7/10, fichas 4/10.
+    - **Alta:**
+      - A1 canibalización Mantenimiento ↔ Inicio (propone empezar el servicio por "oficinas": title "Mantenimiento de oficinas y locales en Lima");
+      - A2 el CTA de las fichas debe ir a `/servicios/<slug>/#cotizar` y no al Inicio;
+      - A3 enlace de la ficha a su servicio con la búsqueda principal (hoy "servicio de indeci · itse");
+      - A4 title de fichas con el patrón `<trabajo> <marca> <lugar>` (el informe trae los 30 propuestos);
+      - A5 descripciones duplicadas (MASS ×5, La Tinka ×2, MINISO ×2): hacen falta frases únicas o agruparlas (lo decide el cliente);
+      - A6 falta "protocolo, medición y certificado de pozo a tierra" en la página ITSE.
+    - **Media:**
+      - M1 Obras: "obras civiles e industriales" en title y H1;
+      - M2 H3 de especialidades con la frase que la gente busca;
+      - M3 eyebrows de Cómo trabajamos y del cotizador por servicio;
+      - M4 metas de fichas (distrito que se pierde, "Santiago, Ica, Ica", final repetido);
+      - M5 `galleryAlt` por foto;
+      - M6 enlaces cruzados entre servicios;
+      - M7 tipo de trabajo en el H1 de la ficha.
+    - **Para la sesión del blog:** el artículo `levantamiento-de-observaciones-itse` puede competir con la página de servicio ITSE.
+  - **UX/UI** (`UX-UI-F3-2026-10-22.md`, 9 tamaños e interacciones probadas con clics reales). Pestañas, carrusel, galería y filtro funcionan; no hay scroll horizontal.
+    - **Alta:**
+      - A1 la galería de la ficha hace bajar la página al cargar (132–444 px) y salta a las miniaturas al cambiar de foto: `scrollIntoView` en `Galeria.astro`. Hay que mover solo la fila de miniaturas.
+    - **Media:**
+      - M1 las cifras del hero de Retail se parten en 2 filas;
+      - M2 en móvil las cifras del hero de servicio se apilan (hero de ~1 310 px);
+      - M3 el botón WhatsApp del cotizador se desborda en móvil (componente compartido);
+      - M4 la galería mide ~750 px en laptops (limitar a `min(68svh,700px)`);
+      - M5 el difuminado de las fotos verticales se ve apagado;
+      - M6 `/proyectos/` en móvil mide ~16 700 px (mostrar 8 y "Ver los 30");
+      - M7 el alto de las pestañas cambia y empuja la página.
+    - **Baja:** 13 puntos, entre ellos el espacio que falta en "Lo hacemos en:Agencias", la etiqueta del pilar repetida en la FAQ de servicio y las flechas del carrusel que no se desactivan al final.
+- **Punto de retorno (2026-10-23):** la F3 está construida (`/servicios/`, 4 servicios, `/proyectos/` y 30 fichas). **Lo siguiente:** el usuario decide qué hallazgos aplicar (recomendación: todas las altas y medias de UX y SEO, salvo A4, A5 y A1 de SEO, que necesitan su decisión o la del cliente). Después: cierre de la F3 y la F4 (Nosotros, Contacto, legales, 404).

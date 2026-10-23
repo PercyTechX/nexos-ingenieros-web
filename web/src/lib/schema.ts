@@ -48,3 +48,19 @@ export const faqLd = (faqs: { q: string; a: string }[]) => ({
     acceptedAnswer: { '@type': 'Answer', text: f.a },
   })),
 });
+
+export const serviceLd = (s: { name: string; description: string; url: string; serviceType: string }) => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: s.name,
+  description: s.description,
+  serviceType: s.serviceType,
+  url: new URL(s.url, SITE.url).href,
+  provider: { '@id': `${SITE.url}/#organizacion` },
+  areaServed: [
+    { '@type': 'City', name: 'Lima' },
+    { '@type': 'City', name: 'Callao' },
+    { '@type': 'City', name: 'Ica' },
+    { '@type': 'Country', name: 'Perú' },
+  ],
+});

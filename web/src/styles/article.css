@@ -1,0 +1,192 @@
+/* Cuerpo de los artículos del blog (Markdown). Se importa solo en /blog/[slug]/. */
+.prose-nexos {
+  max-width: 46rem;
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-text);
+}
+.prose-nexos > :first-child {
+  margin-top: 0;
+}
+.prose-nexos > p:first-of-type {
+  font-size: 1.1875rem;
+  line-height: 1.7;
+  color: var(--color-navy);
+}
+.prose-nexos :is(p, ul, ol, table, blockquote, figure) {
+  margin: 0 0 1.4em;
+}
+.prose-nexos h2 {
+  margin: 2.4em 0 0.75em;
+  scroll-margin-top: 7rem;
+  font-size: clamp(1.5rem, 2.4vw, 2rem);
+  line-height: 1.18;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--color-navy);
+  text-wrap: balance;
+}
+.prose-nexos h2::before {
+  content: '';
+  display: block;
+  width: 2.5rem;
+  height: 4px;
+  margin-bottom: 0.9rem;
+  border-radius: 2px;
+  background: linear-gradient(90deg, var(--color-green), var(--color-blue));
+}
+.prose-nexos h3 {
+  margin: 1.9em 0 0.6em;
+  scroll-margin-top: 7rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  font-weight: 800;
+  color: var(--color-navy);
+}
+.prose-nexos h4 {
+  margin: 1.6em 0 0.5em;
+  font-size: 1.0625rem;
+  font-weight: 800;
+  color: var(--color-navy);
+}
+.prose-nexos strong {
+  font-weight: 750;
+  color: var(--color-navy);
+}
+.prose-nexos a {
+  font-weight: 650;
+  color: var(--color-blue);
+  text-decoration: underline;
+  text-decoration-color: rgb(29 79 160 / 0.35);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+  transition: text-decoration-color 200ms ease-out;
+}
+.prose-nexos a:hover {
+  text-decoration-color: var(--color-blue);
+}
+.prose-nexos :is(ul, ol) {
+  padding-left: 1.4em;
+}
+/* Tailwind (preflight) quita las viñetas: se restauran en el cuerpo del artículo */
+.prose-nexos ul {
+  list-style: disc;
+}
+.prose-nexos ol {
+  list-style: decimal;
+}
+.prose-nexos li {
+  margin: 0.4em 0;
+  padding-left: 0.2em;
+}
+.prose-nexos ul > li::marker {
+  color: var(--color-green);
+}
+.prose-nexos ol > li::marker {
+  font-weight: 800;
+  color: var(--color-blue);
+}
+.prose-nexos hr {
+  margin: 2.5em 0;
+  border: 0;
+  border-top: 1px solid var(--color-line);
+}
+.prose-nexos code {
+  padding: 0.1em 0.35em;
+  border-radius: 0.35em;
+  background: var(--color-surface);
+  font-size: 0.9em;
+}
+
+/* Avisos (> ...) */
+.prose-nexos blockquote {
+  padding: 1.1em 1.3em;
+  border-left: 4px solid var(--color-blue);
+  border-radius: 0 1rem 1rem 0;
+  background: var(--color-surface-blue);
+  color: var(--color-text);
+}
+.prose-nexos blockquote > :last-child {
+  margin-bottom: 0;
+}
+
+/* Tablas: desplazamiento horizontal en móvil */
+.prose-nexos table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  -webkit-overflow-scrolling: touch;
+}
+.prose-nexos :is(th, td) {
+  min-width: 9rem;
+  padding: 0.75em 1em;
+  border-bottom: 1px solid var(--color-line);
+  text-align: left;
+  vertical-align: top;
+}
+.prose-nexos thead th {
+  background: var(--color-navy);
+  color: #fff;
+  font-weight: 700;
+}
+.prose-nexos thead th:first-child {
+  border-top-left-radius: 0.75rem;
+}
+.prose-nexos thead th:last-child {
+  border-top-right-radius: 0.75rem;
+}
+.prose-nexos tbody tr:nth-child(even) {
+  background: var(--color-surface);
+}
+
+/* CTA del medio: párrafo entero en negrita con enlace al cotizador */
+.prose-nexos p:has(> strong:only-child a[href*='#cotizar']) {
+  position: relative;
+  margin: 2em 0;
+  padding: 1.4em 1.5em 1.4em 1.6em;
+  border: 1px solid rgb(63 165 53 / 0.35);
+  border-radius: var(--radius-card);
+  background: linear-gradient(135deg, var(--color-green-tint), #fff 70%);
+  box-shadow: 0 12px 30px rgb(14 26 79 / 0.06);
+}
+.prose-nexos p:has(> strong:only-child a[href*='#cotizar'])::before {
+  content: '';
+  position: absolute;
+  inset: 1.1em auto 1.1em 0;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: var(--color-green);
+}
+.prose-nexos p:has(> strong:only-child a[href*='#cotizar']) a {
+  color: var(--color-green-dark);
+  text-decoration-color: rgb(36 120 42 / 0.4);
+}
+
+/* Notas de pendientes (solo borradores; el script de la página convierte los comentarios) */
+.prose-nexos .nota-pendiente {
+  margin: 0 0 1.4em;
+  padding: 0.75em 1em;
+  border: 1px dashed #d4a017;
+  border-radius: 0.75rem;
+  background: #fff8db;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: #5c4500;
+}
+.prose-nexos .nota-pendiente strong {
+  margin-right: 0.25em;
+  color: #5c4500;
+  font-weight: 800;
+}
+.prose-nexos .nota-fuentes {
+  border-color: var(--color-line);
+  background: var(--color-surface);
+  color: var(--color-muted);
+  word-break: break-word;
+}
+.prose-nexos .nota-fuentes strong {
+  color: var(--color-navy);
+}

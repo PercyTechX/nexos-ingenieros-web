@@ -86,5 +86,59 @@
     "answer": "Depende del tamaño del local, del tipo de observaciones y de la ubicación. Revisamos tu acta de observaciones o visitamos tu local y te enviamos una cotización a medida.",
     "needsValidation": true,
     "order": 11
+  },
+  {
+    "id": "faq-12",
+    "pillar": "mant",
+    "question": "¿Pueden hacer el mantenimiento sin cerrar mi local?",
+    "answer": "Sí. Coordinamos los trabajos fuera del horario de atención o por zonas, para que tu tienda, agencia u oficina siga atendiendo. Lo definimos contigo en la visita técnica.",
+    "needsValidation": false,
+    "order": 12,
+    "home": false
+  },
+  {
+    "id": "faq-13",
+    "pillar": "mant",
+    "question": "¿Cada cuánto se debe hacer mantenimiento a un tablero eléctrico?",
+    "answer": "En locales de alta demanda, como tiendas, agencias o locales con atención continua, recomendamos un mantenimiento preventivo cada 3 a 6 meses. En locales de menor uso el intervalo puede ser más largo. En la visita técnica te proponemos un plan a medida.",
+    "needsValidation": false,
+    "order": 13,
+    "home": false
+  },
+  {
+    "id": "faq-14",
+    "pillar": "retail",
+    "question": "¿Cuánto tiempo toma implementar una tienda?",
+    "answer": "Depende de los metros cuadrados del local y del alcance del trabajo (obra civil, instalaciones, mobiliario). Con la propuesta te entregamos un cronograma por escrito, pensado para cumplir tu fecha de apertura.",
+    "needsValidation": false,
+    "order": 14,
+    "home": false
+  },
+  {
+    "id": "faq-15",
+    "pillar": "retail",
+    "question": "¿Instalan cableado de voz y datos, CCTV y alarmas?",
+    "answer": "Sí. Instalamos la canalización y el cableado de voz y datos, CCTV, intrusión, audio y video, y detección y alarma, junto con las instalaciones eléctricas de la tienda.",
+    "needsValidation": false,
+    "order": 15,
+    "home": false
+  },
+  {
+    "id": "faq-16",
+    "pillar": "obras",
+    "question": "¿Elaboran expedientes técnicos y presupuestos de obra?",
+    "answer": "Sí. Elaboramos expedientes técnicos, estudios, planos, metrados, presupuestos y análisis de costos unitarios, además de valorizaciones y liquidaciones de obra.",
+    "needsValidation": false,
+    "order": 16,
+    "home": false
+  },
+  {
+    "id": "faq-17",
+    "pillar": "obras",
+    "question": "¿Hacen supervisión de obras?",
+    "answer": "Sí. Supervisamos, dirigimos y controlamos proyectos: avance físico y financiero, control de calidad y cumplimiento contractual.",
+    "needsValidation": false,
+    "order": 17,
+    "home": false
   }
 ]

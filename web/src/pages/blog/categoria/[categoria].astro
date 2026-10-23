@@ -1,0 +1,42 @@
+---
+/** Categoría del blog (una por pilar): /blog/categoria/<slug>/ */
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Header from '../../../components/layout/Header.astro';
+import Footer from '../../../components/layout/Footer.astro';
+import BlogListing from '../../../components/blog/BlogListing.astro';
+import Cotizar from '../../../components/home/Cotizar.astro';
+import { CATEGORIES, getPosts } from '../../../lib/blog';
+import { breadcrumbLd } from '../../../lib/schema';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return CATEGORIES.map((cat) => ({ params: { categoria: cat.slug }, props: { cat, posts: posts.filter((p) => p.data.pillar === cat.pillar) } }));
+}
+
+const { cat, posts } = Astro.props;
+const url = `/blog/categoria/${cat.slug}/`;
+---
+
+<BaseLayout
+  title={`${cat.h1}: guías y normas`}
+  description={cat.description}
+  noindex={posts.length === 0}
+  jsonLd={breadcrumbLd([
+    { name: 'Inicio', url: '/' },
+    { name: 'Blog', url: '/blog/' },
+    { name: cat.label, url },
+  ])}
+>
+  <Header slot="header" />
+  <BlogListing
+    eyebrow={`Blog · ${cat.label}`}
+    h1={cat.h1}
+    intro={cat.description}
+    posts={posts}
+    total={posts.length}
+    active={cat.slug}
+    crumbs={[{ name: 'Inicio', url: '/' }, { name: 'Blog', url: '/blog/' }, { name: cat.label }]}
+  />
+  <Cotizar service={cat.pillar} />
+  <Footer slot="footer" />
+</BaseLayout>

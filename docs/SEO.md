@@ -49,23 +49,23 @@ Sitemap · robots.txt · canonical · Open Graph · rendimiento (LCP < 2,5 s, CL
 5. Los temas normativos (ITSE, INDECI, pozo a tierra) los **valida el cliente** antes de publicar.
 6. Ritmo: **2 artículos al mes** después del lanzamiento.
 
-**Calendario inicial** (actualizado 2026-10-22 con la evidencia del autocompletado). Los 6 marcados con ★ van en F5:
-| # | Título tentativo | Búsqueda objetivo | Pilar | CTA |
-|---|---|---|---|---|
-| ★1 | Certificado ITSE (Defensa Civil) en Perú: qué es, requisitos, precio y vigencia | certificado ITSE requisitos · certificado de Defensa Civil | ITSE | "Prepara tu local para la inspección ITSE" |
-| ★2 | Levantamiento de observaciones ITSE / Defensa Civil: cómo hacerlo (con modelo de informe) | levantamiento de observaciones ITSE / Defensa Civil | ITSE | "Envíanos tu acta de observaciones" |
-| ★3 | Protocolo de medición de pozo a tierra: qué incluye, cada cuánto y cuánto cuesta | protocolo de medición de pozo a tierra · certificado de pozo a tierra costo | ITSE | "Agenda la medición de tu pozo a tierra" |
-| ★4 | Implementación de tiendas y locales comerciales: pasos y plazos | implementación de tiendas · implementación de locales comerciales | Retail | "Cotiza la implementación de tu tienda" |
-| ★5 | Mantenimiento preventivo y correctivo: diferencias en locales comerciales | mantenimiento preventivo y correctivo diferencias | Mantenimiento | "Arma tu plan de mantenimiento" |
-| ★6 | Mantenimiento de tableros eléctricos: plan, frecuencia y precio para oficinas y agencias | mantenimiento de tableros eléctricos (Lima, precio, plan) | Mantenimiento | "Solicita una visita técnica" |
-| 7 | Remodelación de oficinas en Lima: qué incluye y cuánto cuesta | remodelación de oficinas Lima | Retail | "Cotiza tu remodelación" |
-| 8 | Cómo elegir una empresa de construcción para obras civiles e industriales | empresas de construcción en Lima · obras civiles | Obras | "Conversemos sobre tu obra" |
-| 9 | Instalaciones sanitarias y redes de agua en plantas: errores comunes | instalaciones sanitarias · redes de agua | Obras | "Revisamos tu proyecto" |
-| 10 | Expediente técnico de obra: qué es y qué contiene (prioridad baja: lo buscan sobre todo estudiantes y municipios) | expediente técnico de obra | Obras | "Cotiza tu expediente técnico" |
-| 11 | Mantenimiento de aire acondicionado en locales comerciales: frecuencia, precio y detracción | mantenimiento aire acondicionado Lima / precio | Mantenimiento | "Programa tu mantenimiento" |
-| 12 | Señalización y luces de emergencia para Defensa Civil (ITSE) | señalización Defensa Civil · luces de emergencia Defensa Civil | ITSE | "Adecuamos tu local" |
-| 13 | Remodelación de locales comerciales: pasos, permisos y costos | remodelación de locales comerciales · costo | Retail | "Cotiza tu remodelación" |
-| 14 | Mantenimiento de sistemas contra incendio: qué exige la norma y cada cuánto (solo si NEXOS presta el servicio) | mantenimiento sistema contra incendio | Mantenimiento | "Programa tu mantenimiento" |
+**Calendario definitivo** (2026-10-22): reemplaza la tabla tentativa de 14 artículos.
+- **De dónde sale:** de 5 investigaciones de búsquedas reales en Google Perú (unas 1 500 consultas al autocompletado, más búsquedas web y normativa verificada en fuentes oficiales). Están en [../trabajo/investigacion-blog/](../trabajo/investigacion-blog/): electrico, mantenimiento-general, retail, ingenieria-obras e itse.
+- **Tabla, reglas de redacción y orden de publicación:** [../trabajo/investigacion-blog/CALENDARIO.md](../trabajo/investigacion-blog/CALENDARIO.md).
+- **Redactados:** 33 artículos en `web/src/content/blog/` (de 1 100 a 1 500 palabras cada uno), todos con `draft: true` y `validatedByClient: false`:
+  - ITSE: 7
+  - Mantenimiento: 10
+  - Retail: 6
+  - Obras e ingeniería: 10
+- **Pendiente del cliente:** precios, casos, alcance de proyectos y revisión normativa. Está en [../trabajo/investigacion-blog/PENDIENTES-BLOG.md](../trabajo/investigacion-blog/PENDIENTES-BLOG.md).
+- **Cómo no competir con las páginas de servicio:** las búsquedas con ciudad ("… en Lima") o "empresa de …" son de las páginas de servicio; los artículos atacan qué es, costo, frecuencia, norma y pasos.
+- **Primeros 6 (F5):**
+  - Certificado ITSE (Defensa Civil)
+  - Certificado de pozo a tierra
+  - Instalación eléctrica de un local comercial
+  - Mantenimiento de sistema contra incendio
+  - Mantenimiento de tableros eléctricos
+  - Costo de un expediente técnico
 
 ## 6. Medición
 - **Search Console:** impresiones, clics y posición por frase (revisión mensual).

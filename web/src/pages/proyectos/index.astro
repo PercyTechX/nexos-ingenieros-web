@@ -1,0 +1,154 @@
+---
+/**
+ * Listado de proyectos (/proyectos/): banda oscura con cifras · filtro por servicio · cuadrícula de las 30 obras · cotizador.
+ * El filtro funciona sin recargar y se puede abrir ya filtrado con ?servicio=mant|retail|obras|indeci.
+ * Sin JS se ven todas las obras.
+ */
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/layout/Header.astro';
+import Footer from '../../components/layout/Footer.astro';
+import Breadcrumb from '../../components/ui/Breadcrumb.astro';
+import PageBand from '../../components/ui/PageBand.astro';
+import ProyectoCard from '../../components/proyecto/ProyectoCard.astro';
+import Cotizar from '../../components/home/Cotizar.astro';
+import { PILLARS } from '../../config/site';
+import { breadcrumbLd } from '../../lib/schema';
+
+const proyectos = (await getCollection('proyectos')).sort((a, b) => a.data.order - b.data.order);
+const total = proyectos.length;
+const cities = new Set(proyectos.map((p) => p.data.city)).size;
+const filters = [
+  { id: 'todos', name: 'Todos', count: total },
+  ...PILLARS.map((p) => ({ id: p.id, name: p.short, count: proyectos.filter((x) => x.data.pillar === p.id).length })),
+];
+const clients = new Set(proyectos.map((p) => p.data.client));
+const featured = ['MINISO', 'Tiendas MASS', 'BBVA', 'Scotiabank', 'Siemens Energy'].filter((c) => clients.has(c));
+const crumbs = [{ name: 'Inicio', url: '/' }, { name: 'Proyectos' }];
+const jsonLd = breadcrumbLd([{ name: 'Inicio', url: '/' }, { name: 'Proyectos', url: '/proyectos/' }]);
+---
+
+<BaseLayout
+  title="Proyectos de mantenimiento y obras en Perú"
+  description={`Conoce ${total} proyectos de NEXOS Ingenieros: mantenimiento de locales, implementación de tiendas, obras civiles y observaciones ITSE en todo el Perú.`}
+  jsonLd={jsonLd}
+>
+  <Header slot="header" />
+
+  <PageBand class="pb-[clamp(40px,6vw,72px)]">
+      <Breadcrumb items={crumbs} class="mb-5" />
+      <p class="eyebrow mb-3.5 text-green-light">Proyectos ejecutados</p>
+      <h1 class="mb-5 max-w-[20ch] text-[clamp(2.25rem,5vw,4.25rem)] leading-[1.03] font-extrabold tracking-tight-display text-balance">
+        Proyectos de mantenimiento y construcción en <span class="text-green-light">todo el Perú</span>
+      </h1>
+      <p class="mb-9 max-w-150 text-lg leading-[1.7] text-on-dark">
+        Obras reales, con fotos del trabajo, para {featured.join(', ')} y más empresas que confían en nosotros.
+      </p>
+      <dl class="m-0 flex flex-wrap gap-x-10 gap-y-4">
+        {
+          [
+            { v: total, l: 'proyectos documentados' },
+            { v: cities, l: 'ciudades del Perú' },
+            { v: PILLARS.length, l: 'servicios' },
+          ].map((s) => (
+            <div class="flex flex-col-reverse">
+              <dt class="mt-1 text-[13px] text-on-dark-muted">{s.l}</dt>
+              <dd class="m-0 text-[clamp(28px,3vw,40px)] leading-none font-extrabold text-white">{s.v}</dd>
+            </div>
+          ))
+        }
+      </dl>
+  </PageBand>
+
+  <section class="bg-blueprint px-5 pt-0 pb-[clamp(56px,min(7vw,9svh),96px)]">
+    <div class="filters sticky top-[68px] z-[5] -mx-5 mb-8 px-5 py-3.5 sm:top-[76px]">
+      <div class="mx-auto flex max-w-310 flex-wrap items-center justify-between gap-3">
+        <div role="group" aria-label="Filtrar proyectos por servicio" class="flex gap-2 overflow-x-auto" data-filters>
+          {
+            filters.map((f, k) => (
+              <button
+                type="button"
+                data-filter={f.id}
+                aria-pressed={k === 0 ? 'true' : 'false'}
+                class="press inline-flex min-h-10 flex-none items-center gap-2 rounded-full border-2 border-line bg-white px-3.5 text-[13px] font-semibold whitespace-nowrap text-navy aria-pressed:border-navy aria-pressed:bg-navy aria-pressed:font-bold aria-pressed:text-white"
+              >
+                {f.name}
+                <span class="count rounded-full bg-surface-blue px-1.5 py-0.5 text-[11px] font-extrabold text-navy">{f.count}</span>
+              </button>
+            ))
+          }
+        </div>
+        <p class="m-0 hidden text-sm text-subtle sm:block" aria-live="polite" data-result>Mostrando {total} proyectos</p>
+      </div>
+    </div>
+
+    <ul class="m-0 mx-auto grid max-w-310 list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4" data-grid>
+      {
+        proyectos.map((p) => (
+          <li data-pillar={p.data.pillar} class="item">
+            <ProyectoCard p={p} />
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <Cotizar />
+  <Footer slot="footer" />
+</BaseLayout>
+
+<script>
+  const bar = document.querySelector<HTMLElement>('[data-filters]');
+  const items = [...document.querySelectorAll<HTMLElement>('[data-grid] > li')];
+  const result = document.querySelector('[data-result]');
+
+  const apply = (filter: string, push = true) => {
+    bar?.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === filter)));
+    let shown = 0;
+    items.forEach((li) => {
+      const show = filter === 'todos' || li.dataset.pillar === filter;
+      li.hidden = !show;
+      if (show) shown++;
+    });
+    if (result) result.textContent = `Mostrando ${shown} proyecto${shown === 1 ? '' : 's'}`;
+    if (push) {
+      const url = new URL(location.href);
+      filter === 'todos' ? url.searchParams.delete('servicio') : url.searchParams.set('servicio', filter);
+      history.replaceState(null, '', url);
+    }
+  };
+
+  bar?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter]');
+    if (btn) apply(btn.dataset.filter ?? 'todos');
+  });
+
+  const initial = new URLSearchParams(location.search).get('servicio');
+  if (initial && bar?.querySelector(`[data-filter="${initial}"]`)) apply(initial, false);
+</script>
+
+<style>
+  .filters {
+    background: rgb(238 243 251 / 0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgb(14 26 79 / 0.06);
+  }
+  [aria-pressed='true'] .count {
+    background: rgb(255 255 255 / 0.18);
+    color: #fff;
+  }
+  .item:not([hidden]) {
+    animation: item-in 360ms var(--ease-out-strong);
+  }
+  @keyframes item-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .item:not([hidden]) {
+      animation: none;
+    }
+  }
+</style>
