@@ -1,0 +1,23 @@
+---
+/** Ícono de trazo (24×24) a partir de un path SVG. Decorativo por defecto (aria-hidden). */
+interface Props {
+  d: string;
+  size?: number;
+  stroke?: number;
+  class?: string;
+}
+const { d, size = 24, stroke = 2, class: className } = Astro.props;
+---
+
+<svg
+  width={size}
+  height={size}
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width={stroke}
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  aria-hidden="true"
+  class={className}><path d={d}></path></svg
+>

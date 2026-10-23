@@ -1,0 +1,28 @@
+---
+/**
+ * Título de sección con la frase SEO como etiqueta pequeña DENTRO del H2 y el gancho grande.
+ * Google lee el H2 completo ("<eyebrow> <hook>"); visualmente destaca el gancho.
+ * El gancho admite una parte resaltada en verde vía slot "accent".
+ */
+interface Props {
+  eyebrow: string;
+  tone?: 'light' | 'dark';
+  as?: 'h1' | 'h2';
+  class?: string;
+  reveal?: 'up' | 'left' | 'right' | 'zoom' | false;
+}
+const { eyebrow, tone = 'light', as: Tag = 'h2', class: className = '', reveal = 'left' } = Astro.props;
+const dark = tone === 'dark';
+---
+
+<Tag
+  class:list={[
+    'text-section font-extrabold tracking-tight-display',
+    dark ? 'text-white' : 'text-navy',
+    className,
+  ]}
+  data-reveal={reveal || undefined}
+>
+  <span class:list={['eyebrow mb-3.5 leading-normal', dark ? 'text-green-light' : 'text-green-dark']}>{eyebrow}</span>
+  <slot /><span class:list={[dark ? 'text-green-light' : 'text-green']}><slot name="accent" /></span>
+</Tag>

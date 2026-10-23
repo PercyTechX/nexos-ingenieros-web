@@ -1,0 +1,92 @@
+---
+/** Cotizador (sección clara con tarjeta oscura): texto + canales flotantes | formulario (isla Svelte). */
+import Cotizador from '../islands/Cotizador.svelte';
+import Icon from '../ui/Icon.astro';
+import { ICON } from '../ui/icons';
+import { SITE, whatsappUrl } from '../../config/site';
+
+const channels = [
+  { href: `mailto:${SITE.email}`, label: 'Correo', icon: ICON.mail, pos: 'left-[2%] top-[18%]', delay: '0s', track: 'correo_click' },
+  { href: whatsappUrl(), label: 'WhatsApp', icon: ICON.whatsapp, pos: 'left-[26%] top-[46%]', delay: '-1.5s', main: true, track: 'whatsapp_click' },
+  { href: SITE.phoneHref, label: 'Llamar', icon: ICON.phone, pos: 'left-[50%] top-[6%]', delay: '-3s', track: 'telefono_click' },
+];
+const checks = ['Te responde nuestro equipo técnico', 'Visita técnica y propuesta a medida', 'Atención en Lima, Ica y provincias'];
+---
+
+<section id="cotizar" class="bg-surface px-5 py-[clamp(48px,min(8vw,10svh),110px)]">
+  <div class="card relative mx-auto flex max-w-310 flex-wrap gap-[clamp(28px,4vw,56px)] overflow-hidden rounded-xl2 p-[clamp(28px,4vw,56px)] text-white shadow-[0_40px_90px_rgb(10_20_64/0.3)]">
+    <div class="flex min-w-0 flex-[1_1_380px] flex-col">
+      <h2 class="mb-5.5 text-[clamp(34px,4.2vw,56px)] leading-[1.04] font-extrabold tracking-tight-display">
+        <span class="eyebrow mb-3.5 text-xs text-green-light">Cotiza tu mantenimiento, obra o certificado ITSE</span>
+        ¿Listo para que tu local <span class="grad">funcione sin pausas</span>?
+      </h2>
+      <ul class="m-0 mb-6 flex list-none flex-col gap-3 p-0 text-base text-[#dce4f5]">
+        {checks.map((c) => <li class="flex items-center gap-2.5"><Icon d={ICON.check} size={16} stroke={2.6} class="text-green-light" />{c}</li>)}
+      </ul>
+      <div class="mb-2 grid grid-cols-3 gap-2 sm:hidden">
+        {
+          channels.map((c) => (
+            <a href={c.href} data-track={c.track} class:list={['press flex min-h-12 items-center justify-center gap-2 rounded-xl text-sm font-bold', c.main ? 'bg-green text-ink' : 'border border-white/20 bg-white/8 text-white']}>
+              <Icon d={c.icon} size={18} />{c.label}
+            </a>
+          ))
+        }
+      </div>
+      <div class="relative hidden min-h-57 flex-1 sm:block">
+        <div class="absolute top-[30%] left-[10%] h-40 w-60 rounded-full bg-[radial-gradient(circle,rgb(63_165_53/0.35),transparent_70%)]" aria-hidden="true"></div>
+        {
+          channels.map((c) => (
+            <a href={c.href} aria-label={c.label} data-track={c.track} class={`chan press absolute flex flex-col items-center gap-2 text-[13px] font-semibold text-[#dce4f5] ${c.pos}`} style={`animation-delay:${c.delay}`}>
+              <span class:list={['flex items-center justify-center rounded-[22px] text-white', c.main ? 'size-20 border border-green-light/60 bg-linear-to-br from-green to-green-dark shadow-cta' : 'size-16 border border-white/18 bg-white/8 shadow-[0_14px_30px_rgb(0_0_0/0.25)]']}>
+                <Icon d={c.icon} size={c.main ? 32 : 26} />
+              </span>
+              {c.label}
+            </a>
+          ))
+        }
+      </div>
+    </div>
+    <div class="min-w-0 flex-[1_1_480px] max-sm:-mx-1 sm:rounded-[26px] sm:border sm:border-white/18 sm:bg-linear-to-br sm:from-blue sm:to-blue-deep sm:p-[clamp(16px,2vw,24px)] sm:shadow-[0_24px_60px_rgb(0_0_0/0.3)]">
+      <Cotizador client:visible whatsapp={SITE.whatsapp} />
+    </div>
+  </div>
+</section>
+
+<style>
+  .card {
+    background-color: var(--color-ink);
+    background-image:
+      radial-gradient(55% 60% at 15% 100%, rgb(63 165 53 / 0.22), transparent 70%),
+      radial-gradient(60% 70% at 100% 0%, rgb(29 79 160 / 0.55), transparent 70%),
+      radial-gradient(rgb(255 255 255 / 0.08) 1px, transparent 1px);
+    background-size:
+      100% 100%,
+      100% 100%,
+      22px 22px;
+  }
+  /* Laptops de poca altura: tarjeta más compacta para que título y botón quepan a la vez */
+  @media (max-height: 820px) and (min-width: 1024px) {
+    .card {
+      padding: 32px;
+    }
+  }
+  .grad {
+    background: linear-gradient(90deg, #8fd88a, #3fa535);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .chan {
+    animation: float 6s ease-in-out infinite;
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chan {
+      animation: none;
+    }
+  }
+</style>

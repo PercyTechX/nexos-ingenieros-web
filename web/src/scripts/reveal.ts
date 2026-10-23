@@ -1,8 +1,12 @@
 /**
- * Animaciones de scroll con GSAP + ScrollTrigger.
- * Marcado: data-reveal="up" | "left" | "right" | "zoom", y opcionalmente data-reveal-delay="0.1".
- * El contenido es visible por defecto: sin JS o con movimiento reducido, no se anima nada.
- * Las animaciones se disparan una vez y terminan (nunca quedan "a medio camino").
+ * Animaciones de scroll con GSAP + ScrollTrigger. Todo es opcional: sin JS o con movimiento reducido
+ * el contenido se ve completo y estático (los números ya traen su valor final en el HTML).
+ *
+ * - data-reveal="up|left|right|zoom" (+ data-reveal-delay): entrada una sola vez, que nunca queda a medias.
+ * - data-count="297": contador que sube de 0 al valor al entrar en pantalla.
+ * - data-grow: barra que se llena de izquierda a derecha al entrar en pantalla.
+ * - data-drift: texto gigante que se desplaza en horizontal con el scroll.
+ * - data-parallax="0.15": desplazamiento vertical suave con el scroll.
  */
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
@@ -28,5 +32,44 @@ export function initReveal() {
       clearProps: 'transform,opacity',
       scrollTrigger: { trigger: el, start: 'top 88%', once: true },
     });
+  });
+
+  gsap.utils.toArray<HTMLElement>('[data-count]').forEach((el) => {
+    const target = Number(el.dataset.count);
+    const obj = { v: 0 };
+    el.textContent = '0';
+    gsap.to(obj, {
+      v: target,
+      duration: 1.6,
+      ease: 'power3.out',
+      onUpdate: () => (el.textContent = String(Math.round(obj.v))),
+      scrollTrigger: { trigger: el, start: 'top 85%', once: true },
+    });
+  });
+
+  gsap.utils.toArray<HTMLElement>('[data-grow]').forEach((el) => {
+    gsap.from(el, {
+      scaleX: 0,
+      duration: 1.4,
+      ease: 'power3.out',
+      scrollTrigger: { trigger: el, start: 'top 90%', once: true },
+    });
+  });
+
+  gsap.utils.toArray<HTMLElement>('[data-drift]').forEach((el) => {
+    gsap.fromTo(
+      el,
+      { xPercent: 4 },
+      { xPercent: -18, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } },
+    );
+  });
+
+  gsap.utils.toArray<HTMLElement>('[data-parallax]').forEach((el) => {
+    const amount = Number(el.dataset.parallax || 0.15) * 400;
+    gsap.fromTo(
+      el,
+      { y: amount / 2 },
+      { y: -amount / 2, ease: 'none', scrollTrigger: { trigger: el.parentElement, start: 'top bottom', end: 'bottom top', scrub: true } },
+    );
   });
 }

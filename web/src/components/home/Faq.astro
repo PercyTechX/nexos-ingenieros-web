@@ -1,0 +1,243 @@
+---
+/**
+ * Preguntas frecuentes (claro): <details> nativo (funciona sin JS), filtro por pilar y JSON-LD FAQPage.
+ * Se muestran VISIBLE preguntas y el resto se despliega con "Ver las N preguntas" (todas siguen en el HTML para SEO;
+ * sin JS se ven todas). Orden intercalado por pilar para que las primeras cubran mantenimiento e ITSE / Defensa Civil.
+ * En escritorio la columna izquierda queda fija mientras se recorre la lista.
+ * Respuestas marcadas needsValidation: borrador hasta que el cliente las valide (docs/PENDIENTES-CLIENTE.md #16).
+ */
+import { getCollection } from 'astro:content';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { ICON } from '../ui/icons';
+import { whatsappUrl } from '../../config/site';
+import { faqLd } from '../../lib/schema';
+
+const VISIBLE = 6;
+const PILLAR_ORDER = ['mant', 'indeci', 'retail', 'obras'] as const;
+const sorted = (await getCollection('faq')).sort((a, b) => a.data.order - b.data.order);
+// Intercala por pilar: mant 1, ITSE 1, retail 1, obras 1, mant 2, ITSE 2…
+const byPillar = PILLAR_ORDER.map((id) => sorted.filter((f) => f.data.pillar === id));
+const faqs = Array.from({ length: Math.max(...byPillar.map((l) => l.length)) }, (_, r) => byPillar.flatMap((l) => l[r] ?? [])).flat();
+const label = { mant: 'Mantenimiento', retail: 'Retail', obras: 'Obras e ingeniería', indeci: 'INDECI · ITSE' };
+const tabs = [['todas', 'Todas'], ['mant', 'Mantenimiento'], ['retail', 'Retail'], ['obras', 'Obras'], ['indeci', 'INDECI · ITSE']];
+const ld = faqLd(faqs.map((f) => ({ q: f.data.question, a: f.data.answer })));
+---
+
+<section id="preguntas" class="bg-blueprint relative overflow-clip px-5 py-[clamp(56px,min(7vw,9svh),96px)] text-text">
+  <script type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <div class="mx-auto flex max-w-310 flex-wrap items-start gap-[clamp(32px,5vw,72px)]">
+    <div class="min-w-0 flex-[1_1_320px] lg:sticky lg:top-28">
+      <SectionHeading eyebrow="Preguntas frecuentes sobre mantenimiento, Defensa Civil (INDECI) y certificado ITSE">
+        Resolvemos tus <Fragment slot="accent">dudas</Fragment>
+      </SectionHeading>
+      <p class="mt-4.5 mb-6 text-[17px] leading-relaxed text-muted">
+        Lo que más nos consultan sobre mantenimiento, implementación de tiendas, obras y certificado ITSE.
+      </p>
+      <div role="group" aria-label="Filtrar preguntas" class="mb-7 flex flex-wrap gap-2" data-faq-tabs>
+        {
+          tabs.map(([id, name], k) => (
+            <button
+              type="button"
+              data-filter={id}
+              aria-pressed={k === 0 ? 'true' : 'false'}
+              class="press min-h-10 rounded-full border-2 border-line bg-white px-3 text-[13px] font-semibold text-navy aria-pressed:border-navy aria-pressed:bg-navy aria-pressed:font-bold aria-pressed:text-white"
+            >
+              {name}
+            </button>
+          ))
+        }
+      </div>
+      <div class="rounded-[22px] border border-line bg-white p-5 shadow-[0_10px_30px_rgb(14_26_79/0.06)]">
+        <p class="mb-3 font-extrabold text-navy">¿No encuentras tu respuesta?</p>
+        <a href={whatsappUrl('Hola NEXOS, tengo una consulta:')} class="press inline-flex min-h-11.5 items-center rounded-full bg-green-dark px-5 text-sm font-extrabold text-white" data-track="whatsapp_click">
+          Escríbenos por WhatsApp
+        </a>
+      </div>
+    </div>
+    <div class="faq-panel flex min-w-0 flex-[2_1_560px] flex-col gap-2.5 rounded-[28px] border border-white p-2.5 sm:p-3.5" data-faq-list>
+      {
+        faqs.map((f, k) => (
+          <details class="item group relative overflow-hidden rounded-[20px] border border-line" data-pillar={f.data.pillar} data-extra={k >= VISIBLE ? '' : undefined} open={k === 0}>
+            <span class="bar pointer-events-none absolute inset-y-0 left-0 w-1 bg-linear-to-b from-green to-blue" aria-hidden="true"></span>
+            <summary class="flex min-h-16 cursor-pointer list-none items-center gap-4 px-5 py-4 sm:gap-5 sm:px-6">
+              <span class="idx hidden flex-none text-[22px] leading-none font-extrabold tracking-[-0.04em] text-line sm:block" aria-hidden="true">
+                {String(k + 1).padStart(2, '0')}
+              </span>
+              <span class="flex min-w-0 flex-1 flex-col gap-1.5">
+                <span class="tag inline-flex w-fit items-center gap-1.5 rounded-full bg-green/10 px-2.5 py-1 text-[10.5px] font-extrabold tracking-[0.12em] text-green-dark uppercase">
+                  <span class="size-1.5 rounded-full bg-green" aria-hidden="true"></span>{label[f.data.pillar]}
+                </span>
+                <h3 class="m-0 text-[17px] leading-snug font-bold text-navy">{f.data.question}</h3>
+              </span>
+              <span class="icon flex size-9 flex-none items-center justify-center rounded-full border border-[#d5ddeb] bg-white text-navy shadow-[0_2px_6px_rgb(14_26_79/0.06)]">
+                <Icon d={ICON.plus} size={16} stroke={2.6} />
+              </span>
+            </summary>
+            <p class="answer m-0 px-5 pb-5.5 text-[15px] leading-[1.7] text-muted sm:pr-20 sm:pl-[4.75rem]">{f.data.answer}</p>
+          </details>
+        ))
+      }
+      {
+        faqs.length > VISIBLE && (
+          <button
+            type="button"
+            hidden
+            aria-expanded="false"
+            class="more press mx-auto mt-1.5 inline-flex min-h-11.5 items-center gap-2 rounded-full border-2 border-navy bg-white px-5.5 text-sm font-extrabold text-navy"
+            data-faq-more
+          >
+            <span data-label>Ver las {faqs.length} preguntas</span>
+            <span class="chev inline-flex" aria-hidden="true">
+              <Icon d="M6 9l6 6 6-6" size={16} stroke={2.6} />
+            </span>
+          </button>
+        )
+      }
+    </div>
+  </div>
+</section>
+
+<script>
+  const list = document.querySelector<HTMLElement>('[data-faq-list]');
+  const tabs = document.querySelector('[data-faq-tabs]');
+  const more = document.querySelector<HTMLButtonElement>('[data-faq-more]');
+  const items = document.querySelectorAll<HTMLDetailsElement>('[data-faq-list] details');
+  const total = items.length;
+  let filter = 'todas';
+  let expanded = false;
+
+  const render = () => {
+    const collapsed = filter === 'todas' && !expanded;
+    items.forEach((d) => {
+      const outOfFilter = filter !== 'todas' && d.dataset.pillar !== filter;
+      d.hidden = outOfFilter || (collapsed && d.dataset.extra !== undefined);
+    });
+    if (!more) return;
+    more.hidden = filter !== 'todas';
+    more.setAttribute('aria-expanded', String(expanded));
+    more.querySelector('[data-label]')!.textContent = expanded ? 'Ver menos preguntas' : `Ver las ${total} preguntas`;
+  };
+
+  tabs?.addEventListener('click', (e) => {
+    const btn = (e.target as HTMLElement).closest<HTMLButtonElement>('button[data-filter]');
+    if (!btn) return;
+    tabs.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(b === btn)));
+    filter = btn.dataset.filter ?? 'todas';
+    render();
+  });
+
+  more?.addEventListener('click', () => {
+    expanded = !expanded;
+    render();
+    // Al plegar, vuelve al inicio de la lista para no quedar en medio de la nada
+    if (!expanded && list) {
+      const top = list.getBoundingClientRect().top + window.scrollY - 112; // alto del header fijo
+      if (window.scrollY > top) window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+
+  render();
+</script>
+
+<style>
+  summary::-webkit-details-marker {
+    display: none;
+  }
+  /* Panel que separa la lista del plano técnico */
+  .faq-panel {
+    background: linear-gradient(160deg, rgb(255 255 255 / 0.7), rgb(214 226 245 / 0.75));
+    backdrop-filter: blur(6px);
+    box-shadow:
+      0 1px 0 rgb(255 255 255 / 0.9) inset,
+      0 24px 60px -24px rgb(14 26 79 / 0.18);
+  }
+  /* Cada pregunta: degradado sutil blanco → azul claro; abierta o con el cursor encima, blanco pleno */
+  .item {
+    background: linear-gradient(120deg, #fff 0%, #f6f9fe 55%, #e9f0fb 100%);
+    box-shadow: 0 1px 2px rgb(14 26 79 / 0.04);
+    transition:
+      background-color 220ms ease-out,
+      border-color 220ms ease-out,
+      box-shadow 260ms ease-out,
+      transform 260ms var(--ease-out-strong);
+  }
+  .bar {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 320ms var(--ease-out-strong);
+  }
+  .idx {
+    transition: color 220ms ease-out;
+  }
+  .icon {
+    transition:
+      transform 220ms var(--ease-out-strong),
+      background-color 200ms ease-out,
+      color 200ms ease-out;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .item:hover {
+      background: #fff;
+      border-color: #c9d2e3;
+      box-shadow: 0 12px 28px rgb(14 26 79 / 0.08);
+      transform: translateY(-2px);
+    }
+    .item:hover .idx {
+      color: var(--color-blue-soft);
+    }
+    .item:hover .icon {
+      background: var(--color-navy);
+      border-color: var(--color-navy);
+      color: #fff;
+    }
+  }
+  details[open] {
+    background: #fff;
+    border-color: #c9d2e3;
+    box-shadow: 0 18px 40px rgb(14 26 79 / 0.1);
+  }
+  details[open] .bar {
+    transform: scaleY(1);
+  }
+  details[open] .idx {
+    color: var(--color-green);
+  }
+  details[open] .icon {
+    transform: rotate(45deg);
+    background: var(--color-green-dark);
+    border-color: var(--color-green-dark);
+    color: #fff;
+  }
+  .chev {
+    transition: transform 240ms var(--ease-out-strong);
+  }
+  .more[aria-expanded='true'] .chev {
+    transform: rotate(180deg);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .more:hover {
+      background: var(--color-navy);
+      color: #fff;
+    }
+  }
+  details[open] .answer {
+    animation: answer-in 360ms var(--ease-out-strong);
+  }
+  @keyframes answer-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .item,
+    .bar,
+    .icon {
+      transition: none;
+    }
+    details[open] .answer {
+      animation: none;
+    }
+  }
+</style>

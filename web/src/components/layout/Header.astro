@@ -1,0 +1,155 @@
+---
+/**
+ * Header fijo: transparente sobre el primer bloque oscuro de cada página y con fondo al hacer scroll.
+ * Menú "Servicios" con los 4 pilares; en móvil, panel desplegable.
+ */
+import { Image } from 'astro:assets';
+import Icon from '../ui/Icon.astro';
+import { ICON } from '../ui/icons';
+import { PILLARS } from '../../config/site';
+import logoBlanco from '../../assets/marca/logo-blanco.webp';
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+const links = [
+  { href: '/proyectos/', label: 'Proyectos' },
+  { href: '/nosotros/', label: 'Nosotros' },
+  { href: '/blog/', label: 'Blog' },
+];
+---
+
+<header
+  id="site-header"
+  class="fixed inset-x-0 top-0 z-40 transition-[background-color,box-shadow,backdrop-filter] duration-300 data-[scrolled=true]:bg-ink/90 data-[scrolled=true]:shadow-lg data-[scrolled=true]:backdrop-blur-md"
+>
+  <div class="mx-auto flex max-w-[calc(77.5rem+2.5rem)] items-center justify-between gap-5 px-5 py-3">
+    <a href="/" class="flex items-center" aria-label="NEXOS Ingenieros, ir al inicio">
+      <Image src={logoBlanco} alt="NEXOS Ingenieros" height={60} densities={[1, 2]} class="h-14 w-auto" loading="eager" />
+    </a>
+
+    <nav aria-label="Principal" class="hidden items-center gap-7 text-[15px] font-semibold lg:flex">
+      <a href="/" class:list={['transition-colors hover:text-white', isActive('/') ? 'text-white' : 'text-on-dark']}>Inicio</a>
+      <div class="group relative">
+        <a
+          href="/servicios/"
+          class:list={[
+            'inline-flex items-center gap-1 transition-colors hover:text-white',
+            isActive('/servicios/') ? 'text-white' : 'text-on-dark',
+          ]}
+          aria-haspopup="true"
+          >Servicios
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"
+            ><path d="M6 9l6 6 6-6"></path></svg
+          >
+        </a>
+        <div
+          class="invisible absolute top-full left-1/2 w-90 -translate-x-1/2 pt-4 opacity-0 transition duration-200 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100"
+        >
+          <ul class="rounded-card border border-white/10 bg-ink/95 p-2 shadow-panel backdrop-blur-md">
+            {
+              PILLARS.map((p) => (
+                <li>
+                  <a
+                    href={`/servicios/${p.slug}/`}
+                    class="flex gap-3 rounded-2xl p-3 text-on-dark transition-colors hover:bg-white/8 hover:text-white"
+                  >
+                    <span class="font-extrabold text-green-light">{p.num}</span>
+                    <span class="text-sm leading-snug">{p.name}</span>
+                  </a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </div>
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class:list={['transition-colors hover:text-white', isActive(l.href) ? 'text-white' : 'text-on-dark']}
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </nav>
+
+    <div class="flex items-center gap-2.5">
+      <a
+        href="/#cotizar"
+        class="press hidden min-h-11 items-center rounded-full bg-green px-5 text-sm font-extrabold text-ink sm:inline-flex"
+        >Cotiza tu proyecto</a
+      >
+      <button
+        id="menu-toggle"
+        type="button"
+        class="inline-flex size-11 items-center justify-center rounded-xl border border-white/30 bg-white/5 text-white lg:hidden"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú"
+      >
+        <Icon d={ICON.menu} size={22} />
+      </button>
+    </div>
+  </div>
+
+  <nav
+    id="mobile-menu"
+    aria-label="Menú móvil"
+    class="hidden border-t border-white/10 bg-ink/97 px-5 pt-3 pb-6 backdrop-blur-md lg:hidden"
+  >
+    <ul class="flex flex-col gap-1 text-lg font-semibold text-white">
+      <li><a href="/" class="block rounded-xl px-3 py-3 hover:bg-white/8">Inicio</a></li>
+      <li class="px-3 pt-3 text-xs font-bold tracking-[0.16em] text-green-light uppercase">Servicios</li>
+      {
+        PILLARS.map((p) => (
+          <li>
+            <a href={`/servicios/${p.slug}/`} class="block rounded-xl px-3 py-2.5 text-base text-on-dark hover:bg-white/8">
+              {p.name}
+            </a>
+          </li>
+        ))
+      }
+      {
+        links.map((l) => (
+          <li>
+            <a href={l.href} class="block rounded-xl px-3 py-3 hover:bg-white/8">
+              {l.label}
+            </a>
+          </li>
+        ))
+      }
+      <li class="pt-3">
+        <a
+          href="/#cotizar"
+          class="press flex min-h-12 items-center justify-center rounded-full bg-green font-extrabold text-ink">Cotiza tu proyecto</a
+        >
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const header = document.getElementById('site-header')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+
+  const onScroll = () => {
+    header.dataset.scrolled = String(window.scrollY > 40 || !menu.classList.contains('hidden'));
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  toggle.addEventListener('click', () => {
+    const open = menu.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(open));
+    toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    onScroll();
+  });
+  menu.addEventListener('click', (e) => {
+    if ((e.target as HTMLElement).closest('a')) {
+      menu.classList.add('hidden');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+  });
+</script>

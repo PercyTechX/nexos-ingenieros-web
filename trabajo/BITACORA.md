@@ -291,3 +291,68 @@ Idea para el plan SEO: una página por pilar, optimizada para sus 2 frases, más
 - **Repositorio en GitHub (privado):** https://github.com/PercyTechX/nexos-ingenieros-web. Ramas `main` y `develop`. Primer commit `b4eb789` (F1).
   - Autor del repo local: "Jesús Percy Nazario Portilla" (configurado solo en este repo; el user.name global estaba vacío).
   - El workflow "Deploy Yachay" compila en GitHub (`astro check` + build + Pagefind) y omite la subida hasta que existan los secrets (YACHAY_HOST, YACHAY_USER, YACHAY_PASSWORD, YACHAY_PROTOCOL, YACHAY_REMOTE_DIR, YACHAY_REMOTE_DIR_PREVIEW).
+- **F2 · Componentes e Inicio TERMINADA** (2026-10-22, pendiente de revisión del usuario). Inicio real en Astro, fiel a la A7:
+  - Componentes base: `layout/Header` (fijo, toma fondo al hacer scroll, submenú Servicios y menú móvil) y `layout/Footer`; `ui/SectionHeading` (frase SEO como etiqueta dentro del H2) e `ui/Icon`.
+  - Secciones (`components/home/`): Intro, Hero, Servicios, PorQue, Proyectos, ComoTrabajamos, Certificaciones, Sectores, Clientes, Faq y Cotizar.
+  - Islas Svelte (`components/islands/`): **HeroRotator** (`client:load`), **MapaObras** y **Cotizador** (`client:visible`). La FAQ usa `<details>` nativo con filtro y JSON-LD FAQPage.
+  - GSAP (`scripts/reveal.ts`): revelados de una sola vez, contadores (+34, +297), texto que se desplaza y parallax. Con movimiento reducido no se anima nada y el contenido queda completo.
+  - Datos: `src/data/home.ts` y `src/data/peru-map.ts`. **Corrección:** el beneficio "5 regiones" pasa a **7 regiones** (Lima, Callao, Ica, Lambayeque, Áncash, Ucayali y Cusco).
+  - Bugs encontrados en la revisión visual y corregidos: la clase `ring` chocaba con la utilidad de Tailwind (dibujaba un cuadro blanco); textos del hero superpuestos al rotar; script de la intro que se ejecutaba antes de que existiera el botón "Saltar".
+  - **Lighthouse** (escritorio y móvil): Rendimiento 98 · Accesibilidad 100 · Buenas prácticas 100 · SEO 100. LCP de 2,1–2,2 s y CLS de 0,001.
+  - Los enlaces a /servicios/, /proyectos/[id]/, /nosotros/, /blog/ y /politica-de-privacidad/ dan 404 hasta la F3–F5.
+  - Vista previa local: `cd web && npm run build && npx astro preview` → http://localhost:4329/
+- **Agentes evaluadores creados** en `.claude/agents/` (`ux-ui-evaluador` y `seo-evaluador`), reutilizables en cada fase. Primeros informes: `trabajo/evaluaciones/UX-UI-2026-10-22.md` y `trabajo/evaluaciones/SEO-2026-10-22.md`.
+  - **UX:** el hero no se adapta al alto de la pantalla (~1015 px fijos). En 1280×720 el CTA queda cortado y en 1366×768 queda justo en el borde. Además: desalineación de 20 px en el logo y en Clientes, el anillo del hero sobre las pestañas en tablet, mapa y cotizador muy altos para laptops, y en móvil el cotizador no muestra los canales. Notas: Hero 6, resto 7,5–8,5.
+  - **SEO:** nota 7/10. Se buscan: certificado ITSE, levantamiento de observaciones, pozo a tierra, mantenimiento preventivo y correctivo, obras civiles, remodelación de oficinas e implementación de tiendas. NO se buscan: "mantenimiento integral" (en Perú se asocia a SOAT, hogar y autos), "llave en mano", "contratista general", "adecuación ITSE". Gran oportunidad: "certificado de Defensa Civil". Faltan servicios + Lima: tableros, aire acondicionado, sistema contra incendio y cableado estructurado. Técnico: title de 87 caracteres, meta de 186, H1 sin la búsqueda principal, 29 miniaturas sin alt, botón "Trabaja con nosotros" ambiguo.
+- **Aplicadas las mejoras de UX/UI y SEO** (el usuario dijo "aplica").
+  - **Hero:**
+    - alto = pantalla (`lg:min-h-[min(100vh,1080px)]`); se usa `vh` porque `svh` se calculaba más chico en las pruebas;
+    - H1 escalado por ancho y alto (`clamp(2.375rem, min(5.4vw, 7.5svh), 4.875rem)`);
+    - 2 columnas desde 1024 px y técnico, objeto y anillo dimensionados según el alto;
+    - franja de beneficios compacta en pantallas de ≤820 px de alto;
+    - máscara al pie del técnico y botón secundario sincronizado con el texto;
+    - pestañas con nombre en móvil.
+    - Verificado en 1920, 1536, 1440, 1366, 1280, 1024, 768 y 390 px: el H1, los CTA, las pestañas y los beneficios entran en el primer pantallazo de todas las laptops.
+  - **Otros ajustes de UX:**
+    - alineación de 20 px corregida en el header y en Clientes;
+    - el número "01" de Servicios queda por encima del objeto;
+    - mapa y lista limitados por el alto de la pantalla;
+    - cotizador compacto en laptops bajas, con canales (Correo, WhatsApp, Llamar) visibles en móvil y sin caja anidada;
+    - filtros de la FAQ compactos;
+    - `text-wrap: balance` en las etiquetas;
+    - objeto decorativo de ¿Por qué? anclado al contenido.
+  - **SEO:**
+    - title de 63 caracteres: "Mantenimiento de locales comerciales en Lima | NEXOS Ingenieros"; meta de 152 con "Defensa Civil" y CTA;
+    - **H1 nuevo:** "Mantenimiento de locales comerciales, obras e ingeniería" (con la marca y Lima en la etiqueta). El eslogan sigue en la intro y en el footer;
+    - "climatización" pasa a "aire acondicionado" y se agregan "sistemas contra incendio";
+    - viñetas de los pilares reescritas con frases que tienen evidencia;
+    - sectores enlazados a su página de servicio ("Salud" pasa a "Clínicas y salud");
+    - "Trabaja con nosotros" pasa a "Trabajemos juntos";
+    - FAQ: H2 con "Defensa Civil (INDECI)" y 2 preguntas nuevas (ITSE = Defensa Civil y cuánto cuesta), ambas por validar;
+    - alt descriptivo en las 30 miniaturas; `areaServed` = Lima, Callao, Ica y Perú;
+    - `docs/SEO.md` actualizado con las búsquedas principales por página y el calendario del blog (14 artículos).
+  - **Lighthouse:** escritorio 100/100/100/100 (LCP 0,5 s); móvil 98/100/100/100 (LCP 2,2 s).
+  - Pendiente (baja prioridad): contenedor más ancho en monitores de ≥1680 px; el texto de los slides 2–4 del hero solo existe en el cliente (los pilares sí están en el HTML de Servicios).
+- Inicio simplificado (decisión del usuario): se quitaron **Sectores** y **Cómo trabajamos**. Sus componentes se conservan para las páginas de servicio. **Certificaciones pasa a oscuro** para mantener la alternancia: Hero ● · Servicios ○ · ¿Por qué? ● · Proyectos ○ · Certificaciones ● · Clientes ○ · FAQ ● · Cotizador ○ · Footer ●. `docs/SPEC.md` §2 actualizado.
+- **Clientes** pasa a ser una **franja compacta justo debajo del hero** (decisión del usuario): ~190 px, H2 pequeño "Empresas que confían en NEXOS Ingenieros" y 2 filas de logos más chicos. En laptops asoma al pie del primer pantallazo. La sección grande de abajo desaparece. La **FAQ pasa a claro**.
+  - Orden final: Hero ● · Clientes (franja) ○ · Servicios ○ · ¿Por qué? ● · Proyectos ○ · Certificaciones ● · FAQ ○ · Cotizador (tarjeta oscura) · Footer ●.
+  - Servicios: objetos de las tarjetas corridos a la derecha para que se lea el número (01–04).
+- **¿Por qué NEXOS? rediseñado** (pedido del usuario: "tarjetas muy grandes y absurdas"): las 2 tarjetas gigantes pasan a un **bento 2×2 compacto** con 4 cifras reales: +34 clientes satisfechos (destacada en verde), +297 mantenimientos realizados, 7 regiones del Perú y 4 normas ISO.
+  - Cada tarjeta lleva ícono, índice 01–04, número con contador animado y degradado blanco→verde, etiqueta, línea de contexto (oculta en móvil) y barra que se llena con GSAP (`data-grow`, nuevo en `src/scripts/reveal.ts`). Al pasar el mouse: sube, borde verde y un brillo que la cruza.
+  - Se quitó el tablero decorativo. Sin JS o con movimiento reducido se ven los números finales y las barras llenas.
+  - Verificado en 1440 y 390 px. `docs/SPEC.md` §2 actualizado.
+- **Fondos y FAQ** (pedidos del usuario): Servicios y Preguntas frecuentes pasan al fondo de plano técnico (`bg-blueprint`, el mismo de Proyectos), para que no queden bloques blancos seguidos.
+  - **Preguntas rediseñadas:** tarjetas blancas con sombra suave, número 01–11 (verde cuando está abierta), etiqueta del pilar como pastilla con punto verde, barra lateral verde→azul que aparece al abrir, botón + que se pone azul al pasar el mouse y verde (×) al abrir, y la respuesta entra con un fundido corto. La caja "¿No encuentras tu respuesta?" también pasa a blanco.
+  - **En evaluación del usuario** (páginas temporales `/prueba-clientes-dark/` y `/prueba-clientes-card/`, se borran al decidir): franja de Clientes oscura con logos en placas blancas, o tarjeta flotante sobre el borde del hero. `Clientes.astro` tiene la prop `variant` temporal.
+  - **Título de Servicios** (decisión del usuario): "Cuatro pilares para que tu negocio no se detenga" pasa a "Mantenemos, construimos y certificamos tu local" (acento en verde: "certificamos tu local").
+- **Márgenes verticales reducidos** en Servicios, ¿Por qué NEXOS? y Preguntas frecuentes: de `clamp(72–80px, 9–10vw, 120–128px)` a `clamp(56px, min(7vw, 9svh), 96px)`, el mismo criterio de Proyectos (se adapta al alto de la pantalla). En laptop 1440×900 pasa de ~125 px a ~81 px por lado; en celular, de 72–80 a 56 px. Las preguntas también llevan ahora un panel sutil detrás y un degradado blanco→azul claro en cada tarjeta.
+- **Texturas de fondo** (pedido del usuario):
+  - **Oscuras → puntos sutiles con la paleta:** retícula de puntos azul claro (#5a8eea al 16 %, cada 24 px) con puntos verdes (#8fd88a al 16 %) intercalados cada 96 px. Tokens `--dots-blue`, `--dots-green`, `--dots-size` y `--dots-position` en `global.css`. Aplicado en Hero (reemplaza la cuadrícula de líneas que tenía), ¿Por qué NEXOS?, Certificaciones, footer y la variante oscura de Clientes.
+  - **Claras → plano técnico más suave:** las líneas de `bg-blueprint` bajan de 7 % y 12 % a 4 % y 7 % de opacidad (Servicios, Proyectos y Preguntas frecuentes).
+- **Clientes: tarjeta flotante** (decisión del usuario). Tarjeta blanca sobre un **difuminado** ink → #10245f → azul de marca #1d4fa0 → #9db8ea → azul claro de Servicios (color elegido por Claude a pedido del usuario). Los puntos del hero continúan y se desvanecen; la cuadrícula de Servicios aparece gradualmente (degradado de 160 px arriba) y el brillo verde del hero se subió para que no se corte en el borde. Se quitaron la prop `variant` y las páginas `/prueba-clientes-*`. SPEC §2 actualizado.
+- **Certificaciones** con el mismo margen vertical que las demás: `clamp(56px, min(7vw, 9svh), 96px)`.
+- **FAQ más corta** (decisión del usuario, opción A + B):
+  - Se muestran **6 preguntas** y el botón "Ver las 11 preguntas" despliega el resto ahí mismo (pasa a "Ver menos preguntas" y, al plegar, la página vuelve al inicio de la lista). Las 11 siguen en el HTML y en el JSON-LD FAQPage, y sin JS se ven todas. Con un filtro de pilar activo se muestran todas las de ese pilar y el botón se oculta.
+  - **Orden intercalado por pilar** (mant, ITSE, retail, obras…), así las 6 visibles incluyen "¿Qué es el Certificado ITSE?" y "¿ITSE es lo mismo que Defensa Civil?".
+  - **Columna izquierda fija** en escritorio (`lg:sticky`). La sección pasa de `overflow-hidden` a `overflow-clip` para que sticky funcione.
+  - La sección baja de ~2 pantallazos a ~1 en laptop.

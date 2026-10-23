@@ -12,7 +12,12 @@ export const organizationLd = () => ({
   logo: `${SITE.url}/logo-nexos.png`,
   email: SITE.email,
   telephone: SITE.phone,
-  areaServed: { '@type': 'Country', name: 'Perú' },
+  areaServed: [
+    { '@type': 'City', name: 'Lima' },
+    { '@type': 'City', name: 'Callao' },
+    { '@type': 'City', name: 'Ica' },
+    { '@type': 'Country', name: 'Perú' },
+  ],
   address: SITE.offices.map((o) => ({
     '@type': 'PostalAddress',
     addressLocality: o.locality,

@@ -1,0 +1,66 @@
+---
+/** Sectores (oscuro): 6 tarjetas de vidrio. */
+import SectionHeading from '../ui/SectionHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { ICON } from '../ui/icons';
+import { SECTORS } from '../../data/home';
+---
+
+<section id="sectores" class="sectores relative overflow-hidden px-5 py-[clamp(72px,9vw,120px)] text-white">
+  <div class="mx-auto max-w-310">
+    <div class="mb-9 max-w-190">
+      <SectionHeading eyebrow="Mantenimiento e implementación para retail, centros comerciales, bancos, boticas, oficinas e industria" tone="dark">
+        Conocemos tu <Fragment slot="accent">tipo de local</Fragment>
+      </SectionHeading>
+      <p class="mt-2.5 text-[17px] leading-relaxed text-on-dark" data-reveal="left">
+        Cada establecimiento tiene sus propias exigencias técnicas, horarios y normativa.
+      </p>
+    </div>
+    <ul class="m-0 grid list-none gap-4 p-0 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        SECTORS.map((s, k) => (
+          <li data-reveal="up" data-reveal-delay={(k % 3) * 0.08}>
+            <a href={s.href} class="glass flex h-full flex-col gap-5.5 rounded-card border border-white/14 bg-white/5 p-6 text-white">
+              <span class="flex items-start justify-between">
+                <span class="flex size-14 items-center justify-center rounded-2xl bg-green-light/14 text-green-light">
+                  <Icon d={s.icon} size={28} stroke={1.8} />
+                </span>
+                <span class="flex size-9.5 items-center justify-center rounded-full border border-white/30">
+                  <Icon d={ICON.arrowUpRight} size={16} stroke={2.4} />
+                </span>
+              </span>
+              <span>
+                <h3 class="m-0 text-xl font-extrabold">{s.name}</h3>
+                <span class="mt-1.5 block text-sm text-on-dark-muted">{s.clients}</span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .sectores {
+    background-color: var(--color-ink);
+    background-image:
+      radial-gradient(45% 60% at 0% 0%, rgb(63 165 53 / 0.22), transparent 70%),
+      radial-gradient(45% 60% at 100% 100%, rgb(29 79 160 / 0.5), transparent 70%);
+  }
+  .glass {
+    transition:
+      transform 260ms var(--ease-out-strong),
+      border-color 260ms ease-out,
+      box-shadow 260ms ease-out;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .glass:hover {
+      transform: translateY(-6px);
+      border-color: rgb(143 216 138 / 0.6);
+      box-shadow:
+        0 0 0 1px rgb(143 216 138 / 0.25),
+        0 20px 50px rgb(0 0 0 / 0.35);
+    }
+  }
+</style>

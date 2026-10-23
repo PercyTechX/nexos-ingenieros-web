@@ -1,0 +1,166 @@
+---
+/**
+ * Pantalla de entrada (solo primera visita): logo + eslogan + barra de carga, ~2,7 s.
+ * - Un script en línea la elimina ANTES de pintarse si ya se vio (localStorage) o con movimiento reducido.
+ * - No bloquea el contenido: el HTML de la página está debajo y Google lo lee normalmente.
+ */
+import { Image } from 'astro:assets';
+import logoBlanco from '../../assets/marca/logo-blanco.webp';
+---
+
+<div id="intro" class="intro" role="status" aria-label="Cargando NEXOS Ingenieros">
+  <button type="button" data-skip class="intro__skip">Saltar</button>
+  <div class="intro__mark">
+    <svg aria-hidden="true" viewBox="0 0 200 200" class="intro__ring">
+      <circle cx="100" cy="100" r="95" fill="none" stroke="rgb(255 255 255 / 0.08)" stroke-width="1.5"></circle>
+      <circle class="intro__ring-line" cx="100" cy="100" r="95" fill="none" stroke="#3fa535" stroke-width="2.5" stroke-linecap="round"></circle>
+    </svg>
+    <Image src={logoBlanco} alt="" width={300} class="intro__logo" loading="eager" />
+  </div>
+  <p class="intro__text">
+    <span class="intro__l1">Soluciones en construcción, ingeniería</span>
+    <span class="intro__l2">y <span class="text-green-light">mantenimiento integral.</span></span>
+  </p>
+  <div aria-hidden="true" class="intro__bar"><div class="intro__bar-fill"></div></div>
+  <script is:inline>
+    (function () {
+      var el = document.getElementById('intro');
+      var seen = false;
+      try { seen = localStorage.getItem('nexos_intro_visto') === '1'; } catch (e) {}
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (seen || reduce) { el.remove(); return; }
+      document.documentElement.style.overflow = 'hidden';
+      function end() {
+        if (!el.isConnected) return;
+        el.classList.add('intro--out');
+        try { localStorage.setItem('nexos_intro_visto', '1'); } catch (e) {}
+        setTimeout(function () { el.remove(); document.documentElement.style.overflow = ''; }, 700);
+      }
+      setTimeout(end, 2700);
+      el.querySelector('[data-skip]').addEventListener('click', end);
+    })();
+  </script>
+</div>
+
+<style>
+  .intro {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(20px, 3vw, 32px);
+    padding: 24px;
+    text-align: center;
+    color: #fff;
+    background:
+      radial-gradient(45% 45% at 50% 42%, rgb(29 79 160 / 0.55), transparent 70%),
+      radial-gradient(35% 35% at 85% 90%, rgb(63 165 53 / 0.25), transparent 70%),
+      var(--color-ink);
+  }
+  .intro--out {
+    animation: intro-out 700ms cubic-bezier(0.7, 0, 0.84, 0) both;
+  }
+  .intro__skip {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    min-height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgb(255 255 255 / 0.3);
+    background: rgb(255 255 255 / 0.06);
+    color: var(--color-on-dark);
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .intro__mark {
+    position: relative;
+    width: clamp(200px, 26vw, 300px);
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .intro__ring {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+  }
+  .intro__ring-line {
+    stroke-dasharray: 600;
+    stroke-dashoffset: 600;
+    animation: intro-ring 1400ms cubic-bezier(0.65, 0, 0.35, 1) 100ms forwards;
+  }
+  .intro__logo {
+    width: 72%;
+    height: auto;
+    animation: intro-logo 900ms var(--ease-out-strong) 150ms both;
+  }
+  .intro__text {
+    margin: 0;
+    max-width: 760px;
+    font-weight: 800;
+    font-size: clamp(22px, 3vw, 38px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+  .intro__l1,
+  .intro__l2 {
+    display: block;
+    animation: intro-up 700ms var(--ease-out-strong) both;
+  }
+  .intro__l1 {
+    animation-delay: 800ms;
+  }
+  .intro__l2 {
+    animation-delay: 1050ms;
+  }
+  .intro__bar {
+    width: min(240px, 60vw);
+    height: 3px;
+    border-radius: 3px;
+    background: rgb(255 255 255 / 0.12);
+    overflow: hidden;
+  }
+  .intro__bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3fa535, #8fd88a);
+    transform-origin: left center;
+    animation: intro-load 2300ms cubic-bezier(0.65, 0, 0.35, 1) 200ms both;
+  }
+  @keyframes intro-out {
+    to {
+      transform: translateY(-100%);
+      opacity: 0.6;
+    }
+  }
+  @keyframes intro-ring {
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  @keyframes intro-logo {
+    from {
+      opacity: 0;
+      transform: scale(0.88);
+      filter: blur(8px);
+    }
+  }
+  @keyframes intro-up {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+  }
+  @keyframes intro-load {
+    from {
+      transform: scaleX(0);
+    }
+  }
+</style>

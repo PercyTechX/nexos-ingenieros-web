@@ -1,0 +1,106 @@
+---
+/** Hero oscuro del Inicio: H1 estático (SEO) + isla de rotación por pilar + franja de beneficios. */
+import { getImage } from 'astro:assets';
+import HeroRotator from '../islands/HeroRotator.svelte';
+import Icon from '../ui/Icon.astro';
+import { PILLARS, SITE } from '../../config/site';
+import { PILLAR_CONTENT, BENEFITS } from '../../data/home';
+
+const techs = import.meta.glob<{ default: ImageMetadata }>('../../assets/hero/tecnico-*.webp', { eager: true });
+const objs = import.meta.glob<{ default: ImageMetadata }>('../../assets/hero/obj-*.webp', { eager: true });
+const map: Record<string, { tech: string; obj: string }> = {
+  mant: { tech: 'mantenimiento', obj: 'tablero' },
+  retail: { tech: 'retail', obj: 'mostrador' },
+  obras: { tech: 'obras', obj: 'aire-estructura' },
+  indeci: { tech: 'indeci', obj: 'contraincendio' },
+};
+
+const pillars = await Promise.all(
+  PILLARS.map(async (p) => {
+    const c = PILLAR_CONTENT[p.id];
+    const techSrc = techs[`../../assets/hero/tecnico-${map[p.id].tech}.webp`].default;
+    const objSrc = objs[`../../assets/hero/obj-${map[p.id].obj}.webp`].default;
+    const tech = await getImage({ src: techSrc, height: 760, format: 'webp' });
+    const obj = await getImage({ src: objSrc, width: 520, format: 'webp' });
+    return {
+      id: p.id,
+      num: p.num,
+      tab: c.tab,
+      short: p.short,
+      desc: c.desc,
+      href: `/servicios/${p.slug}/`,
+      tech: { src: tech.src, width: Number(tech.attributes.width), height: Number(tech.attributes.height), alt: c.techAlt },
+      obj: { src: obj.src, width: Number(obj.attributes.width), height: Number(obj.attributes.height), alt: c.objAlt },
+    };
+  }),
+);
+---
+
+<section id="inicio" class="hero relative flex flex-col justify-center overflow-hidden px-5 pt-24 pb-9 text-white sm:pt-28 lg:min-h-[min(100vh,1080px)] lg:pt-[clamp(88px,12svh,112px)] lg:pb-[clamp(20px,3svh,36px)]">
+  <HeroRotator client:load pillars={pillars}>
+    <h1 class="mb-5 text-display font-extrabold tracking-tight-display">
+      <span class="eyebrow mb-4.5 flex items-start gap-2.5 text-green-light">
+        <span class="mt-1 size-2 flex-none rounded-full bg-green shadow-[0_0_0_6px_rgb(63_165_53/0.25)]" aria-hidden="true"></span>
+        {SITE.name} · Lima, Ica y provincias
+      </span>
+      Mantenimiento de locales comerciales, <span class="hero-grad">obras e ingeniería</span>
+    </h1>
+  </HeroRotator>
+
+  <ul
+    class="benefits relative z-[3] mx-auto mt-2 grid w-full max-w-310 overflow-hidden rounded-[22px] border border-white/14 bg-white/6 sm:grid-cols-2 lg:grid-cols-4"
+  >
+    {
+      BENEFITS.map((b) => (
+        <li class="benefit flex items-center gap-3.5 px-5.5 py-4.5">
+          <span
+            class:list={[
+              'flex size-11 flex-none items-center justify-center rounded-xl',
+              b.tone === 'green' ? 'bg-green/18 text-green-light' : 'bg-blue-soft/20 text-[#9ec0ff]',
+            ]}
+          >
+            <Icon d={b.icon} size={22} />
+          </span>
+          <span>
+            <span class="block text-[15px] font-bold">{b.title}</span>
+            <span class="benefit-text block text-[13px] text-on-dark-muted">{b.text}</span>
+          </span>
+        </li>
+      ))
+    }
+  </ul>
+</section>
+
+<style>
+  .hero {
+    background-color: var(--color-ink);
+    background-image:
+      var(--dots-blue),
+      var(--dots-green),
+      radial-gradient(50% 60% at 78% 45%, rgb(29 79 160 / 0.55), transparent 70%),
+      radial-gradient(35% 40% at 12% 72%, rgb(63 165 53 / 0.24), transparent 70%);
+    background-size:
+      var(--dots-size),
+      100% 100%,
+      100% 100%;
+    background-position:
+      var(--dots-position),
+      0 0,
+      0 0;
+  }
+  /* Pantallas de poca altura (laptops): franja de beneficios compacta */
+  @media (max-height: 820px) and (min-width: 1024px) {
+    .benefit {
+      padding-block: 0.625rem;
+    }
+    .benefit-text {
+      display: none;
+    }
+  }
+  .hero-grad {
+    background: linear-gradient(90deg, #8fd88a, #3fa535);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+</style>

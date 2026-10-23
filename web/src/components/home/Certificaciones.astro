@@ -1,0 +1,79 @@
+---
+/** Certificaciones (oscuro): 4 normas ISO. Sin el logo de la organización ISO (no está permitido). */
+import SectionHeading from '../ui/SectionHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { ISO_DETAIL } from '../../data/home';
+---
+
+<section id="certificaciones" class="cert relative overflow-hidden px-5 py-[clamp(56px,min(7vw,9svh),96px)] text-white">
+  <div class="mx-auto flex max-w-310 flex-wrap items-start gap-[clamp(32px,5vw,72px)]">
+    <div class="min-w-0 flex-[1_1_340px]">
+      <SectionHeading eyebrow="Empresa certificada ISO 9001, ISO 14001, ISO 37001 e ISO 45001" tone="dark">
+        Trabajamos bajo <Fragment slot="accent">normas internacionales</Fragment>
+      </SectionHeading>
+      <p class="mt-4.5 text-[17px] leading-[1.7] text-on-dark" data-reveal="left">
+        Nuestros sistemas de gestión siguen estándares ISO de calidad, ambiente, antisoborno y seguridad y salud en el
+        trabajo.
+      </p>
+    </div>
+    <ul class="m-0 grid min-w-0 flex-[2_1_560px] list-none gap-4 p-0 sm:grid-cols-2">
+      {
+        ISO_DETAIL.map((iso, k) => (
+          <li class="iso flex flex-col gap-4 rounded-card border border-white/14 bg-white/6 p-6" data-reveal="up" data-reveal-delay={k * 0.08}>
+            <span class="flex items-center gap-3.5">
+              <span class="seal flex size-19 flex-none flex-col items-center justify-center rounded-full text-white">
+                <span class="text-[11px] font-extrabold tracking-[0.16em] text-green-light">ISO</span>
+                <span class="text-lg leading-none font-extrabold tracking-[-0.02em]">{iso.code}</span>
+              </span>
+              <span class="flex size-10 items-center justify-center rounded-xl bg-green-light/14 text-green-light">
+                <Icon d={iso.icon} size={20} />
+              </span>
+            </span>
+            <span>
+              <span class="block text-lg font-extrabold text-white">ISO {iso.code}</span>
+              <span class="mt-0.5 block text-[15px] font-bold text-green-light">{iso.name}</span>
+              <span class="mt-2 block text-[15px] leading-relaxed text-on-dark">{iso.text}</span>
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .cert {
+    background-color: var(--color-ink);
+    background-image:
+      var(--dots-blue),
+      var(--dots-green),
+      radial-gradient(45% 60% at 0% 0%, rgb(63 165 53 / 0.2), transparent 70%),
+      radial-gradient(50% 60% at 100% 100%, rgb(29 79 160 / 0.5), transparent 70%);
+    background-size:
+      var(--dots-size),
+      100% 100%,
+      100% 100%;
+    background-position:
+      var(--dots-position),
+      0 0,
+      0 0;
+  }
+  .seal {
+    background: radial-gradient(circle at 35% 30%, #1d4fa0, #0a1440);
+    box-shadow:
+      inset 0 0 0 3px rgb(255 255 255 / 0.15),
+      0 0 0 4px #3fa535;
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .iso {
+      transition:
+        transform 260ms var(--ease-out-strong),
+        box-shadow 260ms ease-out;
+    }
+    .iso:hover {
+      transform: translateY(-6px);
+      border-color: rgb(143 216 138 / 0.6);
+      box-shadow: 0 20px 50px rgb(0 0 0 / 0.35);
+    }
+  }
+</style>

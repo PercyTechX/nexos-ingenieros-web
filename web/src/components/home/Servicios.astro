@@ -1,0 +1,107 @@
+---
+/** Servicios (claro): 4 tarjetas con el objeto recortado de cada pilar y sus frases SEO. */
+import { Image } from 'astro:assets';
+import SectionHeading from '../ui/SectionHeading.astro';
+import Icon from '../ui/Icon.astro';
+import { ICON } from '../ui/icons';
+import { PILLARS } from '../../config/site';
+import { PILLAR_CONTENT } from '../../data/home';
+import tablero from '../../assets/hero/obj-tablero.webp';
+import mostrador from '../../assets/hero/obj-mostrador.webp';
+import aire from '../../assets/hero/obj-aire-estructura.webp';
+import incendio from '../../assets/hero/obj-contraincendio.webp';
+
+const objImg = { mant: tablero, retail: mostrador, obras: aire, indeci: incendio };
+---
+
+<section id="servicios" class="bg-blueprint relative overflow-hidden px-5 py-[clamp(56px,min(7vw,9svh),96px)]">
+  <!-- La cuadrícula aparece gradualmente después del difuminado de Clientes -->
+  <span class="pointer-events-none absolute inset-x-0 top-0 h-40 bg-linear-to-b from-surface-blue to-transparent" aria-hidden="true"></span>
+  <p
+    class="drift pointer-events-none absolute top-8 left-0 m-0 font-extrabold whitespace-nowrap text-navy/5"
+    aria-hidden="true"
+    data-drift
+  >
+    MANTENIMIENTO · RETAIL · OBRAS · ITSE
+  </p>
+  <div class="relative mx-auto max-w-310">
+    <div class="mb-10 flex flex-wrap items-end justify-between gap-x-10 gap-y-5">
+      <SectionHeading
+        eyebrow="Servicios de mantenimiento, implementación de tiendas, obras civiles y certificado ITSE"
+        class="min-w-0 flex-[1_1_520px]"
+      >
+        Mantenemos, construimos y <Fragment slot="accent">certificamos tu local</Fragment>
+      </SectionHeading>
+      <p class="m-0 flex-[0_1_400px] text-[17px] leading-relaxed text-muted" data-reveal="right">
+        Del mantenimiento diario de tu local a la obra civil completa y la certificación ITSE: un solo equipo responsable
+        de principio a fin.
+      </p>
+    </div>
+    <div class="grid gap-4.5 sm:grid-cols-2 lg:grid-cols-4">
+      {
+        PILLARS.map((p, k) => (
+          <a
+            href={`/servicios/${p.slug}/`}
+            class="card group flex min-h-117 flex-col overflow-hidden rounded-card border border-line bg-white"
+            data-reveal="up"
+            data-reveal-delay={k * 0.08}
+          >
+            <span class="card-top relative flex h-52 items-end justify-center pt-4 pr-4 pl-16">
+              <span class="num absolute top-3.5 left-4.5 z-[2] text-[44px] font-extrabold tracking-[-0.04em] text-transparent">
+                {p.num}
+              </span>
+              <Image
+                src={objImg[p.id]}
+                alt={PILLAR_CONTENT[p.id].objAlt}
+                width={320}
+                class="obj max-h-44 w-auto max-w-[86%]"
+              />
+            </span>
+            <span class="flex flex-1 flex-col gap-2.5 p-5.5 pb-6">
+              <h3 class="m-0 text-[19px] leading-tight font-extrabold text-navy">{p.name}</h3>
+              <span class="text-sm leading-relaxed text-subtle">· {PILLAR_CONTENT[p.id].kw1}</span>
+              <span class="text-sm leading-relaxed text-subtle">· {PILLAR_CONTENT[p.id].kw2}</span>
+              <span class="mt-auto inline-flex items-center gap-2 pt-2 text-sm font-bold text-blue">
+                Ver servicio <Icon d={ICON.arrow} size={16} stroke={2.4} />
+              </span>
+            </span>
+          </a>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .drift {
+    font-size: clamp(90px, 14vw, 220px);
+    letter-spacing: -0.05em;
+    line-height: 1;
+  }
+  .card {
+    transition:
+      transform 260ms var(--ease-out-strong),
+      box-shadow 260ms ease-out;
+  }
+  .card-top {
+    background:
+      radial-gradient(70% 80% at 50% 100%, rgb(29 79 160 / 0.18), transparent 70%),
+      linear-gradient(180deg, #f6f8fb, #e9eff9);
+  }
+  .num {
+    -webkit-text-stroke: 1.5px #9ab0d8;
+  }
+  .obj {
+    filter: drop-shadow(0 16px 18px rgb(14 26 79 / 0.22));
+    transition: transform 420ms var(--ease-out-strong);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lift);
+    }
+    .card:hover .obj {
+      transform: translateY(-10px) scale(1.05);
+    }
+  }
+</style>

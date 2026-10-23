@@ -1,0 +1,132 @@
+---
+/**
+ * ¿Por qué NEXOS? (oscuro): mensaje + bento 2×2 de cifras reales.
+ * Cada tarjeta: ícono, número que sube al aparecer, etiqueta, línea de contexto y barra que se llena (GSAP).
+ * Sin JS o con movimiento reducido: números finales y barras llenas.
+ */
+import Icon from '../ui/Icon.astro';
+import { ICON } from '../ui/icons';
+import { SITE } from '../../config/site';
+
+const stats = [
+  {
+    value: SITE.stats.clientes,
+    prefix: '+',
+    label: 'clientes satisfechos',
+    text: 'Retail, banca, salud, industria y sector público.',
+    icon: 'M9 5a3.2 3.2 0 1 1 0 6.4A3.2 3.2 0 0 1 9 5zM3 20a6 6 0 0 1 12 0M17 6.6a2.4 2.4 0 1 1 0 4.8M16 14.2a4.6 4.6 0 0 1 5 4.8',
+    fill: 0.68,
+    featured: true,
+  },
+  {
+    value: SITE.stats.mantenimientos,
+    prefix: '+',
+    label: 'mantenimientos realizados',
+    text: 'Preventivos y correctivos, con el local en operación.',
+    icon: 'M14.7 6.3a4 4 0 0 0-5.4 5.4L3 18l3 3 6.3-6.3a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.4-.6-.6-2.4z',
+    fill: 0.92,
+  },
+  {
+    value: 7,
+    prefix: '',
+    label: 'regiones del Perú',
+    text: 'Lima, Callao, Ica, Lambayeque, Áncash, Ucayali y Cusco.',
+    icon: ICON.pin,
+    fill: 0.55,
+  },
+  {
+    value: SITE.iso.length,
+    prefix: '',
+    label: 'normas ISO',
+    text: '9001 · 14001 · 37001 · 45001',
+    icon: 'M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6zM8.5 12l2.5 2.5 4.5-5',
+    fill: 1,
+  },
+];
+---
+
+<section
+  id="nosotros"
+  class="porque relative overflow-hidden px-5 py-[clamp(56px,min(7vw,9svh),96px)] text-white"
+>
+  <div class="relative mx-auto flex max-w-310 flex-wrap items-center gap-[clamp(40px,5vw,80px)]">
+    <div class="min-w-0 flex-[1_1_440px]" data-reveal="left">
+      <p class="eyebrow mb-4 text-green-light">¿Por qué NEXOS?</p>
+      <h2 class="mb-6 text-[clamp(36px,4.4vw,60px)] leading-[1.04] font-extrabold tracking-tight-display">
+        NEXOS Ingenieros: más que un contratista, <span class="text-green-light">tu socio estratégico.</span>
+      </h2>
+      <p class="mb-8 max-w-135 text-lg leading-[1.7] text-on-dark">
+        Servicio de calidad, oportuno y personalizado, con responsabilidad social y ambiental. Excelente gestión y
+        respuesta inmediata a cada requerimiento.
+      </p>
+      <a href="#cotizar" class="press inline-flex min-h-13 items-center gap-2.5 rounded-full bg-green px-6 font-extrabold text-ink">
+        Trabajemos juntos <Icon d={ICON.arrow} size={18} stroke={2.4} />
+      </a>
+    </div>
+
+    <ul class="m-0 grid min-w-0 flex-[1_1_480px] list-none grid-cols-2 gap-3 p-0 sm:gap-4">
+      {
+        stats.map((s, k) => (
+          <li
+            class:list={['stat group relative overflow-hidden rounded-card border p-[clamp(16px,2vw,24px)]', s.featured ? 'border-green-light/40 bg-green/12' : 'border-white/12 bg-white/5']}
+            data-reveal="up"
+            data-reveal-delay={k * 0.08}
+          >
+            <span class="shine pointer-events-none absolute inset-0" aria-hidden="true"></span>
+            <span class="flex items-center justify-between gap-3">
+              <span class="flex size-10 items-center justify-center rounded-xl bg-green-light/14 text-green-light sm:size-11">
+                <Icon d={s.icon} size={20} />
+              </span>
+              <span class="text-[11px] font-bold tracking-[0.14em] text-on-dark-muted uppercase">0{k + 1}</span>
+            </span>
+            <p class="num mt-4 mb-1 text-[clamp(38px,4.2vw,56px)] leading-none font-extrabold tracking-[-0.04em]">
+              {s.prefix}<span data-count={s.value}>{s.value}</span>
+            </p>
+            <p class="m-0 text-[15px] font-bold text-white">{s.label}</p>
+            <p class="mt-1.5 mb-4 hidden text-[13px] leading-snug text-on-dark-muted sm:block">{s.text}</p>
+            <span class="block h-1 overflow-hidden rounded-full bg-white/10 max-sm:mt-3" aria-hidden="true">
+              <span class="block h-full origin-left rounded-full bg-linear-to-r from-green to-green-light" style={`width:${s.fill * 100}%`} data-grow></span>
+            </span>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<style>
+  .porque {
+    background-image: var(--dots-blue), var(--dots-green), linear-gradient(160deg, #0a1440 0%, #10245f 60%, #163a86 100%);
+    background-size: var(--dots-size), 100% 100%;
+    background-position: var(--dots-position), 0 0;
+  }
+  .num {
+    background: linear-gradient(120deg, #fff 30%, #8fd88a);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .stat {
+    transition:
+      transform 280ms var(--ease-out-strong),
+      border-color 280ms ease-out,
+      box-shadow 280ms ease-out;
+  }
+  .shine {
+    background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 0.08) 45%, transparent 60%);
+    transform: translateX(-120%);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .stat:hover {
+      transform: translateY(-6px);
+      border-color: rgb(143 216 138 / 0.6);
+      box-shadow:
+        0 0 0 1px rgb(143 216 138 / 0.2),
+        0 24px 50px rgb(0 0 0 / 0.35);
+    }
+    .stat:hover .shine {
+      transform: translateX(120%);
+      transition: transform 900ms var(--ease-out-strong);
+    }
+  }
+</style>

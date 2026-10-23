@@ -27,7 +27,8 @@
 
   /* Tipografía */
   --font-sans: 'Plus Jakarta Sans Variable', system-ui, sans-serif;
-  --text-display: clamp(2.375rem, 5.4vw, 4.875rem);
+  /* Escala por ancho Y por alto: en laptops bajas el H1 no empuja el CTA fuera de pantalla */
+  --text-display: clamp(2.375rem, min(5.4vw, 7.5svh), 4.875rem);
   --text-display--line-height: 1.02;
   --text-section: clamp(2.125rem, 4.4vw, 3.75rem);
   --text-section--line-height: 1.04;
@@ -72,6 +73,7 @@
    ============================================================ */
 @utility eyebrow {
   display: block;
+  text-wrap: balance;
   font-size: 0.8125rem;
   font-weight: 700;
   letter-spacing: var(--tracking-eyebrow);
@@ -90,13 +92,23 @@
 }
 
 /* Retícula de plano técnico (sección Proyectos) */
+/* Puntos sutiles para secciones oscuras: retícula azul + puntos verdes intercalados (paleta de marca).
+   Uso: background-image: var(--dots-blue), var(--dots-green), <degradados>;
+        background-size: var(--dots-size), <tamaños de los degradados>; */
+:root {
+  --dots-blue: radial-gradient(circle, rgb(90 142 234 / 0.16) 1px, transparent 1.5px);
+  --dots-green: radial-gradient(circle, rgb(143 216 138 / 0.16) 1.2px, transparent 1.7px);
+  --dots-size: 24px 24px, 96px 96px;
+  --dots-position: 0 0, 12px 12px;
+}
+
 @utility bg-blueprint {
   background-color: var(--color-surface-blue);
   background-image:
+    linear-gradient(rgb(29 79 160 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(29 79 160 / 0.04) 1px, transparent 1px),
     linear-gradient(rgb(29 79 160 / 0.07) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(29 79 160 / 0.07) 1px, transparent 1px),
-    linear-gradient(rgb(29 79 160 / 0.12) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(29 79 160 / 0.12) 1px, transparent 1px);
+    linear-gradient(90deg, rgb(29 79 160 / 0.07) 1px, transparent 1px);
   background-size:
     24px 24px,
     24px 24px,

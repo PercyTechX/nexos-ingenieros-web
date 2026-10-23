@@ -56,12 +56,20 @@
     "order": 7
   },
   {
+    "id": "faq-10",
+    "pillar": "indeci",
+    "question": "¿El Certificado ITSE es lo mismo que el certificado de Defensa Civil?",
+    "answer": "Sí. Lo que antes se conocía como certificado de Defensa Civil hoy es el Certificado de Inspección Técnica de Seguridad en Edificaciones (ITSE), que emite la municipalidad de tu distrito. Te ayudamos a preparar tu local y a levantar las observaciones para obtenerlo.",
+    "needsValidation": true,
+    "order": 8
+  },
+  {
     "id": "faq-08",
     "pillar": "indeci",
     "question": "¿Cómo levantan las observaciones de INDECI / ITSE en boticas y tiendas?",
     "answer": "Revisamos el acta de observaciones, ejecutamos las correcciones (pozo a tierra, tableros, luces de emergencia, retardante de fuego, señalización, entre otras) y entregamos la documentación técnica para la nueva inspección.",
     "needsValidation": true,
-    "order": 8
+    "order": 9
   },
   {
     "id": "faq-09",
@@ -69,6 +77,14 @@
     "question": "¿Cada cuánto se debe medir el pozo a tierra?",
     "answer": "Se recomienda medirlo de forma periódica (al menos una vez al año) y siempre antes de una inspección ITSE, con su protocolo firmado por un ingeniero electricista colegiado.",
     "needsValidation": true,
-    "order": 9
+    "order": 10
+  },
+  {
+    "id": "faq-11",
+    "pillar": "indeci",
+    "question": "¿Cuánto cuesta levantar observaciones ITSE o medir el pozo a tierra?",
+    "answer": "Depende del tamaño del local, del tipo de observaciones y de la ubicación. Revisamos tu acta de observaciones o visitamos tu local y te enviamos una cotización a medida.",
+    "needsValidation": true,
+    "order": 11
   }
 ]

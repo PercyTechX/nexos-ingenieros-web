@@ -24,26 +24,26 @@
 **Footer:** servicios, proyectos destacados, contacto, sedes, redes, legales.
 
 ## 2. Inicio (A7) — secciones en orden
+> Actualizado 2026-10-22: se quitaron **Sectores** y **Cómo trabajamos** (redundantes en el Inicio; "Cómo trabajamos" se reutiliza en las páginas de servicio). **Clientes** pasó a franja compacta debajo del hero y la **FAQ** a claro.
+
 | # | Sección | Tono | Comportamiento |
 |---|---|---|---|
 | 0 | Pantalla de entrada | Oscuro | Solo en la primera visita (`localStorage`), ~2,7 s, botón "Saltar"; sin animación con `prefers-reduced-motion` |
-| 1 | Hero | Oscuro | H1 fijo; rota el técnico, el objeto y la descripción por pilar cada 5 s; pestañas 01–04; franja de beneficios |
-| 2 | Servicios | Claro | 4 tarjetas con objeto recortado y frases SEO; enlace a cada página de servicio |
-| 3 | ¿Por qué NEXOS? | Oscuro | Texto + cifras animadas (+34 clientes, +297 mantenimientos) |
-| 4 | Proyectos (mapa de obras) | Claro (plano técnico) | Mapa del Perú con puntos por ciudad, filtro por pilar, lista enlazada a las fichas |
-| 5 | Cómo trabajamos | Oscuro | 4 pasos |
-| 6 | Certificaciones | Claro | 4 tarjetas ISO (9001, 14001, 37001, 45001) |
-| 7 | Sectores | Oscuro | 6 tarjetas |
-| 8 | Clientes | Claro | Carrusel de logos en 2 filas (gris → color) |
-| 9 | Preguntas frecuentes | Oscuro | Acordeón con filtro por pilar; datos estructurados FAQPage |
-| 10 | Cotizador | Claro (tarjeta oscura) | Ver §5 |
-| 11 | CTA + footer | Oscuro | — |
+| 1 | Hero | Oscuro | Alto = pantalla; H1 "Mantenimiento de locales comerciales, obras e ingeniería"; rota el técnico, el objeto y la descripción por pilar cada 5 s; pestañas 01–04; franja de beneficios |
+| 2 | Clientes (tarjeta flotante) | Difuminado oscuro → claro | Tarjeta blanca sobre un degradado ink → azul de marca → azul claro que une el hero con Servicios; H2 pequeño "Empresas que confían en NEXOS Ingenieros" + logos en 2 filas en movimiento (gris → color) |
+| 3 | Servicios | Claro (gris) | 4 tarjetas con objeto recortado y frases SEO; enlace a cada página de servicio |
+| 4 | ¿Por qué NEXOS? | Oscuro | Texto + bento 2×2 de cifras animadas (+34 clientes, +297 mantenimientos, 7 regiones, 4 normas ISO) con ícono, contador, contexto y barra que se llena |
+| 5 | Proyectos (mapa de obras) | Claro (plano técnico) | Mapa del Perú con puntos por ciudad, filtro por pilar y lista enlazada a las fichas |
+| 6 | Certificaciones | Oscuro | 4 tarjetas ISO (9001, 14001, 37001, 45001) |
+| 7 | Preguntas frecuentes | Claro (blanco) | Acordeón con filtro por pilar; datos estructurados FAQPage |
+| 8 | Cotizador | Claro (gris, tarjeta oscura) | Ver §5 |
+| 9 | CTA + footer | Oscuro | — |
 
 ## 3. Página de servicio (plantilla)
 1. Hero con H1 = nombre del pilar + ciudad ("… en Lima"), descripción y CTA.
 2. Sub-servicios en tarjetas (del documento del cliente), cada uno con H3.
 3. Proyectos relacionados del pilar (tarjetas → fichas).
-4. Cómo trabajamos (resumen).
+4. Cómo trabajamos (componente `ComoTrabajamos`, que se quitó del Inicio).
 5. FAQ del pilar.
 6. Cotizador con el pilar preseleccionado (`/contacto/?servicio=…`).
 7. Artículos del blog del pilar.
