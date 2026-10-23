@@ -288,3 +288,6 @@ Idea para el plan SEO: una página por pilar, optimizada para sus 2 frases, más
   - `.github/workflows/deploy-yachay.yml`: build y luego lftp por SFTP/FTPS (main → producción, develop → vista previa). Solo despliega si existen los secrets.
   - Build: 0 errores; preview local OK (200, 404 propia y sitemap).
 - Hosting definido: **Yachay plan "Hosti 200"**: S/ 190 al año, 50 sitios, 100 correos, 200 GB, 2 GB de RAM y SSL gratis. Documentado en `docs/STACK.md` §6. Por confirmar: SFTP/FTPS, `.htaccess`, inodos y el correo actual.
+- **Repositorio en GitHub (privado):** https://github.com/PercyTechX/nexos-ingenieros-web. Ramas `main` y `develop`. Primer commit `b4eb789` (F1).
+  - Autor del repo local: "Jesús Percy Nazario Portilla" (configurado solo en este repo; el user.name global estaba vacío).
+  - El workflow "Deploy Yachay" compila en GitHub (`astro check` + build + Pagefind) y omite la subida hasta que existan los secrets (YACHAY_HOST, YACHAY_USER, YACHAY_PASSWORD, YACHAY_PROTOCOL, YACHAY_REMOTE_DIR, YACHAY_REMOTE_DIR_PREVIEW).
